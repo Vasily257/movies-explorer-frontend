@@ -9,16 +9,13 @@ import Profile from '../../pages/Profile/Profile';
 import Login from '../../pages/Login/Login';
 import Register from '../../pages/Register/Register';
 
-import MenuContext from '../../contexts/MenuContext';
+import { MenuContext } from '../../contexts/MenuContext';
 
 function App() {
-  const [isLoggedIn] = useState(true); // Поменять обратно
+  const [isLoggedIn] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuValue = useMemo(() => ({
-    isMenuOpen,
-    setIsMenuOpen,
-  }), []);
+  const menuValue = useMemo(() => ({ isMenuOpen, setIsMenuOpen }), [isMenuOpen, setIsMenuOpen]);
 
   return (
     <div className="app">
@@ -38,6 +35,7 @@ function App() {
           <Route path="/signin" element={<Login />} />
           <Route path="/signup" element={<Register />} />
         </Routes>
+
       </MenuContext.Provider>
     </div>
   );

@@ -1,32 +1,53 @@
-import { React } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import Menu from '../Menu/Menu';
+import { React, useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import { MenuContext } from '../../contexts/MenuContext';
+import Button from '../Button/Button';
+
 import './Navigation.css';
 
-function Navigation({ isLoggedIn }) {
+import headerMenuOpened from '../../images/header-menu-opened.svg';
+import headerMenuClosed from '../../images/header-menu-closed.svg';
+
+function Navigation() {
+  const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
+
   return (
-    <nav className="navigation">
-      {isLoggedIn ? <Menu /> : (
-        <ul className="navigation__list">
-          <li className="navigation__item">
-            <Link to="/signup" className="navigation__link">
-              Регистрация
-            </Link>
-          </li>
-          <li className="navigation__item">
-            <Link to="/signin" className="navigation__link">
-              Войти
-            </Link>
-          </li>
-        </ul>
-      )}
-    </nav>
+    <div className="navigation">
+      <ul className="navigation__list">
+        <li className="navigation__item">
+          <NavLink to="/" className="navigation__link">
+            Главная
+          </NavLink>
+        </li>
+        <li className="navigation__item">
+          <NavLink to="/movies" className="navigation__link">
+            Фильмы
+          </NavLink>
+        </li>
+        <li className="navigation__item">
+          <NavLink
+            to="/saved-movies"
+            className="navigation__link"
+          >
+            Сохранённые фильмы
+          </NavLink>
+        </li>
+
+      </ul>
+      <Button
+        isSubmitButton={false}
+        onClick={() => { setIsMenuOpen(!isMenuOpen); }}
+        className="button"
+        disabled={false}
+      >
+        <img
+          className={`header__menu ${isMenuOpen ? 'header__menu_opened' : 'header__menu_closed'}`}
+          src={`${isMenuOpen ? headerMenuOpened : headerMenuClosed}`}
+          alt={`${isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}`}
+        />
+      </Button>
+    </div>
   );
 }
-
-Navigation.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-};
 
 export default Navigation;
