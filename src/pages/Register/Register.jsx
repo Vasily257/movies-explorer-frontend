@@ -1,8 +1,15 @@
 import React from 'react';
-import './Register.css';
+
+import Header from '../../components/Header/Header';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
 function Register() {
-  return <div className="register" />;
+  return (
+    <>
+      <Header />
+      <RegisterForm />
+    </>
+  );
 }
 
 export default Register;

@@ -1,8 +1,15 @@
 import React from 'react';
-import './Login.css';
+
+import Header from '../../components/Header/Header';
+import LoginForm from '../../components/LoginForm/LoginForm';
 
 function Login() {
-  return <div className="login" />;
+  return (
+    <div className="login">
+      <Header />
+      <LoginForm />
+    </div>
+  );
 }
 
 export default Login;

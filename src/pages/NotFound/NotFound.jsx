@@ -1,8 +1,15 @@
 import React from 'react';
-import './NotFound.css';
+
+import NotFoundPage from '../../components/NotFoundPage/NotFoundPage';
+import Button from '../../components/Button/Button';
 
 function NotFound() {
-  return <div className="not-found" />;
+  return (
+    <>
+      <NotFoundPage />
+      <Button />
+    </>
+  );
 }
 
 export default NotFound;
