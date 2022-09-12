@@ -21,7 +21,7 @@ function Header({ isDarkTheme }) {
           <Link to="/signup" className="header__signup">
             Регистрация
           </Link>
-          <Link to="/signin" className="header__signup">
+          <Link to="/signin" className="header__signin">
             Войти
           </Link>
         </>
