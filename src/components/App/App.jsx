@@ -10,33 +10,29 @@ import Login from '../../pages/Login/Login';
 import Register from '../../pages/Register/Register';
 
 import { MenuContext } from '../../contexts/MenuContext';
+import { LoginContext } from '../../contexts/LoginContext';
 
 function App() {
-  const [isLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const loginValue = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
   const menuValue = useMemo(() => ({ isMenuOpen, setIsMenuOpen }), [isMenuOpen, setIsMenuOpen]);
 
   return (
     <div className="app">
-      <MenuContext.Provider value={menuValue}>
-        <Routes>
-          <Route
-            path="/"
-            element={(
-              <Main
-                isLoggedIn={isLoggedIn}
-              />
-)}
-          />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/saved-movies" element={<SavedMovies />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/signin" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
-        </Routes>
-
-      </MenuContext.Provider>
+      <LoginContext.Provider value={loginValue}>
+        <MenuContext.Provider value={menuValue}>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/saved-movies" element={<SavedMovies />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/signin" element={<Login />} />
+            <Route path="/signup" element={<Register />} />
+          </Routes>
+        </MenuContext.Provider>
+      </LoginContext.Provider>
     </div>
   );
 }

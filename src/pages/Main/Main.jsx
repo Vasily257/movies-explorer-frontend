@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Header from '../../components/Header/Header';
 import Promo from '../../components/Promo/Promo';
@@ -9,10 +8,10 @@ import AboutMe from '../../components/AboutMe/AboutMe';
 import Portfolio from '../../components/Portfolio/Portfolio';
 import Footer from '../../components/Footer/Footer';
 
-function Main({ isLoggedIn }) {
+function Main() {
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header />
       <Promo />
       <AboutProject />
       <Techs />
@@ -22,9 +21,5 @@ function Main({ isLoggedIn }) {
     </>
   );
 }
-
-Main.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-};
 
 export default Main;
