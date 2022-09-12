@@ -1,52 +1,59 @@
 import { React, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { MenuContext } from '../../contexts/MenuContext';
 import Button from '../Button/Button';
 
 import './Navigation.css';
 
-import headerMenuOpened from '../../images/header-menu-opened.svg';
-import headerMenuClosed from '../../images/header-menu-closed.svg';
+import navigationButtonOpened from '../../images/navigation-button-opened.svg';
+import navigationButtonClosed from '../../images/navigation-button-closed.svg';
 
 function Navigation() {
   const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
 
   return (
-    <div className="navigation">
-      <ul className="navigation__list">
-        <li className="navigation__item">
-          <NavLink to="/" className="navigation__link">
-            Главная
-          </NavLink>
-        </li>
-        <li className="navigation__item">
-          <NavLink to="/movies" className="navigation__link">
-            Фильмы
-          </NavLink>
-        </li>
-        <li className="navigation__item">
-          <NavLink
-            to="/saved-movies"
-            className="navigation__link"
-          >
-            Сохранённые фильмы
-          </NavLink>
-        </li>
-
-      </ul>
+    <nav className="navigation">
+      {isMenuOpen && (
+        <>
+          <ul className="navigation__list">
+            <li className="navigation__item">
+              <NavLink to="/" className="navigation__link">
+                Главная
+              </NavLink>
+            </li>
+            <li className="navigation__item">
+              <NavLink to="/movies" className="navigation__link">
+                Фильмы
+              </NavLink>
+            </li>
+            <li className="navigation__item">
+              <NavLink to="/saved-movies" className="navigation__link">
+                Сохранённые фильмы
+              </NavLink>
+            </li>
+          </ul>
+          <Link to="/profile" className="navigation__profile">
+            Аккаунт
+          </Link>
+        </>
+      )}
       <Button
         isSubmitButton={false}
-        onClick={() => { setIsMenuOpen(!isMenuOpen); }}
+        onClick={() => {
+          setIsMenuOpen(!isMenuOpen);
+        }}
         className="button"
         disabled={false}
       >
         <img
-          className={`header__menu ${isMenuOpen ? 'header__menu_opened' : 'header__menu_closed'}`}
-          src={`${isMenuOpen ? headerMenuOpened : headerMenuClosed}`}
+          className={`button navigation__button ${
+            isMenuOpen ? 'navigation__button_opened' : 'navigation__button_closed'
+          }`}
+          src={`${isMenuOpen ? navigationButtonOpened : navigationButtonClosed}`}
           alt={`${isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}`}
         />
       </Button>
-    </div>
+    </nav>
   );
 }
 
