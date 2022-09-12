@@ -1,4 +1,4 @@
-import React from 'react';
+import { React } from 'react';
 
 import Header from '../../components/Header/Header';
 import Promo from '../../components/Promo/Promo';
@@ -11,7 +11,7 @@ import Footer from '../../components/Footer/Footer';
 function Main() {
   return (
     <>
-      <Header />
+      <Header isDarkTheme />
       <Promo />
       <AboutProject />
       <Techs />
