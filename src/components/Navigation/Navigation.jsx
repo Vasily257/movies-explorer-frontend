@@ -13,6 +13,22 @@ function Navigation() {
 
   return (
     <nav className="navigation">
+      <Button
+        isSubmitButton={false}
+        onClick={() => {
+          setIsMenuOpen(!isMenuOpen);
+        }}
+        className="button navigation__button"
+        disabled={false}
+      >
+        <img
+          className={`navigation__button-image ${
+            isMenuOpen ? 'navigation__button_opened' : 'navigation__button_closed'
+          }`}
+          src={`${isMenuOpen ? navigationButtonOpened : navigationButtonClosed}`}
+          alt={`${isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}`}
+        />
+      </Button>
       {isMenuOpen && (
         <>
           <ul className="navigation__list">
@@ -37,22 +53,6 @@ function Navigation() {
           </Link>
         </>
       )}
-      <Button
-        isSubmitButton={false}
-        onClick={() => {
-          setIsMenuOpen(!isMenuOpen);
-        }}
-        className="button"
-        disabled={false}
-      >
-        <img
-          className={`button navigation__button ${
-            isMenuOpen ? 'navigation__button_opened' : 'navigation__button_closed'
-          }`}
-          src={`${isMenuOpen ? navigationButtonOpened : navigationButtonClosed}`}
-          alt={`${isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}`}
-        />
-      </Button>
     </nav>
   );
 }
