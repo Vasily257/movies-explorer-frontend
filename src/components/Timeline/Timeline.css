@@ -1,0 +1,23 @@
+.button {
+  display: block;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  cursor: pointer;
+  transition: background-color 0.5s;
+
+  opacity: 1;
+  color: inherit;
+  border: none;
+  background-color: transparent;
+
+  font: inherit;
+}
+
+.button:hover {
+  transition: background-color 0.1s;
+
+  background-color: transparent;
+}
