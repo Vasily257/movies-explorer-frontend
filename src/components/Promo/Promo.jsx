@@ -7,7 +7,7 @@ import './Promo.css';
 
 function Promo() {
   return (
-    <div className="promo">
+    <section className="promo">
       <picture className="promo__picture-wrapper">
         <source srcSet={promoPictureWebp} />
         <img
@@ -28,7 +28,7 @@ function Promo() {
       >
         Узнать больше
       </Button>
-    </div>
+    </section>
   );
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import './Preloader.css';
 
 function Preloader() {
-  return <div className="preloader" />;
+  return <section className="preloader" />;
 }
 
 export default Preloader;

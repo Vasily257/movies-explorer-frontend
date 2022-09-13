@@ -2,7 +2,7 @@ import React from 'react';
 import './RegisterForm.css';
 
 function RegisterForm() {
-  return <div className="register-form" />;
+  return <form className="register-form" />;
 }
 
 export default RegisterForm;
