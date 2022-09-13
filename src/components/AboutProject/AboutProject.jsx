@@ -20,13 +20,13 @@ function AboutProject() {
         успешно защититься.
       </p>
       <div className="about-project__timeline">
-        <div className="about-project__timeline-box">
+        <div className="about-project__timeline-box about-project__timeline-box_type_backend">
           <p className="about-project__timeline-term about-project__timeline-term_type_backend">
             1&nbsp;неделя
           </p>
           <p className="about-project__timeline-description">Back-end</p>
         </div>
-        <div className="about-project__timeline-box">
+        <div className="about-project__timeline-box about-project__timeline-box_type_frontend">
           <p className="about-project__timeline-term about-project__timeline-term_type_frontend">
             4&nbsp;недели
           </p>
