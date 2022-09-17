@@ -18,7 +18,7 @@ function AboutMe() {
           нравится вёрстка, поэтому решил изучать веб-разработку. Есть жена и&nbsp;две кошки:
           Кис-Кис и&nbsp;Мур-Мур.
         </p>
-        <CustomLink className="about-me__link" target="_blank" path="http://github.com/Vasily257">
+        <CustomLink className="about-me__link" path="http://github.com/Vasily257">
           Github
         </CustomLink>
       </div>

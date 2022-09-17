@@ -25,10 +25,6 @@
 .header__signup {
   margin-left: auto;
 
-  transition: opacity 0.5s;
-  text-decoration: none;
-
-  opacity: 1;
   color: #ffffff;
 
   font-size: 10px;
@@ -36,18 +32,11 @@
   line-height: 1.6;
 }
 
-.header__signup:hover {
-  transition: opacity 0.1s;
-
-  opacity: 0.7;
-}
-
 .header__signin {
   margin-left: 14px;
   padding: 5px 12px;
 
-  transition: opacity 0.5s;
-  text-decoration: none;
+  transition: background-color 0.5s;
 
   opacity: 1;
   color: #000000;
@@ -60,9 +49,10 @@
 }
 
 .header__signin:hover {
-  transition: opacity 0.1s;
+  transition: background-color 0.1s;
 
-  opacity: 0.7;
+  opacity: 1;
+  background-color: rgb(43, 224, 128, 0.8);
 }
 
 @media screen and (min-width: 600px) {

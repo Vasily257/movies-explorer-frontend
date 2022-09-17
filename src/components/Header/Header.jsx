@@ -1,13 +1,13 @@
 import { React, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
 import './Header.css';
 
 import headerLogo from '../../images/header-logo.svg';
 import Navigation from '../Navigation/Navigation';
 
 import { LoginContext } from '../../contexts/LoginContext';
+import CustomLink from '../CustomLink/CustomLink';
 
 function Header({ isDarkTheme }) {
   const { isLoggedIn } = useContext(LoginContext);
@@ -18,12 +18,12 @@ function Header({ isDarkTheme }) {
         <Navigation />
       ) : (
         <>
-          <Link to="/signup" className="header__signup">
+          <CustomLink path="/signup" className="header__signup">
             Регистрация
-          </Link>
-          <Link to="/signin" className="header__signin">
+          </CustomLink>
+          <CustomLink path="/signin" className="header__signin">
             Войти
-          </Link>
+          </CustomLink>
         </>
       )}
     </header>
