@@ -1,24 +1,25 @@
 import { React, useContext } from 'react';
 import { MenuContext } from '../../contexts/MenuContext';
-import Button from '../Button/Button';
 
-import './Navigation.css';
+import Button from '../Button/Button';
+import CustomLink from '../CustomLink/CustomLink';
 
 import navigationButtonOpened from '../../images/navigation-button-opened.svg';
 import navigationButtonClosed from '../../images/navigation-button-closed.svg';
-import CustomLink from '../CustomLink/CustomLink';
+
+import './Navigation.css';
 
 function Navigation() {
   const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
 
   return (
-    <nav className="navigation">
+    <nav className={`navigation ${isMenuOpen ? 'navigation_opened' : ''}`}>
       <Button
         isSubmitButton={false}
         onClick={() => {
           setIsMenuOpen(!isMenuOpen);
         }}
-        className="button navigation__button"
+        className={`button navigation__button ${isMenuOpen ? 'navigation__button_opened' : ''}`}
         disabled={false}
       >
         <img
@@ -29,8 +30,7 @@ function Navigation() {
           alt={`${isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}`}
         />
       </Button>
-
-      <ul className="navigation__list">
+      <ul className={`navigation__list ${isMenuOpen ? 'navigation__list_opened' : ''}`}>
         <li className="navigation__item">
           <CustomLink
             path="/"
@@ -59,7 +59,10 @@ function Navigation() {
           </CustomLink>
         </li>
       </ul>
-      <CustomLink path="/profile" className="navigation__profile">
+      <CustomLink
+        path="/profile"
+        className={`navigation__profile ${isMenuOpen ? 'navigation__profile_opened' : ''}`}
+      >
         Аккаунт
       </CustomLink>
     </nav>
