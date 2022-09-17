@@ -9,19 +9,31 @@ function Portfolio() {
       <h2 className="portfolio__title">Портфолио</h2>
       <ul className="portfolio__list">
         <li className="portfolio__item">
-          <CustomLink className="portfolio__link">
+          <CustomLink
+            className="portfolio__link"
+            target="_blank"
+            path="https://github.com/Vasily257/how-to-learn"
+          >
             Статичный сайт
             <img className="portfolio__link-icon" src={portfolioLinkIcon} alt="Значок ссылки" />
           </CustomLink>
         </li>
         <li className="portfolio__item">
-          <CustomLink className="portfolio__link">
+          <CustomLink
+            className="portfolio__link"
+            target="_blank"
+            path="https://github.com/Vasily257/russian-travel"
+          >
             Адаптивный сайт
             <img className="portfolio__link-icon" src={portfolioLinkIcon} alt="Значок ссылки" />
           </CustomLink>
         </li>
         <li className="portfolio__item">
-          <CustomLink className="portfolio__link">
+          <CustomLink
+            className="portfolio__link"
+            target="_blank"
+            path="https://github.com/Vasily257/react-mesto-api-full"
+          >
             Одностраничное приложение
             <img className="portfolio__link-icon" src={portfolioLinkIcon} alt="Значок ссылки" />
           </CustomLink>
