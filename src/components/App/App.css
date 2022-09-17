@@ -1,6 +1,14 @@
 .app {
   position: relative;
 
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto 1fr auto;
+
+  box-sizing: border-box;
+  min-width: 320px;
+  min-height: 100vh;
+
   color: #000000;
   background-color: #ffffff;
 
@@ -13,27 +21,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-
-.app__section {
-  position: relative;
-
-  box-sizing: border-box;
-  min-width: 320px;
-  min-height: 100vh;
-  padding: 0 10px;
-}
-
-@media screen and (min-width: 600px) {
-  .app__section {
-    padding: 0 50px;
-  }
-}
-
-@media screen and (min-width: 900px) {
-  .app__section {
-    padding: 0 70px;
-  }
+     -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
 }
