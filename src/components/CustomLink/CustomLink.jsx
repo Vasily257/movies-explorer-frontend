@@ -17,7 +17,7 @@ function CustomLink({
     return (
       <NavLink
         to={path}
-        className={({ isActive }) => className + (isActive ? activeClassName : '')}
+        className={({ isActive }) => `custom-link ${className} ${(isActive ? activeClassName : '')}`}
       >
         {children}
       </NavLink>
