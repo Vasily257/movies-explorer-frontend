@@ -44,13 +44,3 @@ CustomLink.defaultProps = {
 };
 
 export default CustomLink;
-
-// function CustomLink({
-//   path, children, className, ...props
-// }) {
-//   return (
-//     <a href={path} className={`custom-link ${className}`} rel="noreferrer" target={props.target}>
-//       {children}
-//     </a>
-//   );
-// }

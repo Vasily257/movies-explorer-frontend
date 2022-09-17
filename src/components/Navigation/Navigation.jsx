@@ -1,5 +1,4 @@
 import { React, useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import { MenuContext } from '../../contexts/MenuContext';
 import Button from '../Button/Button';
 
@@ -7,6 +6,7 @@ import './Navigation.css';
 
 import navigationButtonOpened from '../../images/navigation-button-opened.svg';
 import navigationButtonClosed from '../../images/navigation-button-closed.svg';
+import CustomLink from '../CustomLink/CustomLink';
 
 function Navigation() {
   const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
@@ -29,30 +29,39 @@ function Navigation() {
           alt={`${isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}`}
         />
       </Button>
-      {isMenuOpen && (
-        <>
-          <ul className="navigation__list">
-            <li className="navigation__item">
-              <NavLink to="/" className="navigation__link">
-                Главная
-              </NavLink>
-            </li>
-            <li className="navigation__item">
-              <NavLink to="/movies" className="navigation__link">
-                Фильмы
-              </NavLink>
-            </li>
-            <li className="navigation__item">
-              <NavLink to="/saved-movies" className="navigation__link">
-                Сохранённые фильмы
-              </NavLink>
-            </li>
-          </ul>
-          <Link to="/profile" className="navigation__profile">
-            Аккаунт
-          </Link>
-        </>
-      )}
+
+      <ul className="navigation__list">
+        <li className="navigation__item">
+          <CustomLink
+            path="/"
+            className="navigation__link"
+            activeClassName="navigation__link_active"
+          >
+            Главная
+          </CustomLink>
+        </li>
+        <li className="navigation__item">
+          <CustomLink
+            path="/movies"
+            className="navigation__link"
+            activeClassName="navigation__link_active"
+          >
+            Фильмы
+          </CustomLink>
+        </li>
+        <li className="navigation__item">
+          <CustomLink
+            path="/saved-movies"
+            className="navigation__link"
+            activeClassName="navigation__link_active"
+          >
+            Сохранённые фильмы
+          </CustomLink>
+        </li>
+      </ul>
+      <CustomLink path="/profile" className="navigation__profile">
+        Аккаунт
+      </CustomLink>
     </nav>
   );
 }
