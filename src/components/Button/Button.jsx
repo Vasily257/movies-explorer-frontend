@@ -13,11 +13,16 @@ function Button({
 }
 
 Button.propTypes = {
-  isSubmitButton: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
+  isSubmitButton: PropTypes.bool,
+};
+
+Button.defaultProps = {
+  disabled: false,
+  isSubmitButton: false,
 };
 
 export default Button;

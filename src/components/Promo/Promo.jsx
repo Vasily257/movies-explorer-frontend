@@ -20,12 +20,7 @@ function Promo() {
       <p className="promo__subtitle">
         Листайте ниже, чтобы узнать больше про этот проект и&nbsp;его создателя.
       </p>
-      <Button
-        isSubmitButton={false}
-        onClick={() => {}}
-        className="button promo__button"
-        disabled={false}
-      >
+      <Button onClick={() => {}} className="button promo__button">
         Узнать больше
       </Button>
     </section>

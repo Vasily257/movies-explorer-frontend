@@ -15,12 +15,10 @@ function Navigation() {
   return (
     <nav className={`navigation ${isMenuOpen ? 'navigation_opened' : ''}`}>
       <Button
-        isSubmitButton={false}
         onClick={() => {
           setIsMenuOpen(!isMenuOpen);
         }}
         className={`button navigation__button ${isMenuOpen ? 'navigation__button_opened' : ''}`}
-        disabled={false}
       >
         <img
           className={`navigation__button-image ${
