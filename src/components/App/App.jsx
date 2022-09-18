@@ -11,6 +11,7 @@ import Register from '../../pages/Register/Register';
 
 import { MenuContext } from '../../contexts/MenuContext';
 import { LoginContext } from '../../contexts/LoginContext';
+import ProtectedRoute from '../HOC/ProtectedRoute';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -29,12 +30,28 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route
               path="/movies"
-              element={
-                <Movies isShortsMovies={isShortsMovies} setIsShortsMovies={setIsShortsMovies} />
-              }
+              element={(
+                <ProtectedRoute>
+                  <Movies isShortsMovies={isShortsMovies} setIsShortsMovies={setIsShortsMovies} />
+                </ProtectedRoute>
+              )}
             />
-            <Route path="/saved-movies" element={<SavedMovies />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/saved-movies"
+              element={(
+                <ProtectedRoute>
+                  <SavedMovies />
+                </ProtectedRoute>
+              )}
+            />
+            <Route
+              path="/profile"
+              element={(
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              )}
+            />
             <Route path="/signin" element={<Login />} />
             <Route path="/signup" element={<Register />} />
           </Routes>
