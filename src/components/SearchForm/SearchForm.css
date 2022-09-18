@@ -30,7 +30,10 @@
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  padding: 14px 0 14px 19px;
+  padding-top: 14px;
+  padding-right: 0;
+  padding-bottom: 14px;
+  padding-left: 19px;
 
   color: var(--grey-color);
   border: none;
@@ -87,11 +90,9 @@
 
   border-radius: 14px;
   background-color: #ebebeb;
-  /* background-color: var(--green-color); */
 }
 
 .search-form__shorts-button:hover {
-  /* background-color: rgba(43, 224, 128, 0.8); */
   background-color: rgba(235, 235, 235, 0.8);
 }
 
@@ -139,6 +140,18 @@
 @media screen and (min-width: 600px) {
   .search-form {
     padding: 79px 30px 10px;
+  }
+
+  .search-form__input {
+    padding-left: 22px;
+
+    font-size: 13px;
+    line-height: calc(17 / 13);
+  }
+
+  .search-form__shorts-text {
+    font-size: 14px;
+    line-height: calc(18 / 14);
   }
 }
 
