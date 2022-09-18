@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 
 import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
 
-function SearchForm() {
+function SearchForm({ isShortsMovies, setIsShortsMovies }) {
   return (
     <section className="search-form">
       <h1 className="visually-hidden">Поиск по фильмам</h1>
@@ -24,7 +25,7 @@ function SearchForm() {
               required
             />
           </label>
-          <Button className="search-form__submit-button" onClick={{}} isSubmitButton>
+          <Button className="search-form__submit-button" onClick={() => {}} isSubmitButton>
             <img
               className="search-form__submit-button-image"
               src={searchFormIcon}
@@ -34,8 +35,12 @@ function SearchForm() {
         </p>
         <div className="search-form__shorts-wrapper">
           <Button
-            className="search-form__shorts-button"
-            onClick={{}}
+            className={`search-form__shorts-button ${
+              isShortsMovies ? 'search-form__shorts-button__selected' : ''
+            }`}
+            onClick={() => {
+              setIsShortsMovies(!isShortsMovies);
+            }}
             ariaLabel="Искать только короткометражные фильмы"
           />
           <span className="search-form__shorts-text">Короткометражки</span>
@@ -44,5 +49,10 @@ function SearchForm() {
     </section>
   );
 }
+
+SearchForm.propTypes = {
+  isShortsMovies: PropTypes.bool.isRequired,
+  setIsShortsMovies: PropTypes.func.isRequired,
+};
 
 export default SearchForm;

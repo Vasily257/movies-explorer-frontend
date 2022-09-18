@@ -16,6 +16,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const [isShortsMovies, setIsShortsMovies] = useState(true);
+
   const loginValue = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
   const menuValue = useMemo(() => ({ isMenuOpen, setIsMenuOpen }), [isMenuOpen, setIsMenuOpen]);
 
@@ -25,7 +27,12 @@ function App() {
         <MenuContext.Provider value={menuValue}>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/movies" element={<Movies />} />
+            <Route
+              path="/movies"
+              element={
+                <Movies isShortsMovies={isShortsMovies} setIsShortsMovies={setIsShortsMovies} />
+              }
+            />
             <Route path="/saved-movies" element={<SavedMovies />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/signin" element={<Login />} />
