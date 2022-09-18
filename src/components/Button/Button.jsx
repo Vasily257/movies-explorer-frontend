@@ -19,7 +19,7 @@ function Button({
 }
 
 Button.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string.isRequired,
   isSubmitButton: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
@@ -28,6 +28,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  children: '',
   isSubmitButton: false,
   ariaLabel: '',
   disabled: false,
