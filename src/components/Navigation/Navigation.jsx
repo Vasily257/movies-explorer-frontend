@@ -18,7 +18,7 @@ function Navigation() {
         onClick={() => {
           setIsMenuOpen(!isMenuOpen);
         }}
-        className={`button navigation__button ${isMenuOpen ? 'navigation__button_opened' : ''}`}
+        className={`navigation__button ${isMenuOpen ? 'navigation__button_opened' : ''}`}
       >
         <img
           className={`navigation__button-image ${

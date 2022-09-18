@@ -6,9 +6,9 @@
 
 .navigation_opened {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
-  left: 0;
+  right: 0;
 
   display: flex;
   justify-content: flex-start;
@@ -17,9 +17,25 @@
   flex-wrap: nowrap;
 
   width: 100%;
+  max-width: 520px;
   height: 100%;
 
   background-color: #ffffff;
+}
+
+.navigation_opened::after {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+
+  width: calc(100% - 520px);
+  height: 100%;
+
+  content: '';
+
+  opacity: 0.3;
+  background-color: #000000;
 }
 
 .navigation__button {
@@ -124,6 +140,10 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: nowrap;
+  }
+
+  .navigation_opened::after {
+    display: none;
   }
 
   .navigation__button {
