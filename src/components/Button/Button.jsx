@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 import './Button.css';
 
 function Button({
-  isSubmitButton, children, onClick, className, disabled,
+  children, className, isSubmitButton, onClick, ariaLabel, disabled,
 }) {
   return (
-    <button type={isSubmitButton ? 'submit' : 'button'} onClick={onClick} className={className} disabled={disabled}>
+    <button
+      className={className}
+      type={isSubmitButton ? 'submit' : 'button'}
+      onClick={onClick}
+      aria-label={ariaLabel}
+      disabled={disabled}
+    >
       {children}
     </button>
   );
@@ -14,15 +20,17 @@ function Button({
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
-  disabled: PropTypes.bool,
   isSubmitButton: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
+  ariaLabel: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
-  disabled: false,
   isSubmitButton: false,
+  ariaLabel: '',
+  disabled: false,
 };
 
 export default Button;
