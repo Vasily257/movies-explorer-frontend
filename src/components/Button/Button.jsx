@@ -7,7 +7,7 @@ function Button({
 }) {
   return (
     <button
-      className={className}
+      className={`button ${className}`}
       type={isSubmitButton ? 'submit' : 'button'}
       onClick={onClick}
       aria-label={ariaLabel}
