@@ -12,7 +12,7 @@ import CustomLink from '../CustomLink/CustomLink';
 function Header({ isDarkTheme }) {
   const { isLoggedIn } = useContext(LoginContext);
   return (
-    <header className={`header ${isDarkTheme && 'header_theme_dark'}`}>
+    <header className={`header ${isDarkTheme ? 'header_theme_dark' : ''}`}>
       <img className="header__logo" src={headerLogo} alt="Логотип сайта" />
       {isLoggedIn ? (
         <Navigation />
