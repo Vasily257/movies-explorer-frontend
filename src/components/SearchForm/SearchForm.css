@@ -1,0 +1,149 @@
+.search-form {
+  position: relative;
+
+  padding: 79px 14px 10px;
+}
+
+.search-form::after {
+  display: block;
+
+  margin-top: 49px;
+
+  content: '';
+
+  border: 1px solid #e8e8e8;
+}
+
+.search-form__field {
+  position: relative;
+
+  height: 46px;
+  margin: 0;
+  padding: 0;
+}
+
+.search-form__label {
+  position: relative;
+}
+
+.search-form__input {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 14px 0 14px 19px;
+
+  color: var(--grey-color);
+  border: none;
+  border-radius: 46px;
+  background-color: #f9f9f9;
+
+  font-size: 11px;
+  font-weight: 400;
+  line-height: calc(17 / 11);
+}
+
+.search-form__submit-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 50%;
+  background-color: var(--blue-color);
+}
+
+.search-form__submit-button:hover {
+  background-color: rgba(52, 86, 243, 0.8);
+}
+
+.search-form__submit-button-image {
+  display: block;
+}
+
+.search-form__shorts-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  margin-top: 43px;
+}
+
+.search-form__shorts-button {
+  position: relative;
+
+  width: 34px;
+  height: 14px;
+
+  transition: background-color 0.2s;
+
+  border-radius: 14px;
+  background-color: #ebebeb;
+  /* background-color: var(--green-color); */
+}
+
+.search-form__shorts-button:hover {
+  /* background-color: rgba(43, 224, 128, 0.8); */
+  background-color: rgba(235, 235, 235, 0.8);
+}
+
+.search-form__shorts-button::after {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+
+  width: 10px;
+  height: 10px;
+
+  content: '';
+  transition: background-color 0.2s, right 0.2s;
+
+  border-radius: 50%;
+  background-color: #f5f5f5;
+}
+
+.search-form__shorts-button__selected {
+  transition: background-color 0.2s;
+
+  background-color: var(--green-color);
+}
+
+.search-form__shorts-button__selected:hover {
+  background-color: rgba(43, 224, 128, 0.8);
+}
+
+.search-form__shorts-button__selected::after {
+  right: 22px;
+
+  background-color: #ffffff;
+}
+
+.search-form__shorts-text {
+  margin-left: 13px;
+
+  color: #000000;
+
+  font-size: 11px;
+  font-weight: 400;
+  line-height: calc(18 / 11);
+}
+
+@media screen and (min-width: 600px) {
+  .search-form {
+    padding: 79px 30px 10px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .search-form {
+    padding: 60px 70px 10px;
+  }
+}
