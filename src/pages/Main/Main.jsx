@@ -7,7 +7,7 @@ import Techs from '../../components/Techs/Techs';
 import AboutMe from '../../components/AboutMe/AboutMe';
 import Portfolio from '../../components/Portfolio/Portfolio';
 import Footer from '../../components/Footer/Footer';
-import Content from '../../components/HOC/Content/Content';
+import Content from '../../components/Content/Content';
 
 function Main() {
   return (
