@@ -7,6 +7,7 @@
 .search-form::after {
   display: block;
 
+  box-sizing: border-box;
   margin-top: 49px;
 
   content: '';
@@ -158,5 +159,9 @@
 @media screen and (min-width: 900px) {
   .search-form {
     padding: 60px 70px 10px;
+  }
+
+  .search-form::after {
+    margin-top: 69px;
   }
 }
