@@ -1,12 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { React, useState } from 'react';
 import Button from '../Button/Button';
 
 import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
 
-function SearchForm({ isShortsMovies, setIsShortsMovies }) {
+function SearchForm() {
+  const [isShortsMovies, setIsShortsMovies] = useState(true);
+
   return (
     <section className="search-form">
       <h1 className="visually-hidden">Поиск по фильмам</h1>
@@ -49,10 +50,5 @@ function SearchForm({ isShortsMovies, setIsShortsMovies }) {
     </section>
   );
 }
-
-SearchForm.propTypes = {
-  isShortsMovies: PropTypes.bool.isRequired,
-  setIsShortsMovies: PropTypes.func.isRequired,
-};
 
 export default SearchForm;

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Header from '../../components/Header/Header';
 import SearchForm from '../../components/SearchForm/SearchForm';
@@ -8,12 +7,12 @@ import Footer from '../../components/Footer/Footer';
 import Preloader from '../../components/Preloader/Preloader';
 import Content from '../../components/Content/Content';
 
-function Movies({ isShortsMovies, setIsShortsMovies }) {
+function Movies() {
   return (
     <>
       <Header />
       <Content>
-        <SearchForm isShortsMovies={isShortsMovies} setIsShortsMovies={setIsShortsMovies} />
+        <SearchForm />
         <MoviesCardList />
       </Content>
       <Footer />
@@ -21,10 +20,5 @@ function Movies({ isShortsMovies, setIsShortsMovies }) {
     </>
   );
 }
-
-Movies.propTypes = {
-  isShortsMovies: PropTypes.bool.isRequired,
-  setIsShortsMovies: PropTypes.func.isRequired,
-};
 
 export default Movies;

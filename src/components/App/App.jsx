@@ -21,8 +21,6 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cards, setCards] = useState(initialCards);
 
-  const [isShortsMovies, setIsShortsMovies] = useState(true);
-
   const loginValue = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
   const menuValue = useMemo(() => ({ isMenuOpen, setIsMenuOpen }), [isMenuOpen, setIsMenuOpen]);
   const cardsValue = useMemo(() => ({ cards, setCards }), [cards, setCards]);
@@ -38,7 +36,7 @@ function App() {
                 path="/movies"
                 element={(
                   <ProtectedRoute>
-                    <Movies isShortsMovies={isShortsMovies} setIsShortsMovies={setIsShortsMovies} />
+                    <Movies />
                   </ProtectedRoute>
                 )}
               />
