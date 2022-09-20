@@ -7,7 +7,6 @@
 .search-form::after {
   display: block;
 
-  box-sizing: border-box;
   margin-top: 49px;
 
   content: '';
@@ -140,7 +139,11 @@
 
 @media screen and (min-width: 600px) {
   .search-form {
-    padding: 79px 30px 10px;
+    padding: 78px 30px 10px;
+  }
+
+  .search-form::after {
+    margin-top: 50px;
   }
 
   .search-form__input {
@@ -148,6 +151,10 @@
 
     font-size: 13px;
     line-height: calc(17 / 13);
+  }
+
+  .search-form__shorts-wrapper {
+    margin-top: 42px;
   }
 
   .search-form__shorts-text {

@@ -16,7 +16,7 @@
 .techs__title::after {
   display: block;
 
-  margin-top: 28px;
+  margin-top: 27px;
 
   content: '';
 
@@ -82,7 +82,7 @@
 
 @media screen and (min-width: 600px) {
   .techs {
-    padding: 90px 50px;
+    padding: 91px 50px 90px;
 
     background-color: #f5f5f5;
   }
@@ -93,7 +93,7 @@
   }
 
   .techs__title::after {
-    margin-top: 23px;
+    margin-top: 22px;
   }
 
   .techs__subtitle {
@@ -118,7 +118,7 @@
 
 @media screen and (min-width: 900px) {
   .techs {
-    padding: 100px 70px;
+    padding: 101px 70px 100px;
   }
 
   .techs__subtitle {

@@ -65,7 +65,7 @@
 
 @media screen and (min-width: 600px) {
   .portfolio {
-    padding: 0 50px 90px;
+    padding: 1px 50px 90px;
   }
 
   .portfolio__title {
@@ -74,7 +74,7 @@
   }
 
   .portfolio__list {
-    margin-top: 50px;
+    margin-top: 49px;
   }
 
   .portfolio__link {
@@ -91,7 +91,7 @@
 
 @media screen and (min-width: 900px) {
   .portfolio {
-    padding: 0 70px 125px;
+    padding: 1px 70px 125px;
   }
 
   .portfolio__link {

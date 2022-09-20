@@ -1,13 +1,13 @@
 import { React, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import './Header.css';
-
 import headerLogo from '../../images/header-logo.svg';
 import Navigation from '../Navigation/Navigation';
 
 import { LoginContext } from '../../contexts/LoginContext';
 import CustomLink from '../CustomLink/CustomLink';
+
+import './Header.css';
 
 function Header({ isDarkTheme }) {
   const { isLoggedIn } = useContext(LoginContext);
