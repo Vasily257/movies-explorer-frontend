@@ -9,52 +9,59 @@ import Profile from '../../pages/Profile/Profile';
 import Login from '../../pages/Login/Login';
 import Register from '../../pages/Register/Register';
 
-import { MenuContext } from '../../contexts/MenuContext';
 import { LoginContext } from '../../contexts/LoginContext';
+import { MenuContext } from '../../contexts/MenuContext';
+import { CardsContext } from '../../contexts/CardsContext';
 import ProtectedRoute from '../HOC/ProtectedRoute';
+
+import initialCards from '../../utils/scripts/movies-base.json';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cards, setCards] = useState(initialCards);
 
   const [isShortsMovies, setIsShortsMovies] = useState(true);
 
   const loginValue = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
   const menuValue = useMemo(() => ({ isMenuOpen, setIsMenuOpen }), [isMenuOpen, setIsMenuOpen]);
+  const cardsValue = useMemo(() => ({ cards, setCards }), [cards, setCards]);
 
   return (
     <div className="app">
       <LoginContext.Provider value={loginValue}>
         <MenuContext.Provider value={menuValue}>
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route
-              path="/movies"
-              element={(
-                <ProtectedRoute>
-                  <Movies isShortsMovies={isShortsMovies} setIsShortsMovies={setIsShortsMovies} />
-                </ProtectedRoute>
-              )}
-            />
-            <Route
-              path="/saved-movies"
-              element={(
-                <ProtectedRoute>
-                  <SavedMovies />
-                </ProtectedRoute>
-              )}
-            />
-            <Route
-              path="/profile"
-              element={(
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              )}
-            />
-            <Route path="/signin" element={<Login />} />
-            <Route path="/signup" element={<Register />} />
-          </Routes>
+          <CardsContext.Provider value={cardsValue}>
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route
+                path="/movies"
+                element={(
+                  <ProtectedRoute>
+                    <Movies isShortsMovies={isShortsMovies} setIsShortsMovies={setIsShortsMovies} />
+                  </ProtectedRoute>
+                )}
+              />
+              <Route
+                path="/saved-movies"
+                element={(
+                  <ProtectedRoute>
+                    <SavedMovies />
+                  </ProtectedRoute>
+                )}
+              />
+              <Route
+                path="/profile"
+                element={(
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                )}
+              />
+              <Route path="/signin" element={<Login />} />
+              <Route path="/signup" element={<Register />} />
+            </Routes>
+          </CardsContext.Provider>
         </MenuContext.Provider>
       </LoginContext.Provider>
     </div>
