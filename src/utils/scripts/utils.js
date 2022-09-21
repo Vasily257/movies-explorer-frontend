@@ -1,38 +1,29 @@
 const viewportWidth = document.documentElement.clientWidth;
 
-function calcuateAllMovies() {
-  let moviesCount;
+function calcuateMovies() {
+  let allMoviesCount;
+  let savedMoviesCount;
   let addingMovie;
 
   if (viewportWidth < 600) {
-    moviesCount = 5;
+    allMoviesCount = 5;
+    savedMoviesCount = 2;
     addingMovie = 2;
-    return { moviesCount, addingMovie };
+    return { allMoviesCount, savedMoviesCount, addingMovie };
   }
 
   if (viewportWidth < 900) {
-    moviesCount = 8;
+    allMoviesCount = 8;
+    savedMoviesCount = 2;
     addingMovie = 2;
-    return { moviesCount, addingMovie };
+    return { allMoviesCount, savedMoviesCount, addingMovie };
   }
 
-  moviesCount = 16;
+  allMoviesCount = 16;
+  savedMoviesCount = 3;
   addingMovie = 4;
 
-  return { moviesCount, addingMovie };
+  return { allMoviesCount, savedMoviesCount, addingMovie };
 }
 
-function calcuateSavedMovies() {
-  let moviesCount;
-
-  if (viewportWidth < 900) {
-    moviesCount = 2;
-    return moviesCount;
-  }
-
-  moviesCount = 3;
-
-  return moviesCount;
-}
-
-export { calcuateAllMovies, calcuateSavedMovies };
+export default calcuateMovies;

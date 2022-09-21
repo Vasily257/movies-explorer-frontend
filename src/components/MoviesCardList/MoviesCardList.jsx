@@ -1,16 +1,19 @@
 import { React, useContext } from 'react';
 
+import PropTypes from 'prop-types';
 import { MoviesContext } from '../../contexts/MoviesContext';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Button from '../Button/Button';
 
-import { calcuateAllMovies } from '../../utils/scripts/utils';
+import calcuateMovies from '../../utils/scripts/utils';
 
 import './MoviesCardList.css';
 
-function MoviesCardList() {
+function MoviesCardList({ isSavedMovies }) {
   const { movies } = useContext(MoviesContext);
-  const { moviesCount } = calcuateAllMovies();
+
+  const { allMoviesCount, savedMoviesCount } = calcuateMovies();
+  const moviesCount = isSavedMovies ? savedMoviesCount : allMoviesCount;
 
   return (
     <section className="movies-card-list">
@@ -26,5 +29,13 @@ function MoviesCardList() {
     </section>
   );
 }
+
+MoviesCardList.propTypes = {
+  isSavedMovies: PropTypes.bool,
+};
+
+MoviesCardList.defaultProps = {
+  isSavedMovies: false,
+};
 
 export default MoviesCardList;
