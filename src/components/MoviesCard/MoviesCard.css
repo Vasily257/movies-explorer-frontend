@@ -24,7 +24,7 @@
   flex-direction: row;
   flex-wrap: wrap;
 
-  padding: 14px 12px;
+  padding: 14px 12px 13px;
 
   border-radius: 0 0 10px 10px;
 }
@@ -74,7 +74,7 @@
 .movies-card__duration {
   width: 100%;
   margin: 0;
-  margin-top: 10px;
+  margin-top: 11px;
   padding: 0;
 
   color: var(--grey-color);
