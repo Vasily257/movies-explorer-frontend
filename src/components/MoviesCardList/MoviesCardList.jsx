@@ -1,24 +1,24 @@
 import { React, useContext } from 'react';
 
-import { CardsContext } from '../../contexts/CardsContext';
+import { MoviesContext } from '../../contexts/MoviesContext';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Button from '../Button/Button';
 
-import calcuateCards from '../../utils/scripts/utils';
+import { calcuateAllMovies } from '../../utils/scripts/utils';
 
 import './MoviesCardList.css';
 
 function MoviesCardList() {
-  const { cards } = useContext(CardsContext);
-  const { cardCount } = calcuateCards();
+  const { movies } = useContext(MoviesContext);
+  const { moviesCount } = calcuateAllMovies();
 
   return (
     <section className="movies-card-list">
       <h2 className="visually-hidden">Список фильмов</h2>
       <ul className="movies-card-list__movies">
-        {cards.map(({
+        {movies.map(({
           id, nameRU, image, duration,
-        }, index) => (index < cardCount ? (
+        }, index) => (index < moviesCount ? (
           <MoviesCard key={id} name={nameRU} url={image.url} duration={duration} />
         ) : null))}
       </ul>

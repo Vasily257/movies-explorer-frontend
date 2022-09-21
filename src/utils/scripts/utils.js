@@ -1,25 +1,38 @@
-function calcuateCards() {
-  const viewportWidth = document.documentElement.clientWidth;
+const viewportWidth = document.documentElement.clientWidth;
 
-  let cardCount;
-  let addingCard;
+function calcuateAllMovies() {
+  let moviesCount;
+  let addingMovie;
 
   if (viewportWidth < 600) {
-    cardCount = 5;
-    addingCard = 2;
-    return { cardCount, addingCard };
+    moviesCount = 5;
+    addingMovie = 2;
+    return { moviesCount, addingMovie };
   }
 
   if (viewportWidth < 900) {
-    cardCount = 8;
-    addingCard = 2;
-    return { cardCount, addingCard };
+    moviesCount = 8;
+    addingMovie = 2;
+    return { moviesCount, addingMovie };
   }
 
-  cardCount = 16;
-  addingCard = 4;
+  moviesCount = 16;
+  addingMovie = 4;
 
-  return { cardCount, addingCard };
+  return { moviesCount, addingMovie };
 }
 
-export default calcuateCards;
+function calcuateSavedMovies() {
+  let moviesCount;
+
+  if (viewportWidth < 900) {
+    moviesCount = 2;
+    return moviesCount;
+  }
+
+  moviesCount = 3;
+
+  return moviesCount;
+}
+
+export { calcuateAllMovies, calcuateSavedMovies };

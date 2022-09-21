@@ -11,25 +11,25 @@ import Register from '../../pages/Register/Register';
 
 import { LoginContext } from '../../contexts/LoginContext';
 import { MenuContext } from '../../contexts/MenuContext';
-import { CardsContext } from '../../contexts/CardsContext';
+import { MoviesContext } from '../../contexts/MoviesContext';
 import ProtectedRoute from '../HOC/ProtectedRoute';
 
-import initialCards from '../../utils/scripts/movies-base.json';
+import initialMovies from '../../utils/scripts/movies-base.json';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [cards, setCards] = useState(initialCards);
+  const [movies, setMovies] = useState(initialMovies);
 
   const loginValue = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
   const menuValue = useMemo(() => ({ isMenuOpen, setIsMenuOpen }), [isMenuOpen, setIsMenuOpen]);
-  const cardsValue = useMemo(() => ({ cards, setCards }), [cards, setCards]);
+  const moviesValue = useMemo(() => ({ movies, setMovies }), [movies, setMovies]);
 
   return (
     <div className="app">
       <LoginContext.Provider value={loginValue}>
         <MenuContext.Provider value={menuValue}>
-          <CardsContext.Provider value={cardsValue}>
+          <MoviesContext.Provider value={moviesValue}>
             <Routes>
               <Route path="/" element={!isLoggedIn ? <Main /> : <Navigate to="/movies" />} />
               <Route
@@ -59,7 +59,7 @@ function App() {
               <Route path="/signin" element={<Login />} />
               <Route path="/signup" element={<Register />} />
             </Routes>
-          </CardsContext.Provider>
+          </MoviesContext.Provider>
         </MenuContext.Provider>
       </LoginContext.Provider>
     </div>
