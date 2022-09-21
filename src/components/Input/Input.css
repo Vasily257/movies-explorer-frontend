@@ -1,0 +1,13 @@
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+
+  color: #000000;
+  border: none;
+  background-color: #f9f9f9;
+}
+
+.input::placeholder {
+  color: var(--grey-color);
+}

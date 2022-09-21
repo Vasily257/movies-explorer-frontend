@@ -4,6 +4,7 @@ import Button from '../Button/Button';
 import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
+import Input from '../Input/Input';
 
 function SearchForm() {
   const [isShortsMovies, setIsShortsMovies] = useState(true);
@@ -13,19 +14,16 @@ function SearchForm() {
       <h1 className="visually-hidden">Поиск по фильмам</h1>
       <form className="search-form__form">
         <p className="search-form__field">
-          <label className="search-form__label" htmlFor="movie-input">
-            <span className="visually-hidden">Фильм</span>
-            <input
-              className="search-form__input"
-              type="text"
-              name="movie"
-              id="movie-input"
-              defaultValue="Фильм"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-          </label>
+          <Input
+            className="search-form__input"
+            type="text"
+            name="movie"
+            id="movie-input"
+            onChange={() => {}}
+            placeholder="Фильм"
+            labelText="Фильм"
+            required
+          />
           <Button className="search-form__submit-button" onClick={() => {}} isSubmitButton>
             <img
               className="search-form__submit-button-image"
