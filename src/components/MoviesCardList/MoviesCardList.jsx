@@ -25,7 +25,9 @@ function MoviesCardList({ isSavedMovies }) {
           <MoviesCard key={id} name={nameRU} url={image.url} duration={duration} />
         ) : null))}
       </ul>
-      <Button className="movies-card-list__more">Ещё</Button>
+      <Button className="movies-card-list__more" onClick={() => {}}>
+        Ещё
+      </Button>
     </section>
   );
 }
