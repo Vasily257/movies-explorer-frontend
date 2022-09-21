@@ -1,5 +1,5 @@
 import { React, useState, useMemo } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
 import Main from '../../pages/Main/Main';
@@ -31,7 +31,7 @@ function App() {
         <MenuContext.Provider value={menuValue}>
           <CardsContext.Provider value={cardsValue}>
             <Routes>
-              <Route path="/" element={<Main />} />
+              <Route path="/" element={!isLoggedIn ? <Main /> : <Navigate to="/movies" />} />
               <Route
                 path="/movies"
                 element={(
