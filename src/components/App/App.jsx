@@ -21,7 +21,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [movies, setMovies] = useState(initialMovies);
-  const [currentUser, setCurrentUser] = useState({ name: 'Загрузка...', email: 'Загрузка...' });
+  const [currentUser, setCurrentUser] = useState({ name: 'Василий', email: 'supermail@mail.ru' });
 
   const loginValue = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
   const menuValue = useMemo(() => ({ isMenuOpen, setIsMenuOpen }), [isMenuOpen, setIsMenuOpen]);

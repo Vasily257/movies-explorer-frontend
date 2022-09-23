@@ -1,13 +1,16 @@
 import React from 'react';
 
 import Header from '../../components/Header/Header';
+import Content from '../../components/Content/Content';
 import ProfileData from '../../components/ProfileData/ProfileData';
 
 function Profile() {
   return (
     <>
       <Header />
-      <ProfileData />
+      <Content>
+        <ProfileData />
+      </Content>
     </>
   );
 }
