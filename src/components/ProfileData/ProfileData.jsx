@@ -1,5 +1,6 @@
 import { React, useContext } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { LoginContext } from '../../contexts/LoginContext';
 
 import Button from '../Button/Button';
 import CustomLink from '../CustomLink/CustomLink';
@@ -9,6 +10,8 @@ import './ProfileData.css';
 function ProfileData() {
   const { currentUser } = useContext(CurrentUserContext);
   const { name, email } = currentUser;
+
+  const [isLoggedIn, setIsLoggedIn] = useContext(LoginContext);
 
   return (
     <section className="profile-data">
@@ -25,7 +28,13 @@ function ProfileData() {
       <Button className="profile-data__link" onClick={() => {}}>
         Редактировать
       </Button>
-      <CustomLink path="/" className="profile-data__button">
+      <CustomLink
+        className="profile-data__button"
+        path="/"
+        onClick={() => {
+          setIsLoggedIn(!isLoggedIn);
+        }}
+      >
         Выйти из аккаунта
       </CustomLink>
     </section>

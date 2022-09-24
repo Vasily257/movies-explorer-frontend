@@ -1,5 +1,6 @@
 import { React, useContext } from 'react';
 import { MenuContext } from '../../contexts/MenuContext';
+import { LoginContext } from '../../contexts/LoginContext';
 
 import Button from '../Button/Button';
 import CustomLink from '../CustomLink/CustomLink';
@@ -11,6 +12,7 @@ import './Navigation.css';
 
 function Navigation() {
   const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
 
   return (
     <nav className={`navigation ${isMenuOpen ? 'navigation_opened' : ''}`}>
@@ -34,6 +36,9 @@ function Navigation() {
             path="/"
             className="navigation__link"
             activeClassName="navigation__link_active"
+            onClick={() => {
+              setIsLoggedIn(!isLoggedIn);
+            }}
           >
             Главная
           </CustomLink>
