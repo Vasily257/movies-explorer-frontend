@@ -9,14 +9,16 @@ import CustomLink from '../CustomLink/CustomLink';
 
 import './Header.css';
 
-function Header({ isDarkTheme }) {
+function Header({ isDarkTheme, isEmptyHeader }) {
   const { isLoggedIn } = useContext(LoginContext);
   return (
-    <header className={`header ${isDarkTheme ? 'header_theme_dark' : ''}`}>
+    <header
+      className={`header ${isDarkTheme ? 'header_dark' : ''} 
+      ${isEmptyHeader ? 'header_empty' : ''}`}
+    >
       <img className="header__logo" src={headerLogo} alt="Логотип сайта" />
-      {isLoggedIn ? (
-        <Navigation />
-      ) : (
+      {isLoggedIn && !isEmptyHeader && <Navigation />}
+      {!isLoggedIn && !isEmptyHeader && (
         <>
           <CustomLink path="/signup" className="header__signup">
             Регистрация
@@ -32,10 +34,12 @@ function Header({ isDarkTheme }) {
 
 Header.propTypes = {
   isDarkTheme: PropTypes.bool,
+  isEmptyHeader: PropTypes.bool,
 };
 
 Header.defaultProps = {
   isDarkTheme: false,
+  isEmptyHeader: false,
 };
 
 export default Header;

@@ -11,8 +11,13 @@
   background-color: #ffffff;
 }
 
-.header_theme_dark {
+.header_dark {
   background-color: var(--dark-color);
+}
+
+.header_empty {
+  margin: 0 auto;
+  padding: 56px 14px 0;
 }
 
 .header__logo {
@@ -60,6 +65,11 @@
     padding: 18px 30px;
   }
 
+  .header_empty {
+    width: 396px;
+    padding: 232px 0 0;
+  }
+
   .header__signup {
     font-size: 12px;
     font-weight: 500;
@@ -79,5 +89,9 @@
 @media screen and (min-width: 900px) {
   .header {
     padding: 18px 70px;
+  }
+
+  .header_empty {
+    padding: 70px 0 0;
   }
 }
