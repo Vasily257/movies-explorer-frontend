@@ -11,7 +11,7 @@ function ProfileData() {
   const { currentUser } = useContext(CurrentUserContext);
   const { name, email } = currentUser;
 
-  const [isLoggedIn, setIsLoggedIn] = useContext(LoginContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
 
   return (
     <section className="profile-data">
