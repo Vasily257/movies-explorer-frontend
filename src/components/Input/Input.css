@@ -12,3 +12,12 @@
 .input::placeholder {
   color: var(--grey-color);
 }
+
+.input:focus {
+  outline: none;
+}
+
+.input:focus-visible {
+  outline: 3px solid var(--blue-color);
+  outline-offset: 3px;
+}

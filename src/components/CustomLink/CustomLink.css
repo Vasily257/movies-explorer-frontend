@@ -13,3 +13,12 @@
 
   opacity: 0.7;
 }
+
+.custom-link:focus {
+  outline: none;
+}
+
+.custom-link:focus-visible {
+  outline: 3px solid var(--blue-color);
+  outline-offset: 3px;
+}

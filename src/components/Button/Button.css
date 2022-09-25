@@ -21,3 +21,12 @@
 
   background-color: transparent;
 }
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--blue-color);
+  outline-offset: 3px;
+}
