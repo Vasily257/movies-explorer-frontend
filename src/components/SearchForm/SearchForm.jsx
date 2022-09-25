@@ -15,7 +15,7 @@ function SearchForm() {
       <form className="search-form__form">
         <p className="search-form__field">
           <Input
-            className="search-form__input"
+            inputClassName="search-form__input"
             type="text"
             name="movie"
             id="movie-input"
