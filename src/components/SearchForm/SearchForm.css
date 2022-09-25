@@ -14,12 +14,8 @@
   border: 1px solid #e8e8e8;
 }
 
-.search-form__field {
+.search-form__form {
   position: relative;
-
-  height: 46px;
-  margin: 0;
-  padding: 0;
 }
 
 .search-form__label {
@@ -27,7 +23,9 @@
 }
 
 .search-form__input {
-  padding-top: 14px;
+  position: relative;
+
+  padding-top: 15px;
   padding-right: 0;
   padding-bottom: 14px;
   padding-left: 19px;
