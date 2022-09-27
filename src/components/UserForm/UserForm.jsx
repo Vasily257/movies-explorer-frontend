@@ -1,11 +1,13 @@
-import React from 'react';
+import { React, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import CustomLink from '../CustomLink/CustomLink';
 import Input from '../Input/Input';
+import Button from '../Button/Button';
+
+import { LoginContext } from '../../contexts/LoginContext';
 
 import './UserForm.css';
-import Button from '../Button/Button';
 
 function UserForm({
   title,
@@ -16,6 +18,8 @@ function UserForm({
   redirectPath,
   redirectLinkText,
 }) {
+  const { setIsLoggedIn } = useContext(LoginContext);
+
   return (
     <section className="user-form">
       <h2 className="user-form__title">{title}</h2>
@@ -44,7 +48,14 @@ function UserForm({
           ),
         )}
         {formName === 'signup' && <p className="user-form__error">Что-то пошло не так...</p>}
-        <Button className="user-form__submit-button" onClick={() => {}} isSubmitButton>
+        <Button
+          className="user-form__submit-button"
+          onClick={(event) => {
+            event.preventDefault();
+            setIsLoggedIn(true);
+          }}
+          isSubmitButton
+        >
           {submitButtonText}
         </Button>
       </form>

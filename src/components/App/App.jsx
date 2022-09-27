@@ -63,8 +63,14 @@ function App() {
                     </ProtectedRoute>
                   )}
                 />
-                <Route path="/signin" element={<Login />} />
-                <Route path="/signup" element={<Register />} />
+                <Route
+                  path="/signin"
+                  element={!isLoggedIn ? <Login /> : <Navigate to="/movies" />}
+                />
+                <Route
+                  path="/signup"
+                  element={!isLoggedIn ? <Register /> : <Navigate to="/movies" />}
+                />
               </Routes>
             </CurrentUserContext.Provider>
           </MoviesContext.Provider>

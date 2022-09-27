@@ -38,6 +38,7 @@ function Navigation() {
             activeClassName="navigation__link_active"
             onClick={() => {
               setIsLoggedIn(!isLoggedIn);
+              setIsMenuOpen(false);
             }}
           >
             Главная
@@ -48,6 +49,9 @@ function Navigation() {
             path="/movies"
             className="navigation__link"
             activeClassName="navigation__link_active"
+            onClick={() => {
+              setIsMenuOpen(false);
+            }}
           >
             Фильмы
           </CustomLink>
@@ -57,6 +61,9 @@ function Navigation() {
             path="/saved-movies"
             className="navigation__link"
             activeClassName="navigation__link_active"
+            onClick={() => {
+              setIsMenuOpen(false);
+            }}
           >
             Сохранённые фильмы
           </CustomLink>
@@ -65,6 +72,9 @@ function Navigation() {
       <CustomLink
         path="/profile"
         className={`navigation__profile ${isMenuOpen ? 'navigation__profile_opened' : ''}`}
+        onClick={() => {
+          setIsMenuOpen(false);
+        }}
       >
         Аккаунт
       </CustomLink>
