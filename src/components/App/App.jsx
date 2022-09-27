@@ -8,6 +8,7 @@ import SavedMovies from '../../pages/SavedMovies/SavedMovies';
 import Profile from '../../pages/Profile/Profile';
 import Login from '../../pages/Login/Login';
 import Register from '../../pages/Register/Register';
+import NotFound from '../../pages/NotFound/NotFound';
 
 import { LoginContext } from '../../contexts/LoginContext';
 import { MenuContext } from '../../contexts/MenuContext';
@@ -71,6 +72,7 @@ function App() {
                   path="/signup"
                   element={!isLoggedIn ? <Register /> : <Navigate to="/movies" />}
                 />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </CurrentUserContext.Provider>
           </MoviesContext.Provider>

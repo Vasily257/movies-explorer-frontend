@@ -1,14 +1,13 @@
 import React from 'react';
 
+import Content from '../../components/Content/Content';
 import NotFoundPage from '../../components/NotFoundPage/NotFoundPage';
-import Button from '../../components/Button/Button';
 
 function NotFound() {
   return (
-    <>
+    <Content>
       <NotFoundPage />
-      <Button />
-    </>
+    </Content>
   );
 }
 
