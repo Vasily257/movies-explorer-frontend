@@ -4,7 +4,7 @@ import './CustomLink.css';
 import { Link, NavLink } from 'react-router-dom';
 
 function CustomLink({
-  path, children, className, activeClassName, onClick, target,
+  path, children, className, activeClassName, onClick, target, ariaLabel,
 }) {
   if (path.startsWith('http')) {
     return (
@@ -25,7 +25,7 @@ function CustomLink({
     );
   }
   return (
-    <Link to={path} className={`custom-link ${className}`} onClick={onClick}>
+    <Link to={path} className={`custom-link ${className}`} onClick={onClick} aria-label={ariaLabel}>
       {children}
     </Link>
   );
@@ -38,12 +38,14 @@ CustomLink.propTypes = {
   onClick: PropTypes.func,
   target: PropTypes.string,
   activeClassName: PropTypes.string,
+  ariaLabel: PropTypes.string,
 };
 
 CustomLink.defaultProps = {
   onClick: () => {},
   target: '_blank',
   activeClassName: '',
+  ariaLabel: '',
 };
 
 export default CustomLink;

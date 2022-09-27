@@ -16,7 +16,7 @@ function Header({ isDarkTheme, isEmptyHeader }) {
       className={`header ${isDarkTheme ? 'header_dark' : ''} 
       ${isEmptyHeader ? 'header_empty' : ''}`}
     >
-      <CustomLink path="/" className="header__link">
+      <CustomLink path="/" className="header__link" ariaLabel="Перейти на главную">
         <img className="header__logo" src={headerLogo} alt="Логотип сайта" />
       </CustomLink>
       {isLoggedIn && !isEmptyHeader && <Navigation />}
