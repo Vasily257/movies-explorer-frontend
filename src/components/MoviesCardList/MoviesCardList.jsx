@@ -1,19 +1,27 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Button from '../Button/Button';
 
-import calcuateMovies from '../../utils/scripts/utils';
+import { calcuateMovies } from '../../utils/scripts/utils';
 import initialMovies from '../../utils/scripts/movies-base.json';
 
 import './MoviesCardList.css';
 
 function MoviesCardList({ isSavedMovies }) {
-  const [movies] = useState(initialMovies);
+  const [movies, setMovies] = useState([]);
+
+  const [moviesCount, setMoviesCount] = useState(0);
+  const [addedMovies, setAddedMovies] = useState(0);
 
   const { allMoviesCount, savedMoviesCount, addingMovie } = calcuateMovies();
-  const [moviesCount, setMoviesCount] = useState(isSavedMovies ? savedMoviesCount : allMoviesCount);
+
+  useEffect(() => {
+    setMovies(initialMovies);
+    setMoviesCount(isSavedMovies ? savedMoviesCount : allMoviesCount);
+    setAddedMovies(addingMovie);
+  });
 
   return (
     <section className="movies-card-list">
@@ -30,7 +38,7 @@ function MoviesCardList({ isSavedMovies }) {
       <Button
         className="movies-card-list__more"
         onClick={() => {
-          setMoviesCount(moviesCount + addingMovie);
+          setMoviesCount(moviesCount + addedMovies);
         }}
       >
         Ещё
