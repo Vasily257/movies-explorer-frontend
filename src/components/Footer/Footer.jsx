@@ -8,16 +8,12 @@ function Footer() {
       <p className="footer__about">Учебный проект Яндекс.Практикум х BeatFilm.</p>
       <ul className="footer__list">
         <li className="footer__item footer__item_type_link">
-          <CustomLink className="footer__link" target="_blank" path="https://practicum.yandex.ru/">
+          <CustomLink className="footer__link" path="https://practicum.yandex.ru/">
             Яндекс.Практикум
           </CustomLink>
         </li>
         <li className="footer__item footer__item_type_link">
-          <CustomLink
-            className="footer__link"
-            target="_blank"
-            path="https://github.com/yandex-praktikum"
-          >
+          <CustomLink className="footer__link" path="https://github.com/yandex-praktikum">
             Github
           </CustomLink>
         </li>
