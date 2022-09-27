@@ -1,4 +1,4 @@
-import { React, useContext } from 'react';
+import { React, useContext, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { MoviesContext } from '../../contexts/MoviesContext';
@@ -11,21 +11,28 @@ import './MoviesCardList.css';
 
 function MoviesCardList({ isSavedMovies }) {
   const { movies } = useContext(MoviesContext);
+  const { allMoviesCount, savedMoviesCount, addingMovie } = calcuateMovies();
 
-  const { allMoviesCount, savedMoviesCount } = calcuateMovies();
-  const moviesCount = isSavedMovies ? savedMoviesCount : allMoviesCount;
+  const [moviesCount, setMoviesCount] = useState(isSavedMovies ? savedMoviesCount : allMoviesCount);
 
   return (
     <section className="movies-card-list">
       <h2 className="visually-hidden">Список фильмов</h2>
       <ul className="movies-card-list__movies">
-        {movies.map(({
-          id, nameRU, image, duration,
-        }, index) => (index < moviesCount ? (
+        {movies.map(
+          ({
+            id, nameRU, image, duration,
+          }, index) => index < moviesCount && (
           <MoviesCard key={id} name={nameRU} url={image.url} duration={duration} />
-        ) : null))}
+          ),
+        )}
       </ul>
-      <Button className="movies-card-list__more" onClick={() => {}}>
+      <Button
+        className="movies-card-list__more"
+        onClick={() => {
+          setMoviesCount(moviesCount + addingMovie);
+        }}
+      >
         Ещё
       </Button>
     </section>
