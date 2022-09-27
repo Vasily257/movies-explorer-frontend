@@ -1,18 +1,18 @@
-import { React, useContext, useState } from 'react';
-
+import { React, useState } from 'react';
 import PropTypes from 'prop-types';
-import { MoviesContext } from '../../contexts/MoviesContext';
+
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Button from '../Button/Button';
 
 import calcuateMovies from '../../utils/scripts/utils';
+import initialMovies from '../../utils/scripts/movies-base.json';
 
 import './MoviesCardList.css';
 
 function MoviesCardList({ isSavedMovies }) {
-  const { movies } = useContext(MoviesContext);
-  const { allMoviesCount, savedMoviesCount, addingMovie } = calcuateMovies();
+  const [movies] = useState(initialMovies);
 
+  const { allMoviesCount, savedMoviesCount, addingMovie } = calcuateMovies();
   const [moviesCount, setMoviesCount] = useState(isSavedMovies ? savedMoviesCount : allMoviesCount);
 
   return (
