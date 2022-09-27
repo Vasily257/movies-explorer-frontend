@@ -50,8 +50,10 @@
 }
 
 .footer__link {
-  text-decoration: none;
+  color: #000000;
+}
 
+.footer__link:visited {
   color: #000000;
 }
 

@@ -122,6 +122,10 @@
   color: var(--blue-color);
 }
 
+.user-form__redirect-link:visited {
+  color: var(--blue-color);
+}
+
 @media screen and (min-width: 600px) {
   .user-form {
     margin-top: 40px;

@@ -59,8 +59,6 @@
 }
 
 .profile-data__link {
-  display: block;
-
   margin-top: auto;
 
   text-align: center;
@@ -70,6 +68,10 @@
   font-size: 12px;
   font-weight: 400;
   line-height: calc(15 / 12);
+}
+
+.profile-data__link:visited {
+  color: #000000;
 }
 
 .profile-data__button {
@@ -104,7 +106,6 @@
     line-height: calc(16 / 13);
   }
 }
-
 
 @media screen and (min-width: 900px) {
   .profile-data {

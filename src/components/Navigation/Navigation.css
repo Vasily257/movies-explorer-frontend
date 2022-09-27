@@ -40,6 +40,16 @@
 
 .navigation__button {
   position: relative;
+
+  transition: opacity 0.5s;
+
+  opacity: 1;
+}
+
+.navigation__button:hover {
+  transition: opacity 0.1s;
+
+  opacity: 0.8;
 }
 
 .navigation__button_opened {
@@ -80,6 +90,10 @@
   font-size: 18px;
   font-weight: 500;
   line-height: calc(22 / 18);
+}
+
+.navigation__link:visited {
+  color: #000000;
 }
 
 .navigation__link_active {

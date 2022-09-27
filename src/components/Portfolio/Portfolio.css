@@ -43,7 +43,6 @@
 .portfolio__link {
   display: flex;
 
-  text-decoration: none;
   letter-spacing: -0.04em;
 
   color: #000000;
@@ -51,6 +50,10 @@
   font-size: 18px;
   font-weight: 400;
   line-height: calc(28 / 18);
+}
+
+.portfolio__link:visited {
+  color: #000000;
 }
 
 .portfolio__link-icon {

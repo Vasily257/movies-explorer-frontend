@@ -36,7 +36,6 @@
 .not-found-page__button {
   margin: 184px auto 0;
 
-  transition: color 0.5s;
   text-align: center;
 
   color: var(--blue-color);
@@ -47,8 +46,6 @@
 }
 
 .not-found-page__button:hover {
-  transition: color 0.1s;
-
   color: rgba(52, 86, 243, 0.8);
 }
 
