@@ -10,13 +10,20 @@ import CustomLink from '../CustomLink/CustomLink';
 import './Header.css';
 
 function Header({ isDarkTheme, isEmptyHeader }) {
-  const { isLoggedIn } = useContext(LoginContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
   return (
     <header
       className={`header ${isDarkTheme ? 'header_dark' : ''} 
       ${isEmptyHeader ? 'header_empty' : ''}`}
     >
-      <CustomLink path="/" className="header__link" ariaLabel="Перейти на главную">
+      <CustomLink
+        className="header__link"
+        path="/"
+        onClick={() => {
+          setIsLoggedIn(false);
+        }}
+        ariaLabel="Перейти на главную"
+      >
         <img className="header__logo" src={headerLogo} alt="Логотип сайта" />
       </CustomLink>
       {isLoggedIn && !isEmptyHeader && <Navigation />}
