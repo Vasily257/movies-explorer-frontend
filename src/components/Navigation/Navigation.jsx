@@ -12,7 +12,7 @@ import './Navigation.css';
 
 function Navigation() {
   const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
-  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const { setIsLoggedIn } = useContext(LoginContext);
 
   return (
     <nav className={`navigation ${isMenuOpen ? 'navigation_opened' : ''}`}>
@@ -37,7 +37,7 @@ function Navigation() {
             className="navigation__link"
             activeClassName="navigation__link_active"
             onClick={() => {
-              setIsLoggedIn(!isLoggedIn);
+              setIsLoggedIn(false);
               setIsMenuOpen(false);
             }}
           >
