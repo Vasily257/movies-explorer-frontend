@@ -52,7 +52,9 @@ function UserForm({
           className="user-form__submit-button"
           onClick={(event) => {
             event.preventDefault();
-            setIsLoggedIn(true);
+            if (formName === 'signin') {
+              setIsLoggedIn(true);
+            }
           }}
           isSubmitButton
         >

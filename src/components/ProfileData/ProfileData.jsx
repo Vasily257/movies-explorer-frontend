@@ -11,7 +11,7 @@ function ProfileData() {
   const { currentUser } = useContext(CurrentUserContext);
   const { name, email } = currentUser;
 
-  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const { setIsLoggedIn } = useContext(LoginContext);
 
   return (
     <section className="profile-data">
@@ -32,7 +32,7 @@ function ProfileData() {
         className="profile-data__button"
         path="/"
         onClick={() => {
-          setIsLoggedIn(!isLoggedIn);
+          setIsLoggedIn(false);
         }}
       >
         Выйти из аккаунта
