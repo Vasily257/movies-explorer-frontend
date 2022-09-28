@@ -24,7 +24,7 @@ function calcuateMovies() {
 
   if (isTablet) {
     allMoviesCount = 8;
-    savedMoviesCount = 2;
+    savedMoviesCount = 3;
     addingMovie = 2;
     return { allMoviesCount, savedMoviesCount, addingMovie };
   }

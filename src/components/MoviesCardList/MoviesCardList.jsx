@@ -24,25 +24,37 @@ function MoviesCardList({ isSavedMovies }) {
   });
 
   return (
-    <section className="movies-card-list">
-      <h2 className="visually-hidden">Список фильмов</h2>
+    <section
+      className={`movies-card-list ${isSavedMovies ? 'movies-card-list_padding-bottom' : ''}`}
+    >
+      <h2 className="visually-hidden">
+        {isSavedMovies ? 'Список сохраненных фильмов' : 'Список фильмов'}
+      </h2>
       <ul className="movies-card-list__movies">
         {movies.map(
           ({
             id, nameRU, image, duration,
           }, index) => index < moviesCount && (
-          <MoviesCard key={id} name={nameRU} url={image.url} duration={duration} />
+          <MoviesCard
+            key={id}
+            name={nameRU}
+            url={image.url}
+            duration={duration}
+            isSavedMovies={isSavedMovies}
+          />
           ),
         )}
       </ul>
-      <Button
-        className="movies-card-list__more"
-        onClick={() => {
-          setMoviesCount(moviesCount + addedMovies);
-        }}
-      >
-        Ещё
-      </Button>
+      {!isSavedMovies && (
+        <Button
+          className="movies-card-list__more"
+          onClick={() => {
+            setMoviesCount(moviesCount + addedMovies);
+          }}
+        >
+          Ещё
+        </Button>
+      )}
     </section>
   );
 }

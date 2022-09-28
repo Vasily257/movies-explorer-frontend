@@ -4,6 +4,10 @@
   padding: 40px 10px 80px;
 }
 
+.movies-card-list_padding-bottom {
+  padding-bottom: 170px;
+}
+
 .movies-card-list__movies {
   display: grid;
   row-gap: 20px;
@@ -40,6 +44,10 @@
     padding: 70px 30px 80px;
   }
 
+  .movies-card-list_padding-bottom {
+    padding-bottom: 170px;
+  }
+
   .movies-card-list__movies {
     column-gap: 30px;
     row-gap: 36px;
@@ -49,6 +57,10 @@
 @media screen and (min-width: 900px) {
   .movies-card-list {
     padding: 70px 70px 80px;
+  }
+
+  .movies-card-list_padding-bottom {
+    padding-bottom: 170px;
   }
 
   .movies-card-list__movies {
