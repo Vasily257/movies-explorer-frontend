@@ -117,7 +117,7 @@
 .navigation__profile {
   display: none;
 
-  margin-top: 444px;
+  margin-top: 443px;
   padding: 8px 22px;
 
   cursor: pointer;
@@ -143,6 +143,22 @@
 
 .navigation__profile_opened {
   display: block;
+}
+
+@media screen and (min-width: 600px) {
+  .navigation__button_opened {
+    position: absolute;
+    top: 14px;
+    right: 11px;
+  }
+
+  .navigation__list_opened {
+   margin-top: 159px;
+  }
+
+  .navigation__item {
+    margin-bottom: 29px;
+  }
 }
 
 @media screen and (min-width: 900px) {
