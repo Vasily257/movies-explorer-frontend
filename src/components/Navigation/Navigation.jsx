@@ -1,4 +1,4 @@
-import { React, useContext } from 'react';
+import { React, useContext, useEffect } from 'react';
 import { MenuContext } from '../../contexts/MenuContext';
 import { LoginContext } from '../../contexts/LoginContext';
 
@@ -7,12 +7,20 @@ import CustomLink from '../CustomLink/CustomLink';
 
 import navigationButtonOpened from '../../images/navigation-button-opened.svg';
 import navigationButtonClosed from '../../images/navigation-button-closed.svg';
+import { screenView } from '../../utils/scripts/utils';
 
 import './Navigation.css';
 
 function Navigation() {
   const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
   const { setIsLoggedIn } = useContext(LoginContext);
+  const { isDesktop } = screenView();
+
+  useEffect(() => {
+    if (isDesktop) {
+      setIsMenuOpen(false);
+    }
+  });
 
   return (
     <nav className={`navigation ${isMenuOpen ? 'navigation_opened' : ''}`}>

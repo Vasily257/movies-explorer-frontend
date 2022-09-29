@@ -119,8 +119,6 @@
 .navigation__profile {
   display: none;
 
-  margin-top: auto;
-  margin-bottom: 46px;
   padding: 8px 22px;
 
   cursor: pointer;
@@ -146,6 +144,9 @@
 
 .navigation__profile_opened {
   display: block;
+
+  margin-top: auto;
+  margin-bottom: 46px;
 }
 
 @media screen and (min-width: 600px) {
@@ -155,7 +156,7 @@
     right: 11px;
   }
 
-  .navigation__profile {
+  .navigation__profile_opened {
     margin-bottom: 90px;
   }
 
