@@ -31,19 +31,21 @@ function Navigation() {
         />
       </Button>
       <ul className={`navigation__list ${isMenuOpen ? 'navigation__list_opened' : ''}`}>
-        <li className="navigation__item">
-          <CustomLink
-            path="/"
-            className="navigation__link"
-            activeClassName="navigation__link_active"
-            onClick={() => {
-              setIsLoggedIn(false);
-              setIsMenuOpen(false);
-            }}
-          >
-            Главная
-          </CustomLink>
-        </li>
+        {isMenuOpen && (
+          <li className="navigation__item">
+            <CustomLink
+              path="/"
+              className="navigation__link"
+              activeClassName="navigation__link_active"
+              onClick={() => {
+                setIsLoggedIn(false);
+                setIsMenuOpen(false);
+              }}
+            >
+              Главная
+            </CustomLink>
+          </li>
+        )}
         <li className="navigation__item">
           <CustomLink
             path="/movies"
