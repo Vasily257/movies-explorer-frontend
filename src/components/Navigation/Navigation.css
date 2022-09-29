@@ -119,7 +119,8 @@
 .navigation__profile {
   display: none;
 
-  margin-top: 443px;
+  margin-top: auto;
+  margin-bottom: 46px;
   padding: 8px 22px;
 
   cursor: pointer;
@@ -152,6 +153,10 @@
     position: absolute;
     top: 14px;
     right: 11px;
+  }
+
+  .navigation__profile {
+    margin-bottom: 90px;
   }
 
   .navigation__list_opened {
