@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import './MoviesCard.css';
 import Button from '../Button/Button';
 
-function MoviesCard({ name, url, duration, isSavedMovies }) {
+function MoviesCard({
+  name, url, duration, isSavedMovies,
+}) {
   const [isSaved, setIsSaved] = useState(false);
 
   const hours = Math.floor(duration / 60);

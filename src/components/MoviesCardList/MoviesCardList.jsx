@@ -56,7 +56,31 @@ function MoviesCardList({ moviesList, isSavedMovies }) {
 }
 
 MoviesCardList.propTypes = {
-  moviesList: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  moviesList: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.objectOf(
+        PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number,
+          PropTypes.objectOf(
+            PropTypes.oneOfType([
+              PropTypes.string,
+              PropTypes.number,
+              PropTypes.objectOf(
+                PropTypes.oneOfType([
+                  PropTypes.string,
+                  PropTypes.number,
+                  PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+                ]),
+              ),
+            ]),
+          ),
+        ]),
+      ),
+    ]),
+  ),
   isSavedMovies: PropTypes.bool,
 };
 
