@@ -1,4 +1,6 @@
 import { React, useState } from 'react';
+import PropTypes from 'prop-types';
+
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 
@@ -6,7 +8,7 @@ import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
 
-function SearchForm() {
+function SearchForm({ handleSubmit }) {
   const [isShortsMovies, setIsShortsMovies] = useState(true);
 
   return (
@@ -23,7 +25,13 @@ function SearchForm() {
           labelText="Фильм"
           required
         />
-        <Button className="search-form__submit-button" onClick={() => {}} isSubmitButton>
+        <Button
+          className="search-form__submit-button"
+          onClick={() => {
+            handleSubmit();
+          }}
+          isSubmitButton
+        >
           <img
             className="search-form__submit-button-image"
             src={searchFormIcon}
@@ -46,5 +54,9 @@ function SearchForm() {
     </section>
   );
 }
+
+SearchForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 export default SearchForm;

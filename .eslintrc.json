@@ -14,5 +14,17 @@
     "plugins": [
         "react"
     ],
-    "rules": {}
+    "rules": {
+        "no-underscore-dangle": [
+            "error",
+            {
+                "allow": [
+                    "_id",
+                    "_url",
+                    "_headers",
+                    "_token"
+                ]
+            }
+        ]
+    }
 }

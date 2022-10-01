@@ -5,20 +5,16 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import Button from '../Button/Button';
 
 import { calcuateMovies } from '../../utils/scripts/utils';
-import initialMovies from '../../utils/scripts/movies-base.json';
 
 import './MoviesCardList.css';
 
-function MoviesCardList({ isSavedMovies }) {
-  const [movies, setMovies] = useState([]);
-
+function MoviesCardList({ moviesList, isSavedMovies }) {
   const [moviesCount, setMoviesCount] = useState(0);
   const [addedMovies, setAddedMovies] = useState(0);
 
   const { allMoviesCount, savedMoviesCount, addingMovie } = calcuateMovies();
 
   useEffect(() => {
-    setMovies(initialMovies);
     setMoviesCount(isSavedMovies ? savedMoviesCount : allMoviesCount);
     setAddedMovies(addingMovie);
   });
@@ -31,7 +27,7 @@ function MoviesCardList({ isSavedMovies }) {
         {isSavedMovies ? 'Список сохраненных фильмов' : 'Список фильмов'}
       </h2>
       <ul className="movies-card-list__movies">
-        {movies.map(
+        {moviesList.map(
           ({
             id, nameRU, image, duration,
           }, index) => index < moviesCount && (
@@ -60,11 +56,13 @@ function MoviesCardList({ isSavedMovies }) {
 }
 
 MoviesCardList.propTypes = {
+  moviesList: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   isSavedMovies: PropTypes.bool,
 };
 
 MoviesCardList.defaultProps = {
   isSavedMovies: false,
+  moviesList: [],
 };
 
 export default MoviesCardList;

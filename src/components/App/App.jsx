@@ -1,6 +1,10 @@
 import { React, useState, useMemo } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import { LoginContext } from '../../contexts/LoginContext';
+import { MenuContext } from '../../contexts/MenuContext';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+
 import Main from '../../pages/Main/Main';
 import Movies from '../../pages/Movies/Movies';
 import SavedMovies from '../../pages/SavedMovies/SavedMovies';
@@ -8,11 +12,6 @@ import Profile from '../../pages/Profile/Profile';
 import Login from '../../pages/Login/Login';
 import Register from '../../pages/Register/Register';
 import NotFound from '../../pages/NotFound/NotFound';
-
-import { LoginContext } from '../../contexts/LoginContext';
-import { MenuContext } from '../../contexts/MenuContext';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
-
 import ProtectedRoute from '../HOC/ProtectedRoute';
 import UnprotectedRoute from '../HOC/UnprotectedRoute';
 
