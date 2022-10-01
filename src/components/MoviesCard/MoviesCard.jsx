@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import './MoviesCard.css';
 import Button from '../Button/Button';
 
-function MoviesCard({
-  name, url, duration, isSavedMovies,
-}) {
+function MoviesCard({ name, url, duration, isSavedMovies }) {
   const [isSaved, setIsSaved] = useState(false);
 
   const hours = Math.floor(duration / 60);
@@ -21,10 +19,7 @@ function MoviesCard({
       <div className="movies-card__info">
         <p className="movies-card__name">{name}</p>
         {isSavedMovies ? (
-          <Button
-            className="movies-card__button movies-card__button_type_delete"
-            onClick={() => {}}
-          />
+          <Button className="movies-card__button movies-card__button_type_delete" />
         ) : (
           <Button
             className={`movies-card__button movies-card__button_type_save ${

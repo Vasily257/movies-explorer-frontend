@@ -14,7 +14,13 @@ function SearchForm({ handleSubmit }) {
   return (
     <section className="search-form">
       <h1 className="visually-hidden">Поиск по фильмам</h1>
-      <form className="search-form__form">
+      <form
+        className="search-form__form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          handleSubmit();
+        }}
+      >
         <Input
           inputClassName="search-form__input"
           type="text"
@@ -25,13 +31,7 @@ function SearchForm({ handleSubmit }) {
           labelText="Фильм"
           required
         />
-        <Button
-          className="search-form__submit-button"
-          onClick={() => {
-            handleSubmit();
-          }}
-          isSubmitButton
-        >
+        <Button className="search-form__submit-button" isSubmitButton>
           <img
             className="search-form__submit-button-image"
             src={searchFormIcon}

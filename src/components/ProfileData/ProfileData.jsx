@@ -25,7 +25,7 @@ function ProfileData() {
         <span className="profile-data__field-value">{email}</span>
       </div>
 
-      <Button className="profile-data__link" onClick={() => {}}>
+      <Button className="profile-data__link">
         Редактировать
       </Button>
       <CustomLink
