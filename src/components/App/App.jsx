@@ -1,5 +1,5 @@
 import { React, useState, useMemo } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Main from '../../pages/Main/Main';
 import Movies from '../../pages/Movies/Movies';
@@ -14,6 +14,7 @@ import { MenuContext } from '../../contexts/MenuContext';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 import ProtectedRoute from '../HOC/ProtectedRoute';
+import UnprotectedRoute from '../HOC/UnprotectedRoute';
 
 import './App.css';
 
@@ -35,7 +36,14 @@ function App() {
         <MenuContext.Provider value={menuValue}>
           <CurrentUserContext.Provider value={currentUserValue}>
             <Routes>
-              <Route path="/" element={!isLoggedIn ? <Main /> : <Navigate to="/movies" />} />
+              <Route
+                path="/"
+                element={(
+                  <UnprotectedRoute>
+                    <Main />
+                  </UnprotectedRoute>
+                )}
+              />
               <Route
                 path="/movies"
                 element={(
@@ -60,10 +68,21 @@ function App() {
                   </ProtectedRoute>
                 )}
               />
-              <Route path="/signin" element={!isLoggedIn ? <Login /> : <Navigate to="/movies" />} />
+              <Route
+                path="/signin"
+                element={(
+                  <UnprotectedRoute>
+                    <Login />
+                  </UnprotectedRoute>
+                )}
+              />
               <Route
                 path="/signup"
-                element={!isLoggedIn ? <Register /> : <Navigate to="/movies" />}
+                element={(
+                  <UnprotectedRoute>
+                    <Register />
+                  </UnprotectedRoute>
+                )}
               />
               <Route path="*" element={<NotFound />} />
             </Routes>
