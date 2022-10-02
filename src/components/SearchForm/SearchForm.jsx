@@ -12,7 +12,7 @@ import searchFormIcon from '../../images/search-form-icon.svg';
 import './SearchForm.css';
 
 function SearchForm({ setMoviesFromBase }) {
-  const [isShortsMovies, setIsShortsMovies] = useState(true);
+  const [isShortsMovies, setIsShortsMovies] = useState(false);
   const [errorText, setErrorText] = useState('');
 
   const { values, handleChange } = useForm();
@@ -59,18 +59,24 @@ function SearchForm({ setMoviesFromBase }) {
           />
         </Button>
         <ErrorElement className="search-form__submit-error" text={errorText} />
-        <div className="search-form__shorts-wrapper">
-          <Button
-            className={`search-form__shorts-button ${
-              isShortsMovies ? 'search-form__shorts-button__selected' : ''
-            }`}
-            onClick={() => {
-              setIsShortsMovies(!isShortsMovies);
-            }}
-            ariaLabel="Искать только короткометражные фильмы"
-          />
-          <span className="search-form__shorts-text">Короткометражки</span>
-        </div>
+        <Input
+          inputClassName="search-form__shorts-input"
+          type="checkbox"
+          name="shorts"
+          id="shorts-input"
+          onChange={() => {
+            setIsShortsMovies(!isShortsMovies);
+          }}
+          wrapperClassName="search-form__shorts-wrapper"
+          isLabelShown
+          labelClassName="search-form__shorts-label"
+          labelText="Короткометражки"
+          isCheckbox
+          checkboxClassName={`search-form__shorts-checkbox ${
+            isShortsMovies ? 'search-form__shorts-checkbox_selected' : ''
+          }`}
+          required
+        />
       </form>
     </section>
   );

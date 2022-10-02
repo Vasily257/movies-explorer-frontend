@@ -10,15 +10,18 @@ function Input({
   value,
   placeholder,
   onChange,
+  wrapperClassName,
   isLabelShown,
   labelClassName,
   labelText,
+  isCheckbox,
+  checkboxClassName,
   minLength,
   maxLength,
   required,
 }) {
   return (
-    <label htmlFor={id}>
+    <label className={wrapperClassName} htmlFor={id}>
       <span className={`${isLabelShown ? labelClassName : 'visually-hidden'}`}>{labelText}</span>
       <input
         className={`input ${inputClassName}`}
@@ -32,6 +35,7 @@ function Input({
         maxLength={maxLength}
         required={required}
       />
+      {isCheckbox && <span className={checkboxClassName} aria-hidden />}
     </label>
   );
 }
@@ -44,9 +48,12 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   placeholder: PropTypes.string,
+  wrapperClassName: PropTypes.string,
   isLabelShown: PropTypes.bool,
   labelClassName: PropTypes.string,
   labelText: PropTypes.string,
+  isCheckbox: PropTypes.bool,
+  checkboxClassName: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
   required: PropTypes.bool,
@@ -55,9 +62,12 @@ Input.propTypes = {
 Input.defaultProps = {
   value: '',
   placeholder: '',
+  wrapperClassName: '',
   isLabelShown: false,
   labelClassName: '',
   labelText: '',
+  isCheckbox: false,
+  checkboxClassName: '',
   minLength: 1,
   maxLength: 999,
   required: false,
