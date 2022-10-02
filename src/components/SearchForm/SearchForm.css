@@ -62,6 +62,14 @@
   display: block;
 }
 
+.search-form__submit-error {
+  position: absolute;
+  top: 60px;
+  left: 0;
+
+  margin-left: 19px;
+}
+
 .search-form__shorts-wrapper {
   display: flex;
   justify-content: center;
@@ -143,6 +151,10 @@
 
     font-size: 13px;
     line-height: calc(17 / 13);
+  }
+
+  .search-form__submit-error {
+    margin-left: 22px;
   }
 
   .search-form__shorts-wrapper {

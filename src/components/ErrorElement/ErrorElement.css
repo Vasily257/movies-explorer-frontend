@@ -1,0 +1,16 @@
+.error-element {
+  display: block;
+
+  color: var(--red-color);
+
+  font-size: 10px;
+  font-weight: 400;
+  line-height: calc(12 / 10);
+}
+
+@media screen and (min-width: 600px) {
+  .error-element {
+    font-size: 11px;
+    line-height: calc(13 / 11);
+  }
+}
