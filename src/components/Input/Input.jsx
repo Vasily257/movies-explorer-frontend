@@ -9,6 +9,7 @@ function Input({
   id,
   value,
   placeholder,
+  onChange,
   isLabelShown,
   labelClassName,
   labelText,
@@ -26,6 +27,7 @@ function Input({
         id={id}
         defaultValue={value}
         placeholder={placeholder}
+        onChange={onChange}
         minLength={minLength}
         maxLength={maxLength}
         required={required}
@@ -39,6 +41,7 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   placeholder: PropTypes.string,
   isLabelShown: PropTypes.bool,
@@ -55,8 +58,8 @@ Input.defaultProps = {
   isLabelShown: false,
   labelClassName: '',
   labelText: '',
-  minLength: 0,
-  maxLength: 10000,
+  minLength: 1,
+  maxLength: 999,
   required: false,
 };
 

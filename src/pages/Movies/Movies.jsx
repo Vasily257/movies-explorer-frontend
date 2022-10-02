@@ -20,7 +20,7 @@ function Movies() {
     <>
       <Header />
       <Content>
-        <SearchForm handleSubmit={setMoviesFromBase} />
+        <SearchForm setMoviesFromBase={setMoviesFromBase} />
         <MoviesCardList moviesList={movies} />
       </Content>
       <Footer />

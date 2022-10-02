@@ -23,9 +23,9 @@ export function useForm() {
 
   return {
     values,
-    handleChange,
     errors,
     isValid,
+    handleChange,
     resetForm,
   };
 }
