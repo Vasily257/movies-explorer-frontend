@@ -64,6 +64,7 @@ function SearchForm({ setMoviesFromBase }) {
           type="checkbox"
           name="shorts"
           id="shorts-input"
+          value={isShortsMovies}
           onChange={() => {
             setIsShortsMovies(!isShortsMovies);
           }}
@@ -71,10 +72,6 @@ function SearchForm({ setMoviesFromBase }) {
           isLabelShown
           labelClassName="search-form__shorts-label"
           labelText="Короткометражки"
-          isCheckbox
-          checkboxClassName={`search-form__shorts-checkbox ${
-            isShortsMovies ? 'search-form__shorts-checkbox_selected' : ''
-          }`}
           required
         />
       </form>

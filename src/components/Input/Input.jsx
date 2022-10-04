@@ -14,8 +14,6 @@ function Input({
   isLabelShown,
   labelClassName,
   labelText,
-  isCheckbox,
-  checkboxClassName,
   minLength,
   maxLength,
   required,
@@ -35,7 +33,6 @@ function Input({
         maxLength={maxLength}
         required={required}
       />
-      {isCheckbox && <span className={checkboxClassName} aria-hidden />}
     </label>
   );
 }
@@ -52,8 +49,6 @@ Input.propTypes = {
   isLabelShown: PropTypes.bool,
   labelClassName: PropTypes.string,
   labelText: PropTypes.string,
-  isCheckbox: PropTypes.bool,
-  checkboxClassName: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
   required: PropTypes.bool,
@@ -66,8 +61,6 @@ Input.defaultProps = {
   isLabelShown: false,
   labelClassName: '',
   labelText: '',
-  isCheckbox: false,
-  checkboxClassName: '',
   minLength: 1,
   maxLength: 999,
   required: false,
