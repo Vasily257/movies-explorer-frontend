@@ -1,5 +1,4 @@
-import { React, useContext, useEffect } from 'react';
-import { MenuContext } from '../../contexts/MenuContext';
+import React, { useState, useContext, useEffect } from 'react';
 import { LoginContext } from '../../contexts/LoginContext';
 
 import Button from '../Button/Button';
@@ -12,8 +11,8 @@ import { screenView } from '../../utils/scripts/utils';
 import './Navigation.css';
 
 function Navigation() {
-  const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
   const { setIsLoggedIn } = useContext(LoginContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isDesktop } = screenView();
 
   useEffect(() => {
