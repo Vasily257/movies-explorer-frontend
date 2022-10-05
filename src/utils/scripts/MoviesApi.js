@@ -4,18 +4,16 @@ const headers = {
 };
 
 async function getMoviesFromBase() {
-  try {
-    const response = await fetch(`${baseUrl}`, {
-      method: 'GET',
-      headers,
-    });
+  const response = await fetch(`${baseUrl}`, {
+    method: 'GET',
+    headers,
+  });
 
-    const movies = await response.json();
-
-    return movies;
-  } catch (error) {
-    throw new Error('Список фильмов из "beatfilm-movies" не получен.');
+  if (response.ok) {
+    return response.json();
   }
+
+  throw new Error();
 }
 
 export default getMoviesFromBase;

@@ -1,3 +1,10 @@
+const ERROR_TEXT = {
+  MOVIES_NOT_FOUND: 'Ничего не найдено ',
+  EMPTY_SEARCH_QUERY: 'Нужно ввести ключевое слово',
+  FAILED_FETCH:
+    'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз',
+};
+
 const inputList = [
   {
     name: 'name',
@@ -28,4 +35,4 @@ const inputList = [
   },
 ];
 
-export default inputList;
+export { inputList, ERROR_TEXT };

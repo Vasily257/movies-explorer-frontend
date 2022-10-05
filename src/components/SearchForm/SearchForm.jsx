@@ -7,11 +7,13 @@ import Button from '../Button/Button';
 import Input from '../Input/Input';
 import ErrorElement from '../ErrorElement/ErrorElement';
 
+import { ERROR_TEXT } from '../../utils/scripts/constants';
+
 import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
 
-function SearchForm({ setMoviesFromBase }) {
+function SearchForm({ setSearchQuery, setMoviesFromBase }) {
   const [isShortsMovies, setIsShortsMovies] = useState(false);
   const [errorText, setErrorText] = useState('');
 
@@ -20,10 +22,11 @@ function SearchForm({ setMoviesFromBase }) {
   function handleSubmit(event) {
     event.preventDefault();
     if (values.movie) {
+      setSearchQuery(values.movie);
       setMoviesFromBase();
       setErrorText('');
     } else {
-      setErrorText('Нужно ввести ключевое слово');
+      setErrorText(ERROR_TEXT.EMPTY_SEARCH_QUERY);
     }
   }
 
@@ -64,7 +67,6 @@ function SearchForm({ setMoviesFromBase }) {
           type="checkbox"
           name="shorts"
           id="shorts-input"
-          value={isShortsMovies}
           onChange={() => {
             setIsShortsMovies(!isShortsMovies);
           }}
@@ -80,6 +82,7 @@ function SearchForm({ setMoviesFromBase }) {
 }
 
 SearchForm.propTypes = {
+  setSearchQuery: PropTypes.func.isRequired,
   setMoviesFromBase: PropTypes.func.isRequired,
 };
 

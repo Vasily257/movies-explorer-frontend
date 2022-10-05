@@ -2,21 +2,43 @@ import { React, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
+import ErrorElement from '../ErrorElement/ErrorElement';
 import Button from '../Button/Button';
 
 import { calcuateMovies } from '../../utils/scripts/utils';
+import { ERROR_TEXT } from '../../utils/scripts/constants';
 
 import './MoviesCardList.css';
 
-function MoviesCardList({ moviesList, isSavedMovies }) {
+function MoviesCardList({
+  isSavedMovies, searchQuery, moviesList, queryErrorText,
+}) {
   const [moviesCount, setMoviesCount] = useState(0);
   const [addedMovies, setAddedMovies] = useState(0);
-
   const { allMoviesCount, savedMoviesCount, addingMovie } = calcuateMovies();
+  const [errorText, setErrorText] = useState('');
+
+  const filtredMoviesList = moviesList.filter(({ nameRU, nameEN }) => (
+    [nameRU, nameEN].some((name) => name.includes(searchQuery.toLowerCase()))
+  ));
 
   useEffect(() => {
     setMoviesCount(isSavedMovies ? savedMoviesCount : allMoviesCount);
     setAddedMovies(addingMovie);
+  });
+
+  useEffect(() => {
+    if (queryErrorText) {
+      setErrorText(queryErrorText);
+      return;
+    }
+
+    if (!filtredMoviesList.length && searchQuery) {
+      setErrorText(ERROR_TEXT.MOVIES_NOT_FOUND);
+      return;
+    }
+
+    setErrorText('');
   });
 
   return (
@@ -26,22 +48,26 @@ function MoviesCardList({ moviesList, isSavedMovies }) {
       <h2 className="visually-hidden">
         {isSavedMovies ? 'Список сохраненных фильмов' : 'Список фильмов'}
       </h2>
-      <ul className="movies-card-list__movies">
-        {moviesList.map(
-          ({
-            id, nameRU, image, duration,
-          }, index) => index < moviesCount && (
-          <MoviesCard
-            key={id}
-            name={nameRU}
-            url={image.url}
-            duration={duration}
-            isSavedMovies={isSavedMovies}
-          />
-          ),
-        )}
-      </ul>
-      {!isSavedMovies && (
+      {filtredMoviesList.length ? (
+        <ul className="movies-card-list__movies">
+          {filtredMoviesList.map(
+            ({
+              id, nameRU, image, duration,
+            }, index) => index < moviesCount && (
+            <MoviesCard
+              key={id}
+              name={nameRU}
+              url={image.url}
+              duration={duration}
+              isSavedMovies={isSavedMovies}
+            />
+            ),
+          )}
+        </ul>
+      ) : (
+        <ErrorElement className="movies-card-list__error" text={errorText} />
+      )}
+      {!isSavedMovies && filtredMoviesList.length > moviesCount && (
         <Button
           className="movies-card-list__more"
           onClick={() => {
@@ -56,6 +82,7 @@ function MoviesCardList({ moviesList, isSavedMovies }) {
 }
 
 MoviesCardList.propTypes = {
+  searchQuery: PropTypes.string,
   moviesList: PropTypes.arrayOf(
     PropTypes.oneOfType([
       PropTypes.string,
@@ -82,11 +109,14 @@ MoviesCardList.propTypes = {
     ]),
   ),
   isSavedMovies: PropTypes.bool,
+  queryErrorText: PropTypes.string,
 };
 
 MoviesCardList.defaultProps = {
+  searchQuery: '',
   isSavedMovies: false,
   moviesList: [],
+  queryErrorText: '',
 };
 
 export default MoviesCardList;
