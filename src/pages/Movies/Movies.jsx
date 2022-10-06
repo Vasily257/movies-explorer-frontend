@@ -13,6 +13,7 @@ import { ERROR_TEXT } from '../../utils/scripts/constants';
 function Movies() {
   const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState([]);
+  const [isShortsMovies, setIsShortsMovies] = useState(false);
 
   const [isProladerShown, setIsProladerShown] = useState(false);
   const [errorText, setErrorText] = useState('');
@@ -35,7 +36,12 @@ function Movies() {
     <>
       <Header />
       <Content>
-        <SearchForm setSearchQuery={setSearchQuery} setMoviesFromBase={setMoviesFromBase} />
+        <SearchForm
+          setSearchQuery={setSearchQuery}
+          setMoviesFromBase={setMoviesFromBase}
+          isShortsMovies={isShortsMovies}
+          setIsShortsMovies={setIsShortsMovies}
+        />
         {isProladerShown ? (
           <Preloader />
         ) : (
@@ -43,6 +49,7 @@ function Movies() {
             searchQuery={searchQuery}
             moviesList={movies}
             queryErrorText={errorText}
+            isShortsMovies={isShortsMovies}
           />
         )}
       </Content>

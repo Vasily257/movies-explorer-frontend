@@ -11,16 +11,26 @@ import { ERROR_TEXT } from '../../utils/scripts/constants';
 import './MoviesCardList.css';
 
 function MoviesCardList({
-  isSavedMovies, searchQuery, moviesList, queryErrorText,
+  isSavedMovies,
+  searchQuery,
+  moviesList,
+  queryErrorText,
+  isShortsMovies,
 }) {
   const [moviesCount, setMoviesCount] = useState(0);
   const [addedMovies, setAddedMovies] = useState(0);
-  const { allMoviesCount, savedMoviesCount, addingMovie } = calcuateMovies();
+  const [limitation, setLimitation] = useState(Infinity);
+
   const [errorText, setErrorText] = useState('');
 
-  const filtredMoviesList = moviesList.filter(({ nameRU, nameEN }) => (
-    [nameRU, nameEN].some((name) => name.includes(searchQuery.toLowerCase()))
-  ));
+  const { allMoviesCount, savedMoviesCount, addingMovie } = calcuateMovies();
+
+  const filtredMoviesList = moviesList.filter(
+    ({ nameRU, nameEN, duration }) => [nameRU, nameEN].some((name) => (
+      name.includes(searchQuery.toLowerCase())
+    ))
+      && duration < limitation,
+  );
 
   useEffect(() => {
     setMoviesCount(isSavedMovies ? savedMoviesCount : allMoviesCount);
@@ -39,6 +49,14 @@ function MoviesCardList({
     }
 
     setErrorText('');
+  });
+
+  useEffect(() => {
+    if (isShortsMovies) {
+      setLimitation(40);
+    } else {
+      setLimitation(Infinity);
+    }
   });
 
   return (
@@ -110,6 +128,7 @@ MoviesCardList.propTypes = {
   ),
   isSavedMovies: PropTypes.bool,
   queryErrorText: PropTypes.string,
+  isShortsMovies: PropTypes.bool,
 };
 
 MoviesCardList.defaultProps = {
@@ -117,6 +136,7 @@ MoviesCardList.defaultProps = {
   isSavedMovies: false,
   moviesList: [],
   queryErrorText: '',
+  isShortsMovies: false,
 };
 
 export default MoviesCardList;

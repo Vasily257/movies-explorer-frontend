@@ -13,8 +13,9 @@ import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
 
-function SearchForm({ setSearchQuery, setMoviesFromBase }) {
-  const [isShortsMovies, setIsShortsMovies] = useState(false);
+function SearchForm({
+  setSearchQuery, setMoviesFromBase, isShortsMovies, setIsShortsMovies,
+}) {
   const [errorText, setErrorText] = useState('');
 
   const { values, handleChange } = useForm();
@@ -84,6 +85,8 @@ function SearchForm({ setSearchQuery, setMoviesFromBase }) {
 SearchForm.propTypes = {
   setSearchQuery: PropTypes.func.isRequired,
   setMoviesFromBase: PropTypes.func.isRequired,
+  isShortsMovies: PropTypes.bool.isRequired,
+  setIsShortsMovies: PropTypes.func.isRequired,
 };
 
 export default SearchForm;
