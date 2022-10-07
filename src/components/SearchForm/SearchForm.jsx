@@ -26,6 +26,8 @@ function SearchForm({
       setSearchQuery(values.movie);
       setMoviesFromBase();
       setErrorText('');
+
+      localStorage.setItem('query', values.movie);
     } else {
       setErrorText(ERROR_TEXT.EMPTY_SEARCH_QUERY);
     }
@@ -70,6 +72,7 @@ function SearchForm({
           id="shorts-input"
           onChange={() => {
             setIsShortsMovies(!isShortsMovies);
+            localStorage.setItem('isShortsMovies', !isShortsMovies);
           }}
           wrapperClassName="search-form__shorts-wrapper"
           isLabelShown
