@@ -35,4 +35,4 @@ const inputList = [
   },
 ];
 
-export { inputList, ERROR_TEXT };
+export { ERROR_TEXT, inputList };

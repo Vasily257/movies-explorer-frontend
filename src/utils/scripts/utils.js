@@ -8,32 +8,28 @@ function screenView() {
   return { isMobile, isTablet, isDesktop };
 }
 
-function calcuateMovies() {
-  const { isTablet, isDesktop } = screenView();
+function getRows(columns) {
+  let rows = 0;
 
-  let allMoviesCount;
-  let savedMoviesCount;
-  let addingMovie;
-
-  if (isDesktop) {
-    allMoviesCount = 16;
-    savedMoviesCount = 3;
-    addingMovie = 4;
-    return { allMoviesCount, savedMoviesCount, addingMovie };
+  if (columns === 1) {
+    rows = 5;
+  } else {
+    rows = 4;
   }
 
-  if (isTablet) {
-    allMoviesCount = 8;
-    savedMoviesCount = 3;
-    addingMovie = 2;
-    return { allMoviesCount, savedMoviesCount, addingMovie };
-  }
-
-  allMoviesCount = 5;
-  savedMoviesCount = 2;
-  addingMovie = 2;
-
-  return { allMoviesCount, savedMoviesCount, addingMovie };
+  return rows;
 }
 
-export { screenView, calcuateMovies };
+function getAddedMovies(columns) {
+  let addedMovies = 0;
+
+  if (columns === 1) {
+    addedMovies = 2 * columns;
+  } else {
+    addedMovies = columns;
+  }
+
+  return addedMovies;
+}
+
+export { screenView, getRows, getAddedMovies };
