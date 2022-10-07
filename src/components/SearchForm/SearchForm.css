@@ -150,6 +150,8 @@
 .search-form__shorts-label {
   margin-left: 13px;
 
+  cursor: pointer;
+
   color: #000000;
 
   font-size: 11px;
