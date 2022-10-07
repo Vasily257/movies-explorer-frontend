@@ -18,15 +18,25 @@ function Movies() {
   const [isProladerShown, setIsProladerShown] = useState(false);
   const [errorText, setErrorText] = useState('');
 
+  const localStorageMovies = JSON.parse(localStorage.getItem('moviesFromBase'));
+
   const setMoviesFromBase = async () => {
     setIsProladerShown(true);
-    try {
-      const moviesFromBase = await getMoviesFromBase();
-      setMovies(moviesFromBase);
+
+    if (localStorageMovies) {
+      await setMovies(localStorageMovies);
       setErrorText('');
-    } catch (error) {
-      setMovies([]);
-      setErrorText(ERROR_TEXT.FAILED_FETCH);
+    } else {
+      try {
+        const moviesFromBase = await getMoviesFromBase();
+        localStorage.setItem('moviesFromBase', JSON.stringify(moviesFromBase));
+
+        setMovies(moviesFromBase);
+        setErrorText('');
+      } catch (error) {
+        setMovies([]);
+        setErrorText(ERROR_TEXT.FAILED_FETCH);
+      }
     }
 
     setIsProladerShown(false);
