@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useForm } from '../../hooks/useForm';
@@ -28,10 +28,19 @@ function SearchForm({
       setErrorText('');
 
       localStorage.setItem('query', values.movie);
+      localStorage.setItem('isShortsMovies', isShortsMovies);
     } else {
       setErrorText(ERROR_TEXT.EMPTY_SEARCH_QUERY);
     }
   }
+
+  useEffect(() => {
+    const localIsShortsMovies = JSON.parse(localStorage.getItem('isShortsMovies'));
+
+    if (localIsShortsMovies) {
+      setIsShortsMovies(localIsShortsMovies);
+    }
+  }, []);
 
   return (
     <section className="search-form">
@@ -66,7 +75,9 @@ function SearchForm({
         </Button>
         <ErrorElement className="search-form__submit-error" text={errorText} />
         <Input
-          inputClassName="search-form__shorts-input"
+          inputClassName={`search-form__shorts-input ${
+            isShortsMovies ? 'search-form__shorts-input_checked' : ''
+          }`}
           type="checkbox"
           name="shorts"
           id="shorts-input"

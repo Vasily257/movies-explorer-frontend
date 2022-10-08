@@ -133,13 +133,13 @@
   background-color: #f5f5f5;
 }
 
-.search-form__shorts-input:checked::before {
+.search-form__shorts-input_checked::before {
   transition: background-color 0.2s;
 
   background-color: var(--green-color);
 }
 
-.search-form__shorts-input:checked::after {
+.search-form__shorts-input_checked::after {
   right: 2px;
 
   transition: background-color 0.2s, right 0.2s;
