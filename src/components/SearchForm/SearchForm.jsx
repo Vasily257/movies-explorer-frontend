@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { useForm } from '../../hooks/useForm';
@@ -33,14 +33,6 @@ function SearchForm({
       setErrorText(ERROR_TEXT.EMPTY_SEARCH_QUERY);
     }
   }
-
-  useEffect(() => {
-    const localIsShortsMovies = JSON.parse(localStorage.getItem('isShortsMovies'));
-
-    if (localIsShortsMovies) {
-      setIsShortsMovies(localIsShortsMovies);
-    }
-  }, []);
 
   return (
     <section className="search-form">

@@ -32,4 +32,10 @@ function getAddedMovies(columns) {
   return addedMovies;
 }
 
-export { screenView, getRows, getAddedMovies };
+const localMovies = JSON.parse(localStorage.getItem('moviesFromBase')) || [];
+const localQuery = localStorage.getItem('query') || '';
+const localIsShortsMovies = JSON.parse(localStorage.getItem('isShortsMovies')) || false;
+
+export {
+  screenView, getRows, getAddedMovies, localMovies, localQuery, localIsShortsMovies,
+};

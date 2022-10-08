@@ -9,34 +9,28 @@ import Footer from '../../components/Footer/Footer';
 
 import getMoviesFromBase from '../../utils/scripts/MoviesApi';
 import { ERROR_TEXT } from '../../utils/scripts/constants';
+import { localMovies, localQuery, localIsShortsMovies } from '../../utils/scripts/utils';
 
 function Movies() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [movies, setMovies] = useState([]);
-  const [isShortsMovies, setIsShortsMovies] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(localQuery);
+  const [movies, setMovies] = useState(localMovies);
+  const [isShortsMovies, setIsShortsMovies] = useState(localIsShortsMovies);
 
   const [isProladerShown, setIsProladerShown] = useState(false);
   const [errorText, setErrorText] = useState('');
 
-  const localStorageMovies = JSON.parse(localStorage.getItem('moviesFromBase'));
-
   const setMoviesFromBase = async () => {
     setIsProladerShown(true);
 
-    if (localStorageMovies) {
-      await setMovies(localStorageMovies);
-      setErrorText('');
-    } else {
-      try {
-        const moviesFromBase = await getMoviesFromBase();
-        localStorage.setItem('moviesFromBase', JSON.stringify(moviesFromBase));
+    try {
+      const moviesFromBase = await getMoviesFromBase();
+      localStorage.setItem('moviesFromBase', JSON.stringify(moviesFromBase));
 
-        setMovies(moviesFromBase);
-        setErrorText('');
-      } catch (error) {
-        setMovies([]);
-        setErrorText(ERROR_TEXT.FAILED_FETCH);
-      }
+      setMovies(moviesFromBase);
+      setErrorText('');
+    } catch (error) {
+      setMovies([]);
+      setErrorText(ERROR_TEXT.FAILED_FETCH);
     }
 
     setIsProladerShown(false);
