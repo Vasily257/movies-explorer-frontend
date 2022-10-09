@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Input.css';
+import ErrorElement from '../ErrorElement/ErrorElement';
 
 function Input({
   inputClassName,
@@ -14,6 +15,8 @@ function Input({
   isLabelShown,
   labelClassName,
   labelText,
+  inputErrorClassName,
+  inputErrorText,
   minLength,
   maxLength,
   required,
@@ -33,6 +36,9 @@ function Input({
         maxLength={maxLength}
         required={required}
       />
+      {(type === 'text' || 'email' || 'password') && (
+        <ErrorElement className={`input-error ${inputErrorClassName}`} text={inputErrorText} />
+      )}
     </label>
   );
 }
@@ -49,6 +55,8 @@ Input.propTypes = {
   isLabelShown: PropTypes.bool,
   labelClassName: PropTypes.string,
   labelText: PropTypes.string,
+  inputErrorClassName: PropTypes.string,
+  inputErrorText: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
   required: PropTypes.bool,
@@ -61,8 +69,10 @@ Input.defaultProps = {
   isLabelShown: false,
   labelClassName: '',
   labelText: '',
+  inputErrorClassName: '',
+  inputErrorText: '',
   minLength: 1,
-  maxLength: 999,
+  maxLength: Infinity,
   required: false,
 };
 

@@ -5,7 +5,6 @@ import useForm from '../../hooks/useForm';
 
 import Button from '../Button/Button';
 import Input from '../Input/Input';
-import ErrorElement from '../ErrorElement/ErrorElement';
 
 import { ERROR_TEXT } from '../../utils/scripts/constants';
 import { localQuery } from '../../utils/scripts/utils';
@@ -59,6 +58,8 @@ function SearchForm({
           value={values.movie}
           placeholder="Фильм"
           labelText="Фильм"
+          inputErrorClassName="search-form__submit-error"
+          inputErrorText={errorText}
           required
         />
         <Button className="search-form__submit-button" isSubmitButton>
@@ -68,7 +69,7 @@ function SearchForm({
             alt="Найти фильм"
           />
         </Button>
-        <ErrorElement className="search-form__submit-error" text={errorText} />
+
         <Input
           inputClassName={`search-form__shorts-input ${
             isShortsMovies ? 'search-form__shorts-input_checked' : ''

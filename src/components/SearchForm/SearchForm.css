@@ -63,10 +63,6 @@
 }
 
 .search-form__submit-error {
-  position: absolute;
-  top: 60px;
-  left: 0;
-
   margin-left: 19px;
 }
 
