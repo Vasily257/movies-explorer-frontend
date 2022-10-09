@@ -4,6 +4,14 @@ const localMovies = JSON.parse(localStorage.getItem('moviesFromBase')) || [];
 const localQuery = localStorage.getItem('query') || '';
 const localIsShortsMovies = JSON.parse(localStorage.getItem('isShortsMovies')) || false;
 
+function handleResponse(response) {
+  if (response.ok) {
+    return response.json();
+  }
+
+  throw new Error();
+}
+
 function screenView() {
   const isMobile = useMediaQuery('(min-width: 300px)');
   const isTablet = useMediaQuery('(min-width: 600px)');
@@ -47,6 +55,7 @@ export {
   localMovies,
   localQuery,
   localIsShortsMovies,
+  handleResponse,
   screenView,
   getRows,
   getAddedMovies,

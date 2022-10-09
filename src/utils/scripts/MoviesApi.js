@@ -1,4 +1,5 @@
 import { BASE_URL } from './constants';
+import { handleResponse } from './utils';
 
 const headers = {
   'Content-Type': 'application/json',
@@ -10,11 +11,7 @@ async function getMoviesFromBase() {
     headers,
   });
 
-  if (response.ok) {
-    return response.json();
-  }
-
-  throw new Error();
+  return handleResponse(response);
 }
 
 export default getMoviesFromBase;
