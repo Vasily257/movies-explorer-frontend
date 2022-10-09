@@ -5,14 +5,17 @@ const ERROR_TEXT = {
     'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз',
 };
 
-const beatfilmMoviesBaseUrl = 'https://api.nomoreparties.co';
+const BASE_URL = {
+  BEATFILM_MOVIES: 'https://api.nomoreparties.co',
+  MOVIES_EXPLORER: 'http://api.kalmykov.moviesexplorer.nomoredomains.sbs',
+};
 
 const inputList = [
   {
     name: 'name',
     type: 'text',
     id: 1,
-    value: 'Иван',
+    value: '',
     labelText: 'Имя',
     minLength: 2,
     maxLength: 30,
@@ -21,7 +24,7 @@ const inputList = [
     name: 'email',
     type: 'email',
     id: 2,
-    value: 'justamail@mail.ru',
+    value: '',
     labelText: 'E-mail',
     minLength: 2,
     maxLength: 30,
@@ -30,11 +33,11 @@ const inputList = [
     name: 'password',
     type: 'password',
     id: 3,
-    value: '12345678',
+    value: '',
     labelText: 'Пароль',
     minLength: 2,
     maxLength: 30,
   },
 ];
 
-export { ERROR_TEXT, beatfilmMoviesBaseUrl, inputList };
+export { ERROR_TEXT, BASE_URL, inputList };

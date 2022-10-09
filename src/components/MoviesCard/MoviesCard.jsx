@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import CustomLink from '../CustomLink/CustomLink';
 
-import { beatfilmMoviesBaseUrl } from '../../utils/scripts/constants';
+import { BASE_URL } from '../../utils/scripts/constants';
 import { getHoursAndMinutes } from '../../utils/scripts/utils';
 
 import './MoviesCard.css';
@@ -21,7 +21,7 @@ function MoviesCard({
       <CustomLink className="movies-card__link" path={trailerLink}>
         <img
           className="movies-card__image"
-          src={`${beatfilmMoviesBaseUrl}${imageUrl}`}
+          src={`${BASE_URL.BEATFILM_MOVIES}${imageUrl}`}
           alt="Постер фильма"
         />
       </CustomLink>
