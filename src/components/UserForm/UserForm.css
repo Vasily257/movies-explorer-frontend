@@ -58,10 +58,6 @@
   line-height: calc(16 / 13);
 }
 
-.user-form__input_type_password {
-  color: var(--red-color);
-}
-
 .user-form__input_reset {
   color: #000000;
 }
@@ -130,6 +126,7 @@
   .user-form {
     margin-top: 40px;
     padding: 0;
+    max-height: 482px;
   }
 
   .user-form__title {
@@ -137,7 +134,7 @@
   }
 
   .user-form__form {
-    max-height: 400px;
+    max-height: 440px;
     margin-top: 20px;
   }
 

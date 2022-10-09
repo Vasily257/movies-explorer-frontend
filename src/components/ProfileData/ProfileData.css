@@ -89,7 +89,7 @@
 @media screen and (min-width: 600px) {
   .profile-data {
     max-height: 720px;
-    padding: 235px 30px 41px;
+    padding: 72px 30px 41px;
   }
 
   .profile-data__field_place_upper {
