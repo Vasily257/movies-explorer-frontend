@@ -19,6 +19,7 @@ function Input({
   inputErrorText,
   minLength,
   maxLength,
+  pattern,
   required,
 }) {
   return (
@@ -34,6 +35,7 @@ function Input({
         onChange={onChange}
         minLength={minLength}
         maxLength={maxLength}
+        pattern={pattern}
         required={required}
       />
       {(type === 'text' || 'email' || 'password') && (
@@ -59,20 +61,22 @@ Input.propTypes = {
   inputErrorText: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
+  pattern: PropTypes.string,
   required: PropTypes.bool,
 };
 
 Input.defaultProps = {
-  value: '',
-  placeholder: '',
+  value: null,
+  placeholder: null,
   wrapperClassName: '',
   isLabelShown: false,
   labelClassName: '',
   labelText: '',
   inputErrorClassName: '',
   inputErrorText: '',
-  minLength: 1,
-  maxLength: Infinity,
+  minLength: null,
+  maxLength: null,
+  pattern: null,
   required: false,
 };
 
