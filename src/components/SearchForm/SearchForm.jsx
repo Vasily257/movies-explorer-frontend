@@ -8,9 +8,8 @@ import Input from '../Input/Input';
 import ErrorElement from '../ErrorElement/ErrorElement';
 
 import { ERROR_TEXT } from '../../utils/scripts/constants';
-
-import searchFormIcon from '../../images/search-form-icon.svg';
 import { localQuery } from '../../utils/scripts/utils';
+import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
 
