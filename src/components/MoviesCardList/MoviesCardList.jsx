@@ -77,13 +77,14 @@ function MoviesCardList({
         <ul className="movies-card-list__movies" ref={gridContainer}>
           {filtredMoviesList.map(
             ({
-              id, nameRU, image, duration,
+              id, nameRU, image, duration, trailerLink,
             }, index) => index < moviesCount && (
             <MoviesCard
               key={id}
               name={nameRU}
-              url={image.url}
+              imageUrl={image.url}
               duration={duration}
+              trailerLink={trailerLink}
               isSavedMovies={isSavedMovies}
             />
             ),

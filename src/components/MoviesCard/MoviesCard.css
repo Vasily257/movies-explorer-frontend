@@ -8,6 +8,10 @@
   box-shadow: 0 16px 24px rgba(0, 0, 0, 0.05);
 }
 
+.movies-card__link {
+  position: relative;
+}
+
 .movies-card__image {
   display: block;
 

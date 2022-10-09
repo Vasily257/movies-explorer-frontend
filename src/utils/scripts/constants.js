@@ -5,6 +5,8 @@ const ERROR_TEXT = {
     'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз',
 };
 
+const beatfilmMoviesBaseUrl = 'https://api.nomoreparties.co';
+
 const inputList = [
   {
     name: 'name',
@@ -35,4 +37,4 @@ const inputList = [
   },
 ];
 
-export { ERROR_TEXT, inputList };
+export { ERROR_TEXT, beatfilmMoviesBaseUrl, inputList };

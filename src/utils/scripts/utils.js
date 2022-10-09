@@ -1,5 +1,9 @@
 import useMediaQuery from '../../hooks/useMediaQuery';
 
+const localMovies = JSON.parse(localStorage.getItem('moviesFromBase')) || [];
+const localQuery = localStorage.getItem('query') || '';
+const localIsShortsMovies = JSON.parse(localStorage.getItem('isShortsMovies')) || false;
+
 function screenView() {
   const isMobile = useMediaQuery('(min-width: 300px)');
   const isTablet = useMediaQuery('(min-width: 600px)');
@@ -32,10 +36,19 @@ function getAddedMovies(columns) {
   return addedMovies;
 }
 
-const localMovies = JSON.parse(localStorage.getItem('moviesFromBase')) || [];
-const localQuery = localStorage.getItem('query') || '';
-const localIsShortsMovies = JSON.parse(localStorage.getItem('isShortsMovies')) || false;
+function getHoursAndMinutes(duration) {
+  const hours = Math.floor(duration / 60);
+  const minutes = duration % 60;
+
+  return { hours, minutes };
+}
 
 export {
-  screenView, getRows, getAddedMovies, localMovies, localQuery, localIsShortsMovies,
+  localMovies,
+  localQuery,
+  localIsShortsMovies,
+  screenView,
+  getRows,
+  getAddedMovies,
+  getHoursAndMinutes,
 };
