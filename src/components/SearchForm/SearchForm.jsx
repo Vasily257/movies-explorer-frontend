@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { useForm } from '../../hooks/useForm';
+import useForm from '../../hooks/useForm';
 
 import Button from '../Button/Button';
 import Input from '../Input/Input';
@@ -10,6 +10,7 @@ import ErrorElement from '../ErrorElement/ErrorElement';
 import { ERROR_TEXT } from '../../utils/scripts/constants';
 
 import searchFormIcon from '../../images/search-form-icon.svg';
+import { localQuery } from '../../utils/scripts/utils';
 
 import './SearchForm.css';
 
@@ -17,8 +18,7 @@ function SearchForm({
   setSearchQuery, setMoviesFromBase, isShortsMovies, setIsShortsMovies,
 }) {
   const [errorText, setErrorText] = useState('');
-
-  const { values, handleChange } = useForm();
+  const { values, handleChange, setValues } = useForm();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -33,6 +33,10 @@ function SearchForm({
       setErrorText(ERROR_TEXT.EMPTY_SEARCH_QUERY);
     }
   }
+
+  useEffect(() => {
+    setValues({ ...values, movie: localQuery });
+  }, [setValues]);
 
   return (
     <section className="search-form">
@@ -53,7 +57,7 @@ function SearchForm({
           onChange={(event) => {
             handleChange(event);
           }}
-          value={values.name}
+          value={values.movie}
           placeholder="Фильм"
           labelText="Фильм"
           required

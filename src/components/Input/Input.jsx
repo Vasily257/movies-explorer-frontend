@@ -26,7 +26,7 @@ function Input({
         type={type}
         name={name}
         id={id}
-        defaultValue={value}
+        value={value}
         placeholder={placeholder}
         onChange={onChange}
         minLength={minLength}

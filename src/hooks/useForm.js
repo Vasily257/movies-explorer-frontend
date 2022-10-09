@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-export function useForm() {
+export default function useForm() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
@@ -25,9 +25,10 @@ export function useForm() {
     values,
     errors,
     isValid,
+    setValues,
+    setErrors,
+    setIsValid,
     handleChange,
     resetForm,
   };
 }
-
-export default useForm;
