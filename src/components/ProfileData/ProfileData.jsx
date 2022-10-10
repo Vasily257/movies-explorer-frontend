@@ -1,6 +1,6 @@
 import { React, useContext } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import { LoginContext } from '../../contexts/LoginContext';
+import LoginContext from '../../contexts/LoginContext';
 
 import Button from '../Button/Button';
 import CustomLink from '../CustomLink/CustomLink';

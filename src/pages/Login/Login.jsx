@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import { LoginContext } from '../../contexts/LoginContext';
+import LoginContext from '../../contexts/LoginContext';
 
 import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';

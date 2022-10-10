@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { LoginContext } from '../../contexts/LoginContext';
+import LoginContext from '../../contexts/LoginContext';
 
 import Button from '../Button/Button';
 import CustomLink from '../CustomLink/CustomLink';

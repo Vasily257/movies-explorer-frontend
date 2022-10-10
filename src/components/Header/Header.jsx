@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import headerLogo from '../../images/header-logo.svg';
 import Navigation from '../Navigation/Navigation';
 
-import { LoginContext } from '../../contexts/LoginContext';
+import LoginContext from '../../contexts/LoginContext';
 import CustomLink from '../CustomLink/CustomLink';
 
 import './Header.css';
