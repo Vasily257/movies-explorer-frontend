@@ -1,7 +1,9 @@
-import { React, useState, useMemo } from 'react';
+import {
+  React, useState, useMemo, useEffect,
+} from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { LoginContext } from '../../contexts/LoginContext';
+import LoginContext from '../../contexts/LoginContext';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 import Main from '../../pages/Main/Main';
@@ -14,17 +16,37 @@ import NotFound from '../../pages/NotFound/NotFound';
 import ProtectedRoute from '../HOC/ProtectedRoute';
 import UnprotectedRoute from '../HOC/UnprotectedRoute';
 
+import { getContent } from '../../utils/scripts/MainApi';
+
 import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({ name: 'Василий', email: 'pochta@yandex.ru' });
+  const [currentUser, setCurrentUser] = useState({ name: '', email: '' });
 
   const loginValue = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
   const currentUserValue = useMemo(
     () => ({ currentUser, setCurrentUser }),
     [currentUser, setCurrentUser],
   );
+
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (token) {
+          const userData = await getContent(token);
+          setCurrentUser({ name: userData.name, email: userData.email });
+          setIsLoggedIn(true);
+        }
+      } catch (error) {
+        // Удалять данные, если токен неправильный?
+        console.log(error);
+      }
+    };
+
+    checkToken();
+  }, []);
 
   return (
     <div className="app">

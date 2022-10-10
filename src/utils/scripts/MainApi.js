@@ -39,4 +39,16 @@ async function login({ email, password }) {
   return handleResponse(response);
 }
 
-export { setToken, register, login };
+async function getContent(token) {
+  setToken(token);
+  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/users/me`, {
+    method: 'GET',
+    headers,
+  });
+
+  return handleResponse(response);
+}
+
+export {
+  setToken, register, login, getContent,
+};

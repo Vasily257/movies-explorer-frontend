@@ -6,7 +6,7 @@ import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';
 import UserForm from '../../components/UserForm/UserForm';
 
-import { INPUT_LIST, USER_ERROR_TEXT } from '../../utils/scripts/constants';
+import { INPUT_LIST, STATUS, USER_ERROR_TEXT } from '../../utils/scripts/constants';
 import { setToken, login } from '../../utils/scripts/MainApi';
 
 function Login() {
@@ -17,14 +17,23 @@ function Login() {
   const onLogin = async ({ email, password }) => {
     try {
       const token = await login({ email, password });
-      if (token) {
+      if (token.token) {
         localStorage.setItem('token', token.token);
         setToken(token.token);
         setIsLoggedIn(true);
+        setErrorText('');
+      } else {
+        setErrorText(USER_ERROR_TEXT.INCORRECT_TOKEN);
       }
-      setErrorText('');
     } catch (error) {
-      setErrorText(USER_ERROR_TEXT.INCORRECT_LOGIN_DATA);
+      switch (+error.message) {
+        case STATUS.UNAUTHORIZED:
+          setErrorText(USER_ERROR_TEXT.INCORRECT_LOGIN_DATA);
+          break;
+        default:
+          setErrorText(USER_ERROR_TEXT.MISSING_TOKEN);
+          break;
+      }
     }
   };
 
