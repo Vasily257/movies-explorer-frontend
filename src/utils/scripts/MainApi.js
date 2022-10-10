@@ -1,9 +1,16 @@
 import { BASE_URL } from './constants';
 import { handleResponse } from './utils';
 
-const headers = {
+let headers = {
   'Content-Type': 'application/json',
 };
+
+function setToken(token) {
+  headers = {
+    ...headers,
+    authorization: `Bearer ${token}`,
+  };
+}
 
 async function register({ name, email, password }) {
   const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/signup/`, {
@@ -31,4 +38,5 @@ async function login({ email, password }) {
 
   return handleResponse(response);
 }
-export { register, login };
+
+export { setToken, register, login };

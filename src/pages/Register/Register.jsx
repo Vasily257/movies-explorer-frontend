@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+
+import { LoginContext } from '../../contexts/LoginContext';
 
 import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';
 import UserForm from '../../components/UserForm/UserForm';
 
 import { INPUT_LIST, STATUS, USER_ERROR_TEXT } from '../../utils/scripts/constants';
-import { register } from '../../utils/scripts/MainApi';
+import { register, login, setToken } from '../../utils/scripts/MainApi';
 
 function Register() {
   const [errorText, setErrorText] = useState('');
+  const { setIsLoggedIn } = useContext(LoginContext);
   const registerInputList = INPUT_LIST.map(
     (inputElement) => (inputElement.name === 'name' || 'email' || 'password') && inputElement,
   );
@@ -18,9 +20,14 @@ function Register() {
     try {
       const userData = await register({ name, email, password });
       if (userData) {
-        <Navigate to="/movies" />;
-        setErrorText('');
+        const token = await login({ email, password });
+        if (token) {
+          localStorage.setItem('token', token.token);
+          setToken(token.token);
+          setIsLoggedIn(true);
+        }
       }
+      setErrorText('');
     } catch (error) {
       switch (+error.message) {
         case STATUS.CONFLICT:
