@@ -8,7 +8,7 @@ import Preloader from '../../components/Preloader/Preloader';
 import Footer from '../../components/Footer/Footer';
 
 import getMoviesFromBase from '../../utils/scripts/MoviesApi';
-import { ERROR_TEXT } from '../../utils/scripts/constants';
+import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
 import { localMovies, localQuery, localIsShortsMovies } from '../../utils/scripts/utils';
 
 function Movies() {
@@ -30,7 +30,7 @@ function Movies() {
       setErrorText('');
     } catch (error) {
       setMovies([]);
-      setErrorText(ERROR_TEXT.FAILED_FETCH);
+      setErrorText(MOVIES_ERROR_TEXT.FETCH_FAILED);
     }
 
     setIsProladerShown(false);

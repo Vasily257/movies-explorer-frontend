@@ -6,7 +6,7 @@ import useForm from '../../hooks/useForm';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 
-import { ERROR_TEXT } from '../../utils/scripts/constants';
+import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
 import { localQuery } from '../../utils/scripts/utils';
 import searchFormIcon from '../../images/search-form-icon.svg';
 
@@ -28,7 +28,7 @@ function SearchForm({
       localStorage.setItem('query', values.movie);
       localStorage.setItem('isShortsMovies', isShortsMovies);
     } else {
-      setErrorText(ERROR_TEXT.EMPTY_SEARCH_QUERY);
+      setErrorText(MOVIES_ERROR_TEXT.EMPTY_QUERY);
     }
   }
 

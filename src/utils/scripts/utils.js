@@ -9,7 +9,7 @@ function handleResponse(response) {
     return response.json();
   }
 
-  throw new Error();
+  return Promise.reject(new Error(response.status));
 }
 
 function screenView() {

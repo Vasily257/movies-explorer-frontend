@@ -66,7 +66,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-  value: null,
+  value: '',
   placeholder: null,
   wrapperClassName: '',
   isLabelShown: false,

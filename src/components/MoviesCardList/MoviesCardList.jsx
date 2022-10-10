@@ -7,7 +7,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import ErrorElement from '../ErrorElement/ErrorElement';
 import Button from '../Button/Button';
 
-import { ERROR_TEXT } from '../../utils/scripts/constants';
+import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
 import { getRows, getAddedMovies } from '../../utils/scripts/utils';
 import useColumns from '../../hooks/useColumns';
 
@@ -51,7 +51,7 @@ function MoviesCardList({
     }
 
     if (!filtredMoviesList.length && searchQuery) {
-      setErrorText(ERROR_TEXT.MOVIES_NOT_FOUND);
+      setErrorText(MOVIES_ERROR_TEXT.NOT_FOUND);
       return;
     }
 

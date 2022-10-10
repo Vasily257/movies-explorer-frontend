@@ -4,10 +4,10 @@ import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';
 import UserForm from '../../components/UserForm/UserForm';
 
-import { inputList } from '../../utils/scripts/constants';
+import { INPUT_LIST } from '../../utils/scripts/constants';
 
 function Login() {
-  const loginInputList = inputList.filter(({ name }) => name === 'email' || name === 'password');
+  const loginInputList = INPUT_LIST.filter(({ name }) => name === 'email' || name === 'password');
 
   return (
     <>
