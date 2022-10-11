@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
@@ -9,15 +10,22 @@ import ProfileData from '../../components/ProfileData/ProfileData';
 import { STATUS, USER_ERROR_TEXT } from '../../utils/scripts/constants';
 import { updateProfile } from '../../utils/scripts/MainApi';
 
-function Profile() {
+function Profile({ onSignOut }) {
   const [errorText, setErrorText] = useState('');
   const { setCurrentUser } = useContext(CurrentUserContext);
+
+  const [isEditingMode, setIsEditingMode] = useState(false);
+  const [isSuccessfulUpdate, setIsSuccessfulUpdate] = useState(false);
 
   const onUpdateProfile = async ({ name, email, currentEmail }) => {
     try {
       const updatedUserData = await updateProfile({ name, email, currentEmail });
-      setCurrentUser(updatedUserData);
-      setErrorText('');
+      if (updatedUserData) {
+        setCurrentUser({ name: updatedUserData.name, email: updatedUserData.email });
+        setIsEditingMode(false);
+        setIsSuccessfulUpdate(true);
+        setErrorText('');
+      }
     } catch (error) {
       switch (+error.message) {
         case STATUS.CONFLICT:
@@ -34,10 +42,21 @@ function Profile() {
     <>
       <Header />
       <Content>
-        <ProfileData apiErrorText={errorText} onSubmitForm={onUpdateProfile} />
+        <ProfileData
+          apiErrorText={errorText}
+          onSubmitForm={onUpdateProfile}
+          isSuccessfulUpdate={isSuccessfulUpdate}
+          isEditingMode={isEditingMode}
+          setIsEditingMode={setIsEditingMode}
+          onSignOut={onSignOut}
+        />
       </Content>
     </>
   );
 }
+
+Profile.propTypes = {
+  onSignOut: PropTypes.func.isRequired,
+};
 
 export default Profile;

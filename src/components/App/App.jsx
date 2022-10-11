@@ -30,14 +30,11 @@ function App() {
     [currentUser, setCurrentUser],
   );
 
-  const onSignOut = useCallback(
-    () => {
-      localStorage.removeItem('token');
-      setCurrentUser({ name: '', email: '' });
-      setIsLoggedIn(false);
-    },
-    [setCurrentUser, setIsLoggedIn],
-  );
+  const onSignOut = useCallback(() => {
+    localStorage.removeItem('token');
+    setCurrentUser({ name: '', email: '' });
+    setIsLoggedIn(false);
+  }, [setCurrentUser, setIsLoggedIn]);
 
   useEffect(() => {
     async function checkToken() {
@@ -89,7 +86,7 @@ function App() {
               path="/profile"
               element={(
                 <ProtectedRoute>
-                  <Profile />
+                  <Profile onSignOut={onSignOut} />
                 </ProtectedRoute>
               )}
             />

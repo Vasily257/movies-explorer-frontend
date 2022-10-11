@@ -92,8 +92,23 @@
   text-align: right;
 }
 
-.profile-data__edit-button {
+.profile-data__api-success {
+  display: block;
+
+  min-height: 12px;
   margin-top: auto;
+
+  text-align: center;
+
+  color: var(--green-color);
+
+  font-size: 10px;
+  font-weight: 400;
+  line-height: calc(12 / 10);
+}
+
+.profile-data__edit-button {
+  margin-top: 32px;
 
   transition: opacity 0.5s;
   text-align: center;
@@ -165,6 +180,13 @@
 
   .profile-data__field:first-child {
     margin-top: 80px;
+  }
+
+  .profile-data__api-success {
+    min-height: 13px;
+
+    font-size: 11px;
+    line-height: calc(13 / 11);
   }
 
   .profile-data__edit-button {

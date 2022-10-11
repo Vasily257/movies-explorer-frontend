@@ -1,34 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import LoginContext from '../../contexts/LoginContext';
 import useForm from '../../hooks/useForm';
 
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import ErrorElement from '../ErrorElement/ErrorElement';
 
-import { INPUT_LIST, NAME_REGEX } from '../../utils/scripts/constants';
+import { INPUT_LIST, NAME_REGEX, SUCCESSFUL_UPDATE_TEXT } from '../../utils/scripts/constants';
 
 import './ProfileData.css';
 
-function ProfileData({ apiErrorText, onSubmitForm }) {
+function ProfileData({
+  apiErrorText, onSubmitForm, isSuccessfulUpdate, isEditingMode, setIsEditingMode, onSignOut,
+}) {
   const { currentUser } = useContext(CurrentUserContext);
-  const { setIsLoggedIn } = useContext(LoginContext);
 
   const {
     values, errors, isValid, setValues, setIsValid, handleChange,
   } = useForm();
-
-  const [isEditingMode, setIsEditingMode] = useState(false);
 
   const profileInputList = INPUT_LIST.filter(({ name }) => name === 'name' || name === 'email');
 
   function handleSubmit(event) {
     event.preventDefault();
     onSubmitForm({ name: values.name, email: values.email, currentEmail: currentUser.email });
-    setIsEditingMode(false);
   }
 
   useEffect(() => {
@@ -37,6 +34,12 @@ function ProfileData({ apiErrorText, onSubmitForm }) {
       email: currentUser.email,
     });
   }, []);
+
+  useEffect(() => {
+    if (values.name === currentUser.name && values.email === currentUser.email) {
+      setIsValid(false);
+    }
+  });
 
   return (
     <section className="profile-data">
@@ -69,11 +72,13 @@ function ProfileData({ apiErrorText, onSubmitForm }) {
         ))}
         {!isEditingMode ? (
           <>
+            <span className="profile-data__api-success">
+              {isSuccessfulUpdate ? SUCCESSFUL_UPDATE_TEXT : ''}
+            </span>
             <Button
               className="profile-data__edit-button"
               onClick={() => {
                 setIsEditingMode(true);
-                setIsValid(false);
               }}
             >
               Редактировать
@@ -81,8 +86,7 @@ function ProfileData({ apiErrorText, onSubmitForm }) {
             <Button
               className="profile-data__exit-button"
               onClick={() => {
-                localStorage.removeItem('token');
-                setIsLoggedIn(false);
+                onSignOut();
               }}
             >
               Выйти из аккаунта
@@ -104,6 +108,10 @@ function ProfileData({ apiErrorText, onSubmitForm }) {
 ProfileData.propTypes = {
   apiErrorText: PropTypes.string.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
+  isSuccessfulUpdate: PropTypes.bool.isRequired,
+  isEditingMode: PropTypes.bool.isRequired,
+  setIsEditingMode: PropTypes.func.isRequired,
+  onSignOut: PropTypes.func.isRequired,
 };
 
 export default ProfileData;

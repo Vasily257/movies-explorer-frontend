@@ -17,6 +17,8 @@ const USER_ERROR_TEXT = {
   ALREADY_EXISTING: 'Пользователь с таким email уже существует.',
 };
 
+const SUCCESSFUL_UPDATE_TEXT = 'Профиль успешно обновлен.';
+
 const MOVIES_ERROR_TEXT = {
   EMPTY_QUERY: 'Нужно ввести ключевое слово',
   FETCH_FAILED:
@@ -66,6 +68,7 @@ const NAME_REGEX = '([A-Za-z /-]{2,30})|([А-ЯЁа-яё /-]{2,30})';
 export {
   STATUS,
   USER_ERROR_TEXT,
+  SUCCESSFUL_UPDATE_TEXT,
   MOVIES_ERROR_TEXT,
   COMMON_ERROR_TEXT,
   BASE_URL,
