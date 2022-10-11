@@ -1,5 +1,5 @@
 import {
-  React, useState, useMemo, useEffect,
+  React, useState, useMemo, useEffect, useCallback,
 } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -30,8 +30,17 @@ function App() {
     [currentUser, setCurrentUser],
   );
 
+  const onSignOut = useCallback(
+    () => {
+      localStorage.removeItem('token');
+      setCurrentUser({ name: '', email: '' });
+      setIsLoggedIn(false);
+    },
+    [setCurrentUser, setIsLoggedIn],
+  );
+
   useEffect(() => {
-    const checkToken = async () => {
+    async function checkToken() {
       try {
         const token = localStorage.getItem('token');
         if (token) {
@@ -40,9 +49,9 @@ function App() {
           setIsLoggedIn(true);
         }
       } catch (error) {
-        localStorage.removeItem('token');
+        onSignOut();
       }
-    };
+    }
 
     checkToken();
   }, []);

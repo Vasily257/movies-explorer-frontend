@@ -49,6 +49,20 @@ async function getContent(token) {
   return handleResponse(response);
 }
 
+async function updateProfile({ name, email, currentEmail }) {
+  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/users/me`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      name,
+      email,
+      currentEmail,
+    }),
+  });
+
+  return handleResponse(response);
+}
+
 export {
-  setToken, register, login, getContent,
+  setToken, register, login, getContent, updateProfile,
 };
