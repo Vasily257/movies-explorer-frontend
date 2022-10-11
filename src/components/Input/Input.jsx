@@ -21,6 +21,7 @@ function Input({
   maxLength,
   pattern,
   required,
+  disabled,
 }) {
   return (
     <label className={wrapperClassName} htmlFor={id}>
@@ -37,6 +38,7 @@ function Input({
         maxLength={maxLength}
         pattern={pattern}
         required={required}
+        disabled={disabled}
       />
       {(type === 'text' || 'email' || 'password') && (
         <ErrorElement className={`input-error ${inputErrorClassName}`} text={inputErrorText} />
@@ -49,7 +51,7 @@ Input.propTypes = {
   inputClassName: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   placeholder: PropTypes.string,
@@ -63,9 +65,11 @@ Input.propTypes = {
   maxLength: PropTypes.number,
   pattern: PropTypes.string,
   required: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 Input.defaultProps = {
+  id: null,
   value: '',
   placeholder: null,
   wrapperClassName: '',
@@ -78,6 +82,7 @@ Input.defaultProps = {
   maxLength: null,
   pattern: null,
   required: false,
+  disabled: false,
 };
 
 export default Input;

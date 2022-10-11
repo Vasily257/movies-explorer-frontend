@@ -1,7 +1,7 @@
 .error-element {
   display: block;
 
-  height: 24px;
+  min-height: 24px;
 
   color: var(--red-color);
 
@@ -12,7 +12,7 @@
 
 @media screen and (min-width: 600px) {
   .error-element {
-    height: 26px;
+    min-height: 26px;
 
     font-size: 11px;
     line-height: calc(13 / 11);
