@@ -83,7 +83,8 @@
 }
 
 .user-form__submit-button:disabled {
-  background-color: rgba(52, 86, 243, 0.5);
+  color: #c2c2c2;
+  background-color: #f8f8f8;
 }
 
 .user-form__redirect-wrapper {
