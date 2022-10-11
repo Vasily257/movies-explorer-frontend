@@ -40,8 +40,7 @@ function App() {
           setIsLoggedIn(true);
         }
       } catch (error) {
-        // Удалять данные, если токен неправильный?
-        console.log(error);
+        localStorage.removeItem('token');
       }
     };
 
