@@ -8,7 +8,7 @@ import Content from '../../components/Content/Content';
 import UserForm from '../../components/UserForm/UserForm';
 
 import { INPUT_LIST, STATUS, USER_ERROR_TEXT } from '../../utils/scripts/constants';
-import { login, setToken, getContent } from '../../utils/scripts/MainApi';
+import { login, setToken, getUserData } from '../../utils/scripts/MainApi';
 
 function Login() {
   const [errorText, setErrorText] = useState('');
@@ -23,7 +23,7 @@ function Login() {
         localStorage.setItem('token', token.token);
         setToken(token.token);
 
-        const userData = await getContent(token.token);
+        const userData = await getUserData(token.token);
         setCurrentUser({ name: userData.name, email: userData.email });
 
         setIsLoggedIn(true);
