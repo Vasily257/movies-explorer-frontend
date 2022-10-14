@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 
 import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';
@@ -11,7 +12,7 @@ import getMoviesFromBase from '../../utils/scripts/MoviesApi';
 import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
 import { localMovies, localQuery, localIsShortsMovies } from '../../utils/scripts/utils';
 
-function Movies() {
+function Movies({ onAddSavedMovie, onDeleteSavedMovie }) {
   const [searchQuery, setSearchQuery] = useState(localQuery);
   const [movies, setMovies] = useState(localMovies);
   const [isShortsMovies, setIsShortsMovies] = useState(localIsShortsMovies);
@@ -19,7 +20,7 @@ function Movies() {
   const [isProladerShown, setIsProladerShown] = useState(false);
   const [errorText, setErrorText] = useState('');
 
-  const setMoviesFromBase = async () => {
+  const setMoviesFromBase = useCallback(async () => {
     setIsProladerShown(true);
 
     try {
@@ -34,7 +35,7 @@ function Movies() {
     }
 
     setIsProladerShown(false);
-  };
+  });
 
   return (
     <>
@@ -54,6 +55,8 @@ function Movies() {
             moviesList={movies}
             queryErrorText={errorText}
             isShortsMovies={isShortsMovies}
+            onAddSavedMovie={onAddSavedMovie}
+            onDeleteSavedMovie={onDeleteSavedMovie}
           />
         )}
       </Content>
@@ -61,5 +64,10 @@ function Movies() {
     </>
   );
 }
+
+Movies.propTypes = {
+  onAddSavedMovie: PropTypes.func.isRequired,
+  onDeleteSavedMovie: PropTypes.func.isRequired,
+};
 
 export default Movies;

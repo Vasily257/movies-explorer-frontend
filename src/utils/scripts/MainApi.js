@@ -39,9 +39,18 @@ async function login({ email, password }) {
   return handleResponse(response);
 }
 
-async function getContent(token) {
+async function getUserData(token) {
   setToken(token);
   const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/users/me`, {
+    method: 'GET',
+    headers,
+  });
+
+  return handleResponse(response);
+}
+
+async function getSavedMovies() {
+  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/movies`, {
     method: 'GET',
     headers,
   });
@@ -63,7 +72,7 @@ async function updateProfile({ name, email, currentEmail }) {
   return handleResponse(response);
 }
 
-async function createCard({
+async function addSavedMovie({
   country,
   director,
   duration,
@@ -75,7 +84,6 @@ async function createCard({
   nameEN,
   thumbnail,
   movieId,
-  owner,
 }) {
   const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/movies`, {
     method: 'POST',
@@ -92,13 +100,28 @@ async function createCard({
       nameEN,
       thumbnail,
       movieId,
-      owner,
     }),
   });
 
   return handleResponse(response);
 }
 
+async function deleteSavedMovie(id) {
+  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/movies/${id}`, {
+    method: 'DELETE',
+    headers,
+  });
+
+  return handleResponse(response);
+}
+
 export {
-  setToken, register, login, getContent, updateProfile, createCard,
+  setToken,
+  register,
+  login,
+  getUserData,
+  getSavedMovies,
+  updateProfile,
+  addSavedMovie,
+  deleteSavedMovie,
 };
