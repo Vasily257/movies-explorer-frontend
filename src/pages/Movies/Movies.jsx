@@ -43,6 +43,7 @@ function Movies({ onAddSavedMovie, onDeleteSavedMovie }) {
       <Content>
         <SearchForm
           setSearchQuery={setSearchQuery}
+          setMovies={setMovies}
           setMoviesFromBase={setMoviesFromBase}
           isShortsMovies={isShortsMovies}
           setIsShortsMovies={setIsShortsMovies}

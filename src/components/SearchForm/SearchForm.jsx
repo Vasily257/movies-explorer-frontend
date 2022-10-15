@@ -13,7 +13,11 @@ import searchFormIcon from '../../images/search-form-icon.svg';
 import './SearchForm.css';
 
 function SearchForm({
-  setSearchQuery, setMoviesFromBase, isShortsMovies, setIsShortsMovies,
+  setSearchQuery,
+  setMovies,
+  setMoviesFromBase,
+  isShortsMovies,
+  setIsShortsMovies,
 }) {
   const [errorText, setErrorText] = useState('');
   const { values, handleChange, setValues } = useForm();
@@ -21,8 +25,13 @@ function SearchForm({
   function handleSubmit(event) {
     event.preventDefault();
     if (values.movie) {
+      const localMovies = JSON.parse(localStorage.getItem('moviesFromBase'));
+      if (localMovies) {
+        setMovies(localMovies);
+      } else {
+        setMoviesFromBase();
+      }
       setSearchQuery(values.movie);
-      setMoviesFromBase();
       setErrorText('');
 
       localStorage.setItem('query', values.movie);
@@ -94,6 +103,7 @@ function SearchForm({
 
 SearchForm.propTypes = {
   setSearchQuery: PropTypes.func.isRequired,
+  setMovies: PropTypes.func.isRequired,
   setMoviesFromBase: PropTypes.func.isRequired,
   isShortsMovies: PropTypes.bool.isRequired,
   setIsShortsMovies: PropTypes.func.isRequired,
