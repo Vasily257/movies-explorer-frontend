@@ -18,9 +18,9 @@ import ProtectedRoute from '../HOC/ProtectedRoute';
 import UnprotectedRoute from '../HOC/UnprotectedRoute';
 
 import {
-  getUserData,
   addSavedMovie,
   deleteSavedMovie,
+  getUserData,
   getSavedMovies,
 } from '../../utils/scripts/MainApi';
 
@@ -40,6 +40,14 @@ function App() {
     () => ({ savedMovies, setSavedMovies }),
     [savedMovies, setSavedMovies],
   );
+
+  const setUserInfo = useCallback(async (token) => {
+    const userData = await getUserData(token);
+    const savedMoviesFromServer = await getSavedMovies();
+    setCurrentUser({ name: userData.name, email: userData.email, _id: userData._id });
+    setSavedMovies(savedMoviesFromServer);
+    setIsLoggedIn(true);
+  }, [setCurrentUser, setSavedMovies, setIsLoggedIn]);
 
   const onAddSavedMovie = useCallback(
     async (movie) => {
@@ -85,19 +93,14 @@ function App() {
       try {
         const token = localStorage.getItem('token');
         if (token) {
-          const userData = await getUserData(token);
-          const savedMoviesFromServer = await getSavedMovies();
-          setCurrentUser({ name: userData.name, email: userData.email, _id: userData._id });
-          setSavedMovies(savedMoviesFromServer);
-          setIsLoggedIn(true);
+          setUserInfo(token);
         }
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        onSignOut();
       }
     }
     checkToken();
-  }, [setCurrentUser, setSavedMovies, setIsLoggedIn]);
+  }, [setCurrentUser, setSavedMovies, setIsLoggedIn, onSignOut, setUserInfo]);
 
   return (
     <div className="app">
@@ -144,7 +147,7 @@ function App() {
                 path="/signin"
                 element={(
                   <UnprotectedRoute>
-                    <Login />
+                    <Login setUserInfo={setUserInfo} />
                   </UnprotectedRoute>
                 )}
               />
