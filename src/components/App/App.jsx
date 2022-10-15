@@ -83,6 +83,9 @@ function App() {
 
   const onSignOut = useCallback(() => {
     localStorage.removeItem('token');
+    localStorage.removeItem('query');
+    localStorage.removeItem('isShortsMovies');
+
     setCurrentUser({ name: '', email: '', _id: '' });
     setSavedMovies([]);
     setIsLoggedIn(false);
@@ -93,7 +96,7 @@ function App() {
       try {
         const token = localStorage.getItem('token');
         if (token) {
-          setUserInfo(token);
+          await setUserInfo(token);
         }
       } catch (error) {
         onSignOut();
