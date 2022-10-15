@@ -52,16 +52,12 @@ function MoviesCard({
   }
 
   useEffect(() => {
-    if (
-      savedMovies.some((savedMovie) => (
-        savedMovie.movieId === movieId
-      ))
-    ) {
+    if (savedMovies.some((savedMovie) => savedMovie.movieId === movieId)) {
       setIsSavedCard(true);
     } else {
       setIsSavedCard(false);
     }
-  }, [savedMovies]);
+  }, [movieId, savedMovies]);
 
   return (
     <li className="movies-card">

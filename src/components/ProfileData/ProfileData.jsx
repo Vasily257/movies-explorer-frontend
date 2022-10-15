@@ -13,7 +13,12 @@ import { INPUT_LIST, NAME_REGEX, SUCCESSFUL_UPDATE_TEXT } from '../../utils/scri
 import './ProfileData.css';
 
 function ProfileData({
-  apiErrorText, onSubmitForm, isSuccessfulUpdate, isEditingMode, setIsEditingMode, onSignOut,
+  apiErrorText,
+  onSubmitForm,
+  isSuccessfulUpdate,
+  isEditingMode,
+  setIsEditingMode,
+  onSignOut,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -33,7 +38,7 @@ function ProfileData({
       name: currentUser.name,
       email: currentUser.email,
     });
-  }, []);
+  }, [currentUser.email, currentUser.name, setValues]);
 
   useEffect(() => {
     if (values.name === currentUser.name && values.email === currentUser.email) {

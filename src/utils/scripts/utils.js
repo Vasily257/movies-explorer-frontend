@@ -1,5 +1,3 @@
-import useMediaQuery from '../../hooks/useMediaQuery';
-
 const localMovies = JSON.parse(localStorage.getItem('moviesFromBase')) || [];
 const localQuery = localStorage.getItem('query') || '';
 const localIsShortsMovies = JSON.parse(localStorage.getItem('isShortsMovies')) || false;
@@ -10,14 +8,6 @@ function handleResponse(response) {
   }
 
   return Promise.reject(new Error(response.status));
-}
-
-function screenView() {
-  const isMobile = useMediaQuery('(min-width: 300px)');
-  const isTablet = useMediaQuery('(min-width: 600px)');
-  const isDesktop = useMediaQuery('(min-width: 900px)');
-
-  return { isMobile, isTablet, isDesktop };
 }
 
 function getRows(columns) {
@@ -56,7 +46,6 @@ export {
   localQuery,
   localIsShortsMovies,
   handleResponse,
-  screenView,
   getRows,
   getAddedMovies,
   getHoursAndMinutes,

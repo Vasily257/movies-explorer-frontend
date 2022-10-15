@@ -53,7 +53,7 @@ function App() {
         console.log(error);
       }
     },
-    [setSavedMovies],
+    [savedMovies, setSavedMovies],
   );
 
   const onDeleteSavedMovie = useCallback(
@@ -61,9 +61,9 @@ function App() {
       try {
         const deletedSavedMovie = await deleteSavedMovie(id);
         if (deletedSavedMovie) {
-          setSavedMovies((prevSavedMovies) => prevSavedMovies.filter((savedMovie) => (
-            savedMovie.id !== deletedSavedMovie.id
-          )));
+          setSavedMovies((prevSavedMovies) => (
+            prevSavedMovies.filter((savedMovie) => savedMovie.id !== deletedSavedMovie.id)
+          ));
         }
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -78,7 +78,7 @@ function App() {
     setCurrentUser({ name: '', email: '', _id: '' });
     setSavedMovies([]);
     setIsLoggedIn(false);
-  }, [setCurrentUser, setIsLoggedIn]);
+  }, [setCurrentUser, setSavedMovies, setIsLoggedIn]);
 
   useEffect(() => {
     async function checkToken() {
@@ -87,10 +87,8 @@ function App() {
         if (token) {
           const userData = await getUserData(token);
           const savedMoviesFromServer = await getSavedMovies();
-
           setCurrentUser({ name: userData.name, email: userData.email, _id: userData._id });
           setSavedMovies(savedMoviesFromServer);
-
           setIsLoggedIn(true);
         }
       } catch (error) {
@@ -98,9 +96,8 @@ function App() {
         console.log(error);
       }
     }
-
     checkToken();
-  }, []);
+  }, [setCurrentUser, setSavedMovies, setIsLoggedIn]);
 
   return (
     <div className="app">

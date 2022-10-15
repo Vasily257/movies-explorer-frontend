@@ -33,7 +33,7 @@ function SearchForm({
   }
 
   useEffect(() => {
-    setValues({ ...values, movie: localQuery });
+    setValues((prevValues) => ({ ...prevValues, movie: localQuery }));
   }, [setValues]);
 
   return (

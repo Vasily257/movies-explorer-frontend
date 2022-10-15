@@ -6,20 +6,20 @@ import CustomLink from '../CustomLink/CustomLink';
 
 import navigationButtonOpened from '../../images/navigation-button-opened.svg';
 import navigationButtonClosed from '../../images/navigation-button-closed.svg';
-import { screenView } from '../../utils/scripts/utils';
 
 import './Navigation.css';
+import useScreenView from '../../hooks/useScreenView';
 
 function Navigation() {
   const { setIsLoggedIn } = useContext(LoginContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isDesktop } = screenView();
+  const { isDesktop } = useScreenView();
 
   useEffect(() => {
     if (isDesktop) {
       setIsMenuOpen(false);
     }
-  });
+  }, [isDesktop]);
 
   return (
     <nav className={`navigation ${isMenuOpen ? 'navigation_opened' : ''}`}>

@@ -35,7 +35,7 @@ function Movies({ onAddSavedMovie, onDeleteSavedMovie }) {
     }
 
     setIsProladerShown(false);
-  });
+  }, []);
 
   return (
     <>

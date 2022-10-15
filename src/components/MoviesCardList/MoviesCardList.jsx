@@ -46,7 +46,7 @@ function MoviesCardList({
 
   useEffect(() => {
     setMoviesCount(columns * getRows(columns) + addedMovies);
-  });
+  }, [columns, addedMovies]);
 
   useEffect(() => {
     if (queryErrorText) {
@@ -60,7 +60,7 @@ function MoviesCardList({
     }
 
     setErrorText('');
-  });
+  }, [queryErrorText, filtredMovies.length, searchQuery]);
 
   useEffect(() => {
     if (isShortsMovies) {
@@ -68,7 +68,7 @@ function MoviesCardList({
     } else {
       setLimitation(Infinity);
     }
-  });
+  }, [isShortsMovies]);
 
   return (
     <section
@@ -95,24 +95,24 @@ function MoviesCardList({
               },
               index,
             ) => index < moviesCount && (
-            <MoviesCard
-              key={id}
-              country={country}
-              director={director}
-              duration={duration}
-              year={year}
-              description={description}
-              image={`${BASE_URL.BEATFILM_MOVIES}${image.url}`}
-              trailerLink={trailerLink}
-              nameRU={nameRU}
-              nameEN={nameEN}
-              thumbnail={`${BASE_URL.BEATFILM_MOVIES}${image.formats.thumbnail.url}`}
-              movieId={id}
-              savedMovies={savedMovies}
-              isSavedMovies={isSavedMovies}
-              onAddSavedMovie={onAddSavedMovie}
-              onDeleteSavedMovie={onDeleteSavedMovie}
-            />
+              <MoviesCard
+                key={id}
+                country={country}
+                director={director}
+                duration={duration}
+                year={year}
+                description={description}
+                image={`${BASE_URL.BEATFILM_MOVIES}${image.url}`}
+                trailerLink={trailerLink}
+                nameRU={nameRU}
+                nameEN={nameEN}
+                thumbnail={`${BASE_URL.BEATFILM_MOVIES}${image.formats.thumbnail.url}`}
+                movieId={id}
+                savedMovies={savedMovies}
+                isSavedMovies={isSavedMovies}
+                onAddSavedMovie={onAddSavedMovie}
+                onDeleteSavedMovie={onDeleteSavedMovie}
+              />
             ),
           )}
         </ul>
