@@ -19,7 +19,6 @@ function MoviesCardList({
   isSavedMovies, displayedData, onAddSavedMovie, onDeleteSavedMovie,
 }) {
   const [moviesCount, setMoviesCount] = useState(1);
-  const [addedMovies, setAddedMovies] = useState(0);
   const [limitation, setLimitation] = useState(Infinity);
   const [errorText, setErrorText] = useState('');
 
@@ -34,12 +33,8 @@ function MoviesCardList({
   const filtredMovies = filterMovies(displayedMovies, searchQuery, limitation);
 
   useEffect(() => {
-    setAddedMovies(0);
+    setMoviesCount(columns * getRows(columns));
   }, [columns]);
-
-  useEffect(() => {
-    setMoviesCount(columns * getRows(columns) + addedMovies);
-  }, [columns, addedMovies]);
 
   useEffect(() => {
     if (queryErrorText) {
@@ -117,7 +112,7 @@ function MoviesCardList({
         <Button
           className="movies-card-list__more"
           onClick={() => {
-            setAddedMovies(addedMovies + getAddedMovies(columns));
+            setMoviesCount((prevState) => prevState + getAddedMovies(columns));
           }}
         >
           Ещё
