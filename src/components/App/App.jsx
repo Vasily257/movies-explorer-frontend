@@ -59,7 +59,7 @@ function App() {
       const userData = await getUserData(token);
       const savedMoviesFromServer = await getSavedMovies();
       setCurrentUser({ name: userData.name, email: userData.email, _id: userData._id });
-      setSavedMovies(savedMoviesFromServer);
+      setSavedMovies(savedMoviesFromServer.sort((prev, next) => prev.movieId - next.movieId));
       setIsLoggedIn(true);
     },
     [setCurrentUser, setSavedMovies, setIsLoggedIn],
@@ -88,7 +88,7 @@ function App() {
           setSavedMovies((prevSavedMovies) => (
             prevSavedMovies.filter((savedMovie) => (
               savedMovie.movieId !== deletedSavedMovie.movieId
-            ))
+            )).sort((prev, next) => prev.movieId - next.movieId)
           ));
         }
       } catch (error) {
