@@ -8,25 +8,27 @@ import MoviesCardList from '../../components/MoviesCardList/MoviesCardList';
 import Preloader from '../../components/Preloader/Preloader';
 import Footer from '../../components/Footer/Footer';
 
-import getMoviesFromBase from '../../utils/scripts/MoviesApi';
+import getMoviesFromBeatfilm from '../../utils/scripts/MoviesApi';
 import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
-import { validateMovies, localMovies } from '../../utils/scripts/utils';
+import { bringMoviesToSingleView, validateMovies, localMovies } from '../../utils/scripts/utils';
 
 function Movies({
   displayedData, setDisplayedData, onAddSavedMovie, onDeleteSavedMovie,
 }) {
   const [isProladerShown, setIsProladerShown] = useState(false);
 
-  const setMoviesFromBase = useCallback(async () => {
+  const setMoviesFromBeatfilm = useCallback(async () => {
     setIsProladerShown(true);
 
     try {
-      const moviesFromBase = await getMoviesFromBase();
-      const validatedMoviesFromBase = validateMovies(moviesFromBase);
-      localStorage.setItem('moviesFromBase', JSON.stringify(validatedMoviesFromBase));
+      const moviesFromBeatfilm = await getMoviesFromBeatfilm();
+      const convertedMoviesFromBeatfilm = bringMoviesToSingleView(moviesFromBeatfilm);
+      const validatedMoviesFromBeatfilm = validateMovies(convertedMoviesFromBeatfilm);
+
+      localStorage.setItem('moviesFromBeatfilm', JSON.stringify(validatedMoviesFromBeatfilm));
       setDisplayedData((prevData) => ({
         ...prevData,
-        displayedMovies: validatedMoviesFromBase,
+        displayedMovies: validatedMoviesFromBeatfilm,
         queryErrorText: '',
       }));
     } catch (error) {
@@ -51,7 +53,7 @@ function Movies({
         <SearchForm
           displayedData={displayedData}
           setDisplayedData={setDisplayedData}
-          setMoviesFromBase={setMoviesFromBase}
+          setMoviesFromBeatfilm={setMoviesFromBeatfilm}
         />
         {isProladerShown ? (
           <Preloader />

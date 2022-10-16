@@ -5,7 +5,7 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-async function getMoviesFromBase() {
+async function getMoviesFromBeatfilm() {
   const response = await fetch(`${BASE_URL.BEATFILM_MOVIES}/beatfilm-movies`, {
     method: 'GET',
     headers,
@@ -14,4 +14,4 @@ async function getMoviesFromBase() {
   return handleResponse(response);
 }
 
-export default getMoviesFromBase;
+export default getMoviesFromBeatfilm;

@@ -15,7 +15,7 @@ import './SearchForm.css';
 function SearchForm({
   displayedData,
   setDisplayedData,
-  setMoviesFromBase,
+  setMoviesFromBeatfilm,
 }) {
   const [errorText, setErrorText] = useState('');
   const { values, handleChange, setValues } = useForm();
@@ -25,11 +25,11 @@ function SearchForm({
   function handleSubmit(event) {
     event.preventDefault();
     if (values.movie) {
-      const localMovies = JSON.parse(localStorage.getItem('moviesFromBase'));
+      const localMovies = JSON.parse(localStorage.getItem('moviesFromBeatfilm'));
       if (localMovies) {
         setDisplayedData((prevData) => ({ ...prevData, displayedMovies: localMovies }));
       } else {
-        setMoviesFromBase();
+        setMoviesFromBeatfilm();
       }
       setDisplayedData((prevData) => ({ ...prevData, searchQuery: values.movie }));
       setErrorText('');
@@ -112,11 +112,11 @@ SearchForm.propTypes = {
     ]),
   ).isRequired,
   setDisplayedData: PropTypes.func.isRequired,
-  setMoviesFromBase: PropTypes.func,
+  setMoviesFromBeatfilm: PropTypes.func,
 };
 
 SearchForm.defaultProps = {
-  setMoviesFromBase: () => {},
+  setMoviesFromBeatfilm: () => {},
 };
 
 export default SearchForm;
