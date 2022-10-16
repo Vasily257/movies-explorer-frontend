@@ -121,7 +121,7 @@ function getHoursAndMinutes(duration) {
 function filterMovies(moviesList, searchQuery, limitation) {
   const filtredMovies = moviesList.filter(({ nameRU, nameEN, duration }) => (
     [nameRU, nameEN].some((name) => (
-      name.includes(searchQuery.toLowerCase()) && duration < limitation))
+      name.toLowerCase().includes(searchQuery.toLowerCase()) && duration < limitation))
   ));
   return filtredMovies;
 }
