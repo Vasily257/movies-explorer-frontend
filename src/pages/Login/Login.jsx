@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import validator from 'validator';
 
 import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';
@@ -16,7 +17,7 @@ function Login({ setUserInfo }) {
   const onLogin = async ({ email, password }) => {
     try {
       const token = await login({ email, password });
-      if (token.token) {
+      if (validator.isJWT(token.token)) {
         setToken(token.token);
         localStorage.setItem('token', token.token);
         setUserInfo(token.token);

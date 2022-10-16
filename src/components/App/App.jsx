@@ -101,12 +101,18 @@ function App() {
 
   const onSignOut = useCallback(() => {
     localStorage.removeItem('token');
-    localStorage.removeItem('query');
-    localStorage.removeItem('isShortsMovies');
+    localStorage.removeItem('query', '');
+    localStorage.removeItem('isShortsMovies', false);
 
     setCurrentUser({ name: '', email: '', _id: '' });
     setSavedMovies([]);
     setIsLoggedIn(false);
+    setDisplayedData({
+      searchQuery: '',
+      displayedMovies: [],
+      isShortsMovies: false,
+      errorText: '',
+    });
   }, [setCurrentUser, setSavedMovies, setIsLoggedIn]);
 
   useEffect(() => {
