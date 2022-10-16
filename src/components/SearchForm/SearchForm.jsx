@@ -13,25 +13,25 @@ import searchFormIcon from '../../images/search-form-icon.svg';
 import './SearchForm.css';
 
 function SearchForm({
-  setSearchQuery,
-  setMovies,
+  displayedData,
+  setDisplayedData,
   setMoviesFromBase,
-  isShortsMovies,
-  setIsShortsMovies,
 }) {
   const [errorText, setErrorText] = useState('');
   const { values, handleChange, setValues } = useForm();
+
+  const { isShortsMovies } = displayedData;
 
   function handleSubmit(event) {
     event.preventDefault();
     if (values.movie) {
       const localMovies = JSON.parse(localStorage.getItem('moviesFromBase'));
       if (localMovies) {
-        setMovies(localMovies);
+        setDisplayedData((prevData) => ({ ...prevData, displayedMovies: localMovies }));
       } else {
         setMoviesFromBase();
       }
-      setSearchQuery(values.movie);
+      setDisplayedData((prevData) => ({ ...prevData, searchQuery: values.movie }));
       setErrorText('');
 
       localStorage.setItem('query', values.movie);
@@ -87,7 +87,7 @@ function SearchForm({
           name="shorts"
           id="shorts-input"
           onChange={() => {
-            setIsShortsMovies(!isShortsMovies);
+            setDisplayedData((prevData) => ({ ...prevData, isShortsMovies: !isShortsMovies }));
             localStorage.setItem('isShortsMovies', !isShortsMovies);
           }}
           wrapperClassName="search-form__shorts-wrapper"
@@ -102,11 +102,21 @@ function SearchForm({
 }
 
 SearchForm.propTypes = {
-  setSearchQuery: PropTypes.func.isRequired,
-  setMovies: PropTypes.func.isRequired,
-  setMoviesFromBase: PropTypes.func.isRequired,
-  isShortsMovies: PropTypes.bool.isRequired,
-  setIsShortsMovies: PropTypes.func.isRequired,
+  displayedData: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string,
+      PropTypes.arrayOf(
+        PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+      ),
+    ]),
+  ).isRequired,
+  setDisplayedData: PropTypes.func.isRequired,
+  setMoviesFromBase: PropTypes.func,
+};
+
+SearchForm.defaultProps = {
+  setMoviesFromBase: () => {},
 };
 
 export default SearchForm;

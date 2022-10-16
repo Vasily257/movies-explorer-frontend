@@ -10,35 +10,28 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import ErrorElement from '../ErrorElement/ErrorElement';
 import Button from '../Button/Button';
 
-import { MOVIES_ERROR_TEXT, BASE_URL } from '../../utils/scripts/constants';
-import { getRows, getAddedMovies } from '../../utils/scripts/utils';
+import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
+import { getRows, getAddedMovies, filterMovies } from '../../utils/scripts/utils';
 
 import './MoviesCardList.css';
 
 function MoviesCardList({
-  isSavedMovies,
-  searchQuery,
-  moviesList,
-  queryErrorText,
-  isShortsMovies,
-  onAddSavedMovie,
-  onDeleteSavedMovie,
+  isSavedMovies, displayedData, onAddSavedMovie, onDeleteSavedMovie,
 }) {
   const [moviesCount, setMoviesCount] = useState(1);
   const [addedMovies, setAddedMovies] = useState(0);
-
   const [limitation, setLimitation] = useState(Infinity);
-
   const [errorText, setErrorText] = useState('');
+
+  const {
+    displayedMovies, searchQuery, isShortsMovies, queryErrorText,
+  } = displayedData;
 
   const gridContainer = useRef(null);
   const columns = useColumns(gridContainer.current);
 
   const { savedMovies } = useContext(SavedMoviesContext);
-
-  const filtredMovies = moviesList.filter(({ nameRU, nameEN, duration }) => [nameRU, nameEN].some(
-    (name) => name.includes(searchQuery.toLowerCase()) && duration < limitation,
-  ));
+  const filtredMovies = filterMovies(displayedMovies, searchQuery, limitation);
 
   useEffect(() => {
     setAddedMovies(0);
@@ -75,7 +68,7 @@ function MoviesCardList({
       className={`movies-card-list ${isSavedMovies ? 'movies-card-list_padding-bottom' : ''}`}
     >
       <h2 className="visually-hidden">
-        {isSavedMovies ? 'Список сохраненных фильмов' : 'Список фильмов'}
+        {!isSavedMovies ? 'Список фильмов' : 'Список сохраненных фильмов'}
       </h2>
       {filtredMovies.length ? (
         <ul className="movies-card-list__movies" ref={gridContainer}>
@@ -91,28 +84,29 @@ function MoviesCardList({
                 trailerLink,
                 nameRU,
                 nameEN,
-                id,
+                thumbnail,
+                movieId,
               },
               index,
             ) => index < moviesCount && (
-              <MoviesCard
-                key={id}
-                country={country}
-                director={director}
-                duration={duration}
-                year={year}
-                description={description}
-                image={`${BASE_URL.BEATFILM_MOVIES}${image.url}`}
-                trailerLink={trailerLink}
-                nameRU={nameRU}
-                nameEN={nameEN}
-                thumbnail={`${BASE_URL.BEATFILM_MOVIES}${image.formats.thumbnail.url}`}
-                movieId={id}
-                savedMovies={savedMovies}
-                isSavedMovies={isSavedMovies}
-                onAddSavedMovie={onAddSavedMovie}
-                onDeleteSavedMovie={onDeleteSavedMovie}
-              />
+            <MoviesCard
+              key={movieId}
+              country={country}
+              director={director}
+              duration={duration}
+              year={year}
+              description={description}
+              image={image}
+              trailerLink={trailerLink}
+              nameRU={nameRU}
+              nameEN={nameEN}
+              thumbnail={thumbnail}
+              movieId={movieId}
+              savedMovies={savedMovies}
+              isSavedMovies={isSavedMovies}
+              onAddSavedMovie={onAddSavedMovie}
+              onDeleteSavedMovie={onDeleteSavedMovie}
+            />
             ),
           )}
         </ul>
@@ -134,45 +128,24 @@ function MoviesCardList({
 }
 
 MoviesCardList.propTypes = {
-  searchQuery: PropTypes.string,
-  moviesList: PropTypes.arrayOf(
+  isSavedMovies: PropTypes.bool,
+  displayedData: PropTypes.objectOf(
     PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.string,
-      PropTypes.number,
-      PropTypes.objectOf(
-        PropTypes.oneOfType([
-          PropTypes.string,
-          PropTypes.number,
-          PropTypes.objectOf(
-            PropTypes.oneOfType([
-              PropTypes.string,
-              PropTypes.number,
-              PropTypes.objectOf(
-                PropTypes.oneOfType([
-                  PropTypes.string,
-                  PropTypes.number,
-                  PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-                ]),
-              ),
-            ]),
-          ),
-        ]),
+      PropTypes.arrayOf(
+        PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
       ),
     ]),
-  ),
-  isSavedMovies: PropTypes.bool,
+  ).isRequired,
   queryErrorText: PropTypes.string,
-  isShortsMovies: PropTypes.bool,
   onAddSavedMovie: PropTypes.func,
   onDeleteSavedMovie: PropTypes.func,
 };
 
 MoviesCardList.defaultProps = {
-  searchQuery: '',
   isSavedMovies: false,
-  moviesList: [],
   queryErrorText: '',
-  isShortsMovies: false,
   onAddSavedMovie: () => {},
   onDeleteSavedMovie: () => {},
 };

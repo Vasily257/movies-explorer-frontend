@@ -24,12 +24,25 @@ import {
   getSavedMovies,
 } from '../../utils/scripts/MainApi';
 
+import {
+  localMovies,
+  localQuery,
+  localIsShortsMovies,
+} from '../../utils/scripts/utils';
+
 import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', _id: '' });
   const [savedMovies, setSavedMovies] = useState([]);
+
+  const [displayedData, setDisplayedData] = useState({
+    searchQuery: localQuery,
+    displayedMovies: localMovies,
+    isShortsMovies: localIsShortsMovies,
+    errorText: '',
+  });
 
   const loginValue = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
   const currentUserValue = useMemo(
@@ -41,13 +54,16 @@ function App() {
     [savedMovies, setSavedMovies],
   );
 
-  const setUserInfo = useCallback(async (token) => {
-    const userData = await getUserData(token);
-    const savedMoviesFromServer = await getSavedMovies();
-    setCurrentUser({ name: userData.name, email: userData.email, _id: userData._id });
-    setSavedMovies(savedMoviesFromServer);
-    setIsLoggedIn(true);
-  }, [setCurrentUser, setSavedMovies, setIsLoggedIn]);
+  const setUserInfo = useCallback(
+    async (token) => {
+      const userData = await getUserData(token);
+      const savedMoviesFromServer = await getSavedMovies();
+      setCurrentUser({ name: userData.name, email: userData.email, _id: userData._id });
+      setSavedMovies(savedMoviesFromServer);
+      setIsLoggedIn(true);
+    },
+    [setCurrentUser, setSavedMovies, setIsLoggedIn],
+  );
 
   const onAddSavedMovie = useCallback(
     async (movie) => {
@@ -70,7 +86,9 @@ function App() {
         const deletedSavedMovie = await deleteSavedMovie(id);
         if (deletedSavedMovie) {
           setSavedMovies((prevSavedMovies) => (
-            prevSavedMovies.filter((savedMovie) => savedMovie.id !== deletedSavedMovie.id)
+            prevSavedMovies.filter((savedMovie) => (
+              savedMovie.id !== deletedSavedMovie.id
+            ))
           ));
         }
       } catch (error) {
@@ -124,6 +142,8 @@ function App() {
                 element={(
                   <ProtectedRoute>
                     <Movies
+                      displayedData={displayedData}
+                      setDisplayedData={setDisplayedData}
                       onAddSavedMovie={onAddSavedMovie}
                       onDeleteSavedMovie={onDeleteSavedMovie}
                     />
@@ -134,7 +154,11 @@ function App() {
                 path="/saved-movies"
                 element={(
                   <ProtectedRoute>
-                    <SavedMovies onDeleteSavedMovie={onDeleteSavedMovie} />
+                    <SavedMovies
+                      displayedData={displayedData}
+                      setDisplayedData={setDisplayedData}
+                      onDeleteSavedMovie={onDeleteSavedMovie}
+                    />
                   </ProtectedRoute>
                 )}
               />
