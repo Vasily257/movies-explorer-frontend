@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../../components/Header/Header';
@@ -10,7 +10,7 @@ import Footer from '../../components/Footer/Footer';
 
 import getMoviesFromBase from '../../utils/scripts/MoviesApi';
 import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
-import { validateMovies } from '../../utils/scripts/utils';
+import { validateMovies, localMovies } from '../../utils/scripts/utils';
 
 function Movies({
   displayedData, setDisplayedData, onAddSavedMovie, onDeleteSavedMovie,
@@ -24,14 +24,24 @@ function Movies({
       const moviesFromBase = await getMoviesFromBase();
       const validatedMoviesFromBase = validateMovies(moviesFromBase);
       localStorage.setItem('moviesFromBase', JSON.stringify(validatedMoviesFromBase));
-      setDisplayedData((prevData) => ({ ...prevData, displayedMovies: validatedMoviesFromBase, queryErrorText: '' }));
+      setDisplayedData((prevData) => ({
+        ...prevData,
+        displayedMovies: validatedMoviesFromBase,
+        queryErrorText: '',
+      }));
     } catch (error) {
-      setDisplayedData((prevData) => (
-        { ...prevData, displayedMovies: [], queryErrorText: MOVIES_ERROR_TEXT.FETCH_FAILED }
-      ));
+      setDisplayedData((prevData) => ({
+        ...prevData,
+        displayedMovies: [],
+        queryErrorText: MOVIES_ERROR_TEXT.FETCH_FAILED,
+      }));
     }
 
     setIsProladerShown(false);
+  }, [setDisplayedData]);
+
+  useEffect(() => {
+    setDisplayedData((prevData) => ({ ...prevData, displayedMovies: localMovies }));
   }, [setDisplayedData]);
 
   return (

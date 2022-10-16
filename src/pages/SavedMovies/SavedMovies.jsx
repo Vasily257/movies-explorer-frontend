@@ -14,7 +14,7 @@ function SavedMovies({ displayedData, setDisplayedData, onDeleteSavedMovie }) {
 
   useEffect(() => {
     setDisplayedData((prevData) => ({ ...prevData, displayedMovies: savedMovies }));
-  });
+  }, [savedMovies, setDisplayedData]);
 
   return (
     <>
