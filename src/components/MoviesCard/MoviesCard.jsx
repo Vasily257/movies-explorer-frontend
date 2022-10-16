@@ -70,7 +70,7 @@ function MoviesCard({
           <Button
             className="movies-card__button movies-card__button_type_saved"
             onClick={() => {
-              handleAddingClick();
+              handleDeletingClick();
             }}
           />
         ) : (

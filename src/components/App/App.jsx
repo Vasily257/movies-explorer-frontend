@@ -87,7 +87,7 @@ function App() {
         if (deletedSavedMovie) {
           setSavedMovies((prevSavedMovies) => (
             prevSavedMovies.filter((savedMovie) => (
-              savedMovie.id !== deletedSavedMovie.id
+              savedMovie.movieId !== deletedSavedMovie.movieId
             ))
           ));
         }
