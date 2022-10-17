@@ -118,8 +118,8 @@ MoviesCard.propTypes = {
 };
 
 MoviesCard.defaultProps = {
-  isSavedMovies: false,
   savedMovies: [],
+  isSavedMovies: false,
   onAddSavedMovie: () => {},
   onDeleteSavedMovie: () => {},
 };

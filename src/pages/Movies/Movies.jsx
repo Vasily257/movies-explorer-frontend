@@ -13,7 +13,11 @@ import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
 import { bringMoviesToSingleView, validateMovies, localMovies } from '../../utils/scripts/utils';
 
 function Movies({
-  displayedData, setDisplayedData, onAddSavedMovie, onDeleteSavedMovie,
+  savedMovies,
+  displayedData,
+  setDisplayedData,
+  onAddSavedMovie,
+  onDeleteSavedMovie,
 }) {
   const [isProladerShown, setIsProladerShown] = useState(false);
 
@@ -59,6 +63,7 @@ function Movies({
           <Preloader />
         ) : (
           <MoviesCardList
+            savedMovies={savedMovies}
             displayedData={displayedData}
             onAddSavedMovie={onAddSavedMovie}
             onDeleteSavedMovie={onDeleteSavedMovie}
@@ -71,6 +76,9 @@ function Movies({
 }
 
 Movies.propTypes = {
+  savedMovies: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ),
   displayedData: PropTypes.objectOf(
     PropTypes.oneOfType([
       PropTypes.bool,
@@ -83,6 +91,10 @@ Movies.propTypes = {
   setDisplayedData: PropTypes.func.isRequired,
   onAddSavedMovie: PropTypes.func.isRequired,
   onDeleteSavedMovie: PropTypes.func.isRequired,
+};
+
+Movies.defaultProps = {
+  savedMovies: [],
 };
 
 export default Movies;

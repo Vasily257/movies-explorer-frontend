@@ -1,9 +1,8 @@
 import {
-  React, useState, useEffect, useRef, useContext,
+  React, useState, useEffect, useRef,
 } from 'react';
 import PropTypes from 'prop-types';
 
-import SavedMoviesContext from '../../contexts/SavedMoviesContext';
 import useColumns from '../../hooks/useColumns';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
@@ -16,7 +15,7 @@ import { getRows, getAddedMovies, filterMovies } from '../../utils/scripts/utils
 import './MoviesCardList.css';
 
 function MoviesCardList({
-  isSavedMovies, displayedData, onAddSavedMovie, onDeleteSavedMovie,
+  savedMovies, isSavedMovies, displayedData, onAddSavedMovie, onDeleteSavedMovie,
 }) {
   const [moviesCount, setMoviesCount] = useState(1);
   const [limitation, setLimitation] = useState(Infinity);
@@ -29,7 +28,6 @@ function MoviesCardList({
   const gridContainer = useRef(null);
   const columns = useColumns(gridContainer.current);
 
-  const { savedMovies } = useContext(SavedMoviesContext);
   const filtredMovies = filterMovies(displayedMovies, searchQuery, limitation);
 
   useEffect(() => {
@@ -123,6 +121,9 @@ function MoviesCardList({
 }
 
 MoviesCardList.propTypes = {
+  savedMovies: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ),
   isSavedMovies: PropTypes.bool,
   displayedData: PropTypes.objectOf(
     PropTypes.oneOfType([
@@ -139,6 +140,7 @@ MoviesCardList.propTypes = {
 };
 
 MoviesCardList.defaultProps = {
+  savedMovies: [],
   isSavedMovies: false,
   queryErrorText: '',
   onAddSavedMovie: () => {},

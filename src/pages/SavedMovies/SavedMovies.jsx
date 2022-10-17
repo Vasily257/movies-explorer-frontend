@@ -1,7 +1,5 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-import SavedMoviesContext from '../../contexts/SavedMoviesContext';
 
 import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';
@@ -9,9 +7,9 @@ import SearchForm from '../../components/SearchForm/SearchForm';
 import MoviesCardList from '../../components/MoviesCardList/MoviesCardList';
 import Footer from '../../components/Footer/Footer';
 
-function SavedMovies({ displayedData, setDisplayedData, onDeleteSavedMovie }) {
-  const { savedMovies } = useContext(SavedMoviesContext);
-
+function SavedMovies({
+  savedMovies, displayedData, setDisplayedData, onDeleteSavedMovie,
+}) {
   useEffect(() => {
     setDisplayedData((prevData) => ({ ...prevData, displayedMovies: savedMovies }));
   }, [savedMovies, setDisplayedData]);
@@ -33,6 +31,9 @@ function SavedMovies({ displayedData, setDisplayedData, onDeleteSavedMovie }) {
 }
 
 SavedMovies.propTypes = {
+  savedMovies: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ),
   displayedData: PropTypes.objectOf(
     PropTypes.oneOfType([
       PropTypes.bool,
@@ -44,6 +45,10 @@ SavedMovies.propTypes = {
   ).isRequired,
   setDisplayedData: PropTypes.func.isRequired,
   onDeleteSavedMovie: PropTypes.func.isRequired,
+};
+
+SavedMovies.defaultProps = {
+  savedMovies: [],
 };
 
 export default SavedMovies;
