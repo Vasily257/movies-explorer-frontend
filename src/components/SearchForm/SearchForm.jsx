@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
+import DisplayedDataContext from '../../contexts/DisplayedDataContext';
 import useForm from '../../hooks/useForm';
 
 import Button from '../Button/Button';
@@ -12,13 +13,10 @@ import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
 
-function SearchForm({
-  displayedData,
-  setDisplayedData,
-  setMoviesFromBeatfilm,
-}) {
-  const [errorText, setErrorText] = useState('');
+function SearchForm({ setMoviesFromBeatfilm }) {
+  const { displayedData, setDisplayedData } = useContext(DisplayedDataContext);
   const { values, handleChange, setValues } = useForm();
+  const [errorText, setErrorText] = useState('');
 
   const { isShortsMovies } = displayedData;
 
@@ -102,16 +100,6 @@ function SearchForm({
 }
 
 SearchForm.propTypes = {
-  displayedData: PropTypes.objectOf(
-    PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      PropTypes.arrayOf(
-        PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-      ),
-    ]),
-  ).isRequired,
-  setDisplayedData: PropTypes.func.isRequired,
   setMoviesFromBeatfilm: PropTypes.func,
 };
 

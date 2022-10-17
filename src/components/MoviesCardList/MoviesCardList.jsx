@@ -1,8 +1,9 @@
 import {
-  React, useState, useEffect, useRef,
+  React, useState, useEffect, useRef, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
 
+import DisplayedDataContext from '../../contexts/DisplayedDataContext';
 import useColumns from '../../hooks/useColumns';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
@@ -15,8 +16,9 @@ import { getRows, getAddedMovies, filterMovies } from '../../utils/scripts/utils
 import './MoviesCardList.css';
 
 function MoviesCardList({
-  savedMovies, isSavedMovies, displayedData, onAddSavedMovie, onDeleteSavedMovie,
+  savedMovies, isSavedMovies, onAddSavedMovie, onDeleteSavedMovie,
 }) {
+  const { displayedData } = useContext(DisplayedDataContext);
   const [moviesCount, setMoviesCount] = useState(1);
   const [limitation, setLimitation] = useState(Infinity);
   const [errorText, setErrorText] = useState('');
@@ -125,16 +127,6 @@ MoviesCardList.propTypes = {
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   ),
   isSavedMovies: PropTypes.bool,
-  displayedData: PropTypes.objectOf(
-    PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      PropTypes.arrayOf(
-        PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-      ),
-    ]),
-  ).isRequired,
-  queryErrorText: PropTypes.string,
   onAddSavedMovie: PropTypes.func,
   onDeleteSavedMovie: PropTypes.func,
 };
@@ -142,7 +134,6 @@ MoviesCardList.propTypes = {
 MoviesCardList.defaultProps = {
   savedMovies: [],
   isSavedMovies: false,
-  queryErrorText: '',
   onAddSavedMovie: () => {},
   onDeleteSavedMovie: () => {},
 };

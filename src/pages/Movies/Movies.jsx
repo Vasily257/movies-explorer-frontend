@@ -1,5 +1,9 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, {
+  useState, useCallback, useEffect, useContext,
+} from 'react';
 import PropTypes from 'prop-types';
+
+import DisplayedDataContext from '../../contexts/DisplayedDataContext';
 
 import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';
@@ -8,17 +12,12 @@ import MoviesCardList from '../../components/MoviesCardList/MoviesCardList';
 import Preloader from '../../components/Preloader/Preloader';
 import Footer from '../../components/Footer/Footer';
 
-import getMoviesFromBeatfilm from '../../utils/scripts/MoviesApi';
 import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
 import { bringMoviesToSingleView, validateMovies, localMovies } from '../../utils/scripts/utils';
+import getMoviesFromBeatfilm from '../../utils/scripts/MoviesApi';
 
-function Movies({
-  savedMovies,
-  displayedData,
-  setDisplayedData,
-  onAddSavedMovie,
-  onDeleteSavedMovie,
-}) {
+function Movies({ savedMovies, onAddSavedMovie, onDeleteSavedMovie }) {
+  const { setDisplayedData } = useContext(DisplayedDataContext);
   const [isProladerShown, setIsProladerShown] = useState(false);
 
   const setMoviesFromBeatfilm = useCallback(async () => {
@@ -54,17 +53,12 @@ function Movies({
     <>
       <Header />
       <Content>
-        <SearchForm
-          displayedData={displayedData}
-          setDisplayedData={setDisplayedData}
-          setMoviesFromBeatfilm={setMoviesFromBeatfilm}
-        />
+        <SearchForm setMoviesFromBeatfilm={setMoviesFromBeatfilm} />
         {isProladerShown ? (
           <Preloader />
         ) : (
           <MoviesCardList
             savedMovies={savedMovies}
-            displayedData={displayedData}
             onAddSavedMovie={onAddSavedMovie}
             onDeleteSavedMovie={onDeleteSavedMovie}
           />
@@ -79,16 +73,6 @@ Movies.propTypes = {
   savedMovies: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   ),
-  displayedData: PropTypes.objectOf(
-    PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      PropTypes.arrayOf(
-        PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-      ),
-    ]),
-  ).isRequired,
-  setDisplayedData: PropTypes.func.isRequired,
   onAddSavedMovie: PropTypes.func.isRequired,
   onDeleteSavedMovie: PropTypes.func.isRequired,
 };
