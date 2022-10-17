@@ -95,18 +95,18 @@ function App() {
 
   const onSignOut = useCallback(() => {
     localStorage.removeItem('token');
-    localStorage.removeItem('query', '');
-    localStorage.removeItem('isShortsMovies', false);
+    localStorage.setItem('query', '');
+    localStorage.setItem('isShortsMovies', false);
 
-    setCurrentUser({ name: '', email: '', _id: '' });
-    setSavedMovies([]);
-    setIsLoggedIn(false);
     setDisplayedData({
       searchQuery: '',
       displayedMovies: [],
       isShortsMovies: false,
       errorText: '',
     });
+    setCurrentUser({ name: '', email: '', _id: '' });
+    setSavedMovies([]);
+    setIsLoggedIn(false);
   }, [setCurrentUser, setSavedMovies, setIsLoggedIn]);
 
   useEffect(() => {
@@ -145,6 +145,7 @@ function App() {
                       savedMovies={savedMovies}
                       onAddSavedMovie={onAddSavedMovie}
                       onDeleteSavedMovie={onDeleteSavedMovie}
+                      onSignOut={onSignOut}
                     />
                   </ProtectedRoute>
               )}
@@ -156,6 +157,7 @@ function App() {
                     <SavedMovies
                       savedMovies={savedMovies}
                       onDeleteSavedMovie={onDeleteSavedMovie}
+                      onSignOut={onSignOut}
                     />
                   </ProtectedRoute>
               )}

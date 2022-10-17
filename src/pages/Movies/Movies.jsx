@@ -1,5 +1,5 @@
 import React, {
-  useState, useCallback, useEffect, useContext,
+  useState, useCallback, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
 
@@ -13,10 +13,12 @@ import Preloader from '../../components/Preloader/Preloader';
 import Footer from '../../components/Footer/Footer';
 
 import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
-import { bringMoviesToSingleView, validateMovies, localMovies } from '../../utils/scripts/utils';
+import { bringMoviesToSingleView, validateMovies } from '../../utils/scripts/utils';
 import getMoviesFromBeatfilm from '../../utils/scripts/MoviesApi';
 
-function Movies({ savedMovies, onAddSavedMovie, onDeleteSavedMovie }) {
+function Movies({
+  savedMovies, onAddSavedMovie, onDeleteSavedMovie, onSignOut,
+}) {
   const { setDisplayedData } = useContext(DisplayedDataContext);
   const [isProladerShown, setIsProladerShown] = useState(false);
 
@@ -45,13 +47,9 @@ function Movies({ savedMovies, onAddSavedMovie, onDeleteSavedMovie }) {
     setIsProladerShown(false);
   }, [setDisplayedData]);
 
-  useEffect(() => {
-    setDisplayedData((prevData) => ({ ...prevData, displayedMovies: localMovies }));
-  }, [setDisplayedData]);
-
   return (
     <>
-      <Header />
+      <Header onSignOut={onSignOut} />
       <Content>
         <SearchForm setMoviesFromBeatfilm={setMoviesFromBeatfilm} />
         {isProladerShown ? (
@@ -75,6 +73,7 @@ Movies.propTypes = {
   ),
   onAddSavedMovie: PropTypes.func.isRequired,
   onDeleteSavedMovie: PropTypes.func.isRequired,
+  onSignOut: PropTypes.func.isRequired,
 };
 
 Movies.defaultProps = {

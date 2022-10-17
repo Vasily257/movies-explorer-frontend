@@ -40,7 +40,7 @@ function Profile({ onSignOut }) {
 
   return (
     <>
-      <Header />
+      <Header onSignOut={onSignOut} />
       <Content>
         <ProfileData
           apiErrorText={errorText}

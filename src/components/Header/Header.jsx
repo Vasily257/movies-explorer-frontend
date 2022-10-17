@@ -9,8 +9,8 @@ import CustomLink from '../CustomLink/CustomLink';
 
 import './Header.css';
 
-function Header({ isDarkTheme, isEmptyHeader }) {
-  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+function Header({ isDarkTheme, isEmptyHeader, onSignOut }) {
+  const { isLoggedIn } = useContext(LoginContext);
   return (
     <header
       className={`header ${isDarkTheme ? 'header_dark' : ''} 
@@ -20,9 +20,9 @@ function Header({ isDarkTheme, isEmptyHeader }) {
         className="header__link"
         path="/"
         onClick={() => {
-          setIsLoggedIn(false);
+          onSignOut();
         }}
-        ariaLabel="Перейти на главную"
+        ariaLabel="Перейти на главную страницу"
       >
         <img className="header__logo" src={headerLogo} alt="Логотип сайта" />
       </CustomLink>
@@ -44,11 +44,13 @@ function Header({ isDarkTheme, isEmptyHeader }) {
 Header.propTypes = {
   isDarkTheme: PropTypes.bool,
   isEmptyHeader: PropTypes.bool,
+  onSignOut: PropTypes.func,
 };
 
 Header.defaultProps = {
   isDarkTheme: false,
   isEmptyHeader: false,
+  onSignOut: () => {},
 };
 
 export default Header;

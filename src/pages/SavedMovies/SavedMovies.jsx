@@ -9,7 +9,7 @@ import SearchForm from '../../components/SearchForm/SearchForm';
 import MoviesCardList from '../../components/MoviesCardList/MoviesCardList';
 import Footer from '../../components/Footer/Footer';
 
-function SavedMovies({ savedMovies, onDeleteSavedMovie }) {
+function SavedMovies({ savedMovies, onDeleteSavedMovie, onSignOut }) {
   const { setDisplayedData } = useContext(DisplayedDataContext);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function SavedMovies({ savedMovies, onDeleteSavedMovie }) {
 
   return (
     <>
-      <Header />
+      <Header onSignOut={onSignOut} />
       <Content>
         <SearchForm setDisplayedData={setDisplayedData} />
         <MoviesCardList isSavedMovies onDeleteSavedMovie={onDeleteSavedMovie} />
@@ -33,6 +33,7 @@ SavedMovies.propTypes = {
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   ),
   onDeleteSavedMovie: PropTypes.func.isRequired,
+  onSignOut: PropTypes.func.isRequired,
 };
 
 SavedMovies.defaultProps = {
