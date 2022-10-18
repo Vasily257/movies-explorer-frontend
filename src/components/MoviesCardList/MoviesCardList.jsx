@@ -1,9 +1,8 @@
 import {
-  React, useState, useEffect, useRef, useContext,
+  React, useState, useEffect, useRef,
 } from 'react';
 import PropTypes from 'prop-types';
 
-import DisplayedDataContext from '../../contexts/DisplayedDataContext';
 import useColumns from '../../hooks/useColumns';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
@@ -16,9 +15,12 @@ import { getRows, getAddedMovies, filterMovies } from '../../utils/scripts/utils
 import './MoviesCardList.css';
 
 function MoviesCardList({
-  savedMovies, isSavedMovies, onAddSavedMovie, onDeleteSavedMovie,
+  savedMovies,
+  displayedData,
+  isSavedMovies,
+  onAddSavedMovie,
+  onDeleteSavedMovie,
 }) {
-  const { displayedData } = useContext(DisplayedDataContext);
   const [moviesCount, setMoviesCount] = useState(1);
   const [limitation, setLimitation] = useState(Infinity);
   const [errorText, setErrorText] = useState('');
@@ -123,10 +125,19 @@ function MoviesCardList({
 }
 
 MoviesCardList.propTypes = {
+  isSavedMovies: PropTypes.bool,
   savedMovies: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   ),
-  isSavedMovies: PropTypes.bool,
+  displayedData: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string,
+      PropTypes.arrayOf(
+        PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+      ),
+    ]),
+  ).isRequired,
   onAddSavedMovie: PropTypes.func,
   onDeleteSavedMovie: PropTypes.func,
 };

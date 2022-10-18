@@ -5,7 +5,6 @@ import { Routes, Route } from 'react-router-dom';
 
 import LoginContext from '../../contexts/LoginContext';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import DisplayedDataContext from '../../contexts/DisplayedDataContext';
 
 import Main from '../../pages/Main/Main';
 import Movies from '../../pages/Movies/Movies';
@@ -27,10 +26,10 @@ import {
 import './App.css';
 
 function App() {
-  const [savedMovies, setSavedMovies] = useState([]);
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', _id: '' });
+
+  const [savedMovies, setSavedMovies] = useState([]);
   const [displayedData, setDisplayedData] = useState({
     searchQuery: localStorage.getItem('query') || '',
     allMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')) || [],
@@ -42,10 +41,6 @@ function App() {
   const currentUserValue = useMemo(
     () => ({ currentUser, setCurrentUser }),
     [currentUser, setCurrentUser],
-  );
-  const displayedDataValue = useMemo(
-    () => ({ displayedData, setDisplayedData }),
-    [displayedData, setDisplayedData],
   );
 
   const setUserInfo = useCallback(
@@ -96,15 +91,15 @@ function App() {
     localStorage.removeItem('query');
     localStorage.removeItem('isShortsMovies');
 
+    setIsLoggedIn(false);
+    setCurrentUser({ name: '', email: '', _id: '' });
+    setSavedMovies([]);
     setDisplayedData({
       searchQuery: '',
       allMovies: [],
       isShortsMovies: false,
       errorText: '',
     });
-    setCurrentUser({ name: '', email: '', _id: '' });
-    setSavedMovies([]);
-    setIsLoggedIn(false);
   }, []);
 
   useEffect(() => {
@@ -125,68 +120,72 @@ function App() {
     <div className="app">
       <LoginContext.Provider value={loginValue}>
         <CurrentUserContext.Provider value={currentUserValue}>
-          <DisplayedDataContext.Provider value={displayedDataValue}>
-            <Routes>
-              <Route
-                path="/"
-                element={(
-                  <UnprotectedRoute>
-                    <Main />
-                  </UnprotectedRoute>
+
+          <Routes>
+            <Route
+              path="/"
+              element={(
+                <UnprotectedRoute>
+                  <Main />
+                </UnprotectedRoute>
               )}
-              />
-              <Route
-                path="/movies"
-                element={(
-                  <ProtectedRoute>
-                    <Movies
-                      savedMovies={savedMovies}
-                      onAddSavedMovie={onAddSavedMovie}
-                      onDeleteSavedMovie={onDeleteSavedMovie}
-                      onSignOut={onSignOut}
-                    />
-                  </ProtectedRoute>
+            />
+            <Route
+              path="/movies"
+              element={(
+                <ProtectedRoute>
+                  <Movies
+                    savedMovies={savedMovies}
+                    displayedData={displayedData}
+                    setDisplayedData={setDisplayedData}
+                    onAddSavedMovie={onAddSavedMovie}
+                    onDeleteSavedMovie={onDeleteSavedMovie}
+                    onSignOut={onSignOut}
+                  />
+                </ProtectedRoute>
               )}
-              />
-              <Route
-                path="/saved-movies"
-                element={(
-                  <ProtectedRoute>
-                    <SavedMovies
-                      savedMovies={savedMovies}
-                      onDeleteSavedMovie={onDeleteSavedMovie}
-                      onSignOut={onSignOut}
-                    />
-                  </ProtectedRoute>
+            />
+            <Route
+              path="/saved-movies"
+              element={(
+                <ProtectedRoute>
+                  <SavedMovies
+                    savedMovies={savedMovies}
+                    displayedData={displayedData}
+                    setDisplayedData={setDisplayedData}
+                    onDeleteSavedMovie={onDeleteSavedMovie}
+                    onSignOut={onSignOut}
+                  />
+                </ProtectedRoute>
               )}
-              />
-              <Route
-                path="/profile"
-                element={(
-                  <ProtectedRoute>
-                    <Profile onSignOut={onSignOut} />
-                  </ProtectedRoute>
+            />
+            <Route
+              path="/profile"
+              element={(
+                <ProtectedRoute>
+                  <Profile onSignOut={onSignOut} />
+                </ProtectedRoute>
               )}
-              />
-              <Route
-                path="/signin"
-                element={(
-                  <UnprotectedRoute>
-                    <Login setUserInfo={setUserInfo} />
-                  </UnprotectedRoute>
+            />
+            <Route
+              path="/signin"
+              element={(
+                <UnprotectedRoute>
+                  <Login setUserInfo={setUserInfo} />
+                </UnprotectedRoute>
               )}
-              />
-              <Route
-                path="/signup"
-                element={(
-                  <UnprotectedRoute>
-                    <Register />
-                  </UnprotectedRoute>
+            />
+            <Route
+              path="/signup"
+              element={(
+                <UnprotectedRoute>
+                  <Register />
+                </UnprotectedRoute>
               )}
-              />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </DisplayedDataContext.Provider>
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+
         </CurrentUserContext.Provider>
       </LoginContext.Provider>
     </div>
