@@ -16,7 +16,7 @@ import NotFound from '../../pages/NotFound/NotFound';
 import ProtectedRoute from '../HOC/ProtectedRoute';
 import UnprotectedRoute from '../HOC/UnprotectedRoute';
 
-import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
+import { MOVIES_ERROR_TEXT, LOCAL_STORAGE } from '../../utils/scripts/constants';
 import { bringMoviesToSingleView, validateMovies } from '../../utils/scripts/utils';
 import getMoviesFromBeatfilm from '../../utils/scripts/MoviesApi';
 import {
@@ -34,9 +34,9 @@ function App() {
 
   const [savedMovies, setSavedMovies] = useState([]);
   const [displayedData, setDisplayedData] = useState({
-    searchQuery: localStorage.getItem('query') || '',
-    allMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')) || [],
-    isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')) || false,
+    searchQuery: LOCAL_STORAGE.SEARCH_QUERY || '',
+    allMovies: LOCAL_STORAGE.BEATFILM_MOVIES || [],
+    isShortsMovies: LOCAL_STORAGE.IS_SHORT_MOVIES || false,
     errorText: '',
   });
   const [isProladerShown, setIsProladerShown] = useState(false);

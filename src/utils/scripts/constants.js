@@ -1,9 +1,5 @@
 const STATUS = {
-  // CREATED: 201,
-  // BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
-  // FORBIDDEN: 403,
-  // NOT_FOUND: 404,
   CONFLICT: 409,
   INTERNAL_SERVER_ERROR: 500,
 };
@@ -34,6 +30,12 @@ const COMMON_ERROR_TEXT = {
 const BASE_URL = {
   BEATFILM_MOVIES: 'https://api.nomoreparties.co',
   MOVIES_EXPLORER: 'https://api.kalmykov.moviesexplorer.nomoredomains.sbs',
+};
+
+const LOCAL_STORAGE = {
+  SEARCH_QUERY: localStorage.getItem('query'),
+  BEATFILM_MOVIES: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
+  IS_SHORT_MOVIES: JSON.parse(localStorage.getItem('isShortsMovies')),
 };
 
 const INPUT_LIST = [
@@ -72,6 +74,7 @@ export {
   MOVIES_ERROR_TEXT,
   COMMON_ERROR_TEXT,
   BASE_URL,
+  LOCAL_STORAGE,
   INPUT_LIST,
   NAME_REGEX,
 };

@@ -9,7 +9,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import ErrorElement from '../ErrorElement/ErrorElement';
 import Button from '../Button/Button';
 
-import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
+import { MOVIES_ERROR_TEXT, LOCAL_STORAGE } from '../../utils/scripts/constants';
 import { getRows, getAddedMovies, filterMovies } from '../../utils/scripts/utils';
 
 import './MoviesCardList.css';
@@ -36,12 +36,10 @@ function MoviesCardList({
   const filtredMovies = filterMovies(allMovies, searchQuery, limitation);
 
   useEffect(() => {
-    const localMovies = JSON.parse(localStorage.getItem('moviesFromBeatfilm'));
-
     if (!isSavedMovies) {
       setDisplayedData((prevData) => ({
         ...prevData,
-        allMovies: localMovies || [],
+        allMovies: LOCAL_STORAGE.BEATFILM_MOVIES || [],
       }));
     }
 
