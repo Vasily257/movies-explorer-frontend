@@ -1,11 +1,12 @@
 import { React, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import headerLogo from '../../images/header-logo.svg';
-import Navigation from '../Navigation/Navigation';
-
 import LoginContext from '../../contexts/LoginContext';
+
+import Navigation from '../Navigation/Navigation';
 import CustomLink from '../CustomLink/CustomLink';
+
+import headerLogo from '../../images/header-logo.svg';
 
 import './Header.css';
 

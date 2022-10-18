@@ -1,7 +1,10 @@
 import React from 'react';
-import './AboutMe.css';
-import photo from '../../images/about-me-photo.jpg';
+
 import CustomLink from '../CustomLink/CustomLink';
+
+import photo from '../../images/about-me-photo.jpg';
+
+import './AboutMe.css';
 
 function AboutMe() {
   return (

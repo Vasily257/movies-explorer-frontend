@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
+
 import LoginContext from '../../contexts/LoginContext';
+import useScreenView from '../../hooks/useScreenView';
 
 import Button from '../Button/Button';
 import CustomLink from '../CustomLink/CustomLink';
@@ -8,7 +10,6 @@ import navigationButtonOpened from '../../images/navigation-button-opened.svg';
 import navigationButtonClosed from '../../images/navigation-button-closed.svg';
 
 import './Navigation.css';
-import useScreenView from '../../hooks/useScreenView';
 
 function Navigation() {
   const { setIsLoggedIn } = useContext(LoginContext);

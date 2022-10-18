@@ -51,7 +51,7 @@ function SearchForm({ setMoviesFromBeatfilm, displayedData, setDisplayedData }) 
 
   return (
     <section className="search-form">
-      <h1 className="visually-hidden">Поиск по фильмам</h1>
+      <h1 className="visually-hidden">Поиск по&nbsp;фильмам</h1>
       <form
         className="search-form__form"
         name="search"

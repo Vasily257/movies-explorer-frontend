@@ -8,8 +8,9 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import ErrorElement from '../ErrorElement/ErrorElement';
 
-import './UserForm.css';
 import { NAME_REGEX } from '../../utils/scripts/constants';
+
+import './UserForm.css';
 
 function UserForm({
   title,

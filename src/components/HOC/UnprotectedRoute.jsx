@@ -1,7 +1,7 @@
 import { React, useContext } from 'react';
 import PropTypes from 'prop-types';
-
 import { Navigate } from 'react-router-dom';
+
 import LoginContext from '../../contexts/LoginContext';
 
 function ProtectedRoute({ children }) {

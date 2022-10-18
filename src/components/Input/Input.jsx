@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Input.css';
+
 import ErrorElement from '../ErrorElement/ErrorElement';
+
+import './Input.css';
 
 function Input({
   inputClassName,

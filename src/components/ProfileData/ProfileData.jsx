@@ -94,7 +94,7 @@ function ProfileData({
                 onSignOut();
               }}
             >
-              Выйти из аккаунта
+              Выйти из&nbsp;аккаунта
             </Button>
           </>
         ) : (

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Button from '../Button/Button';
+
 import promoPictureWebp from '../../images/promo-picture.webp';
 import promoPicturePng from '../../images/promo-picture.png';
 
