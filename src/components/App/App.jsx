@@ -24,8 +24,6 @@ import {
   getSavedMovies,
 } from '../../utils/scripts/MainApi';
 
-import { localMovies, localQuery, localIsShortsMovies } from '../../utils/scripts/utils';
-
 import './App.css';
 
 function App() {
@@ -34,9 +32,9 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', _id: '' });
   const [displayedData, setDisplayedData] = useState({
-    searchQuery: localQuery,
-    displayedMovies: localMovies,
-    isShortsMovies: localIsShortsMovies,
+    searchQuery: localStorage.getItem('query') || '',
+    displayedMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')) || [],
+    isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')) || false,
     errorText: '',
   });
 
@@ -95,8 +93,8 @@ function App() {
 
   const onSignOut = useCallback(() => {
     localStorage.removeItem('token');
-    localStorage.setItem('query', '');
-    localStorage.setItem('isShortsMovies', false);
+    localStorage.removeItem('query');
+    localStorage.removeItem('isShortsMovies');
 
     setDisplayedData({
       searchQuery: '',
@@ -107,7 +105,7 @@ function App() {
     setCurrentUser({ name: '', email: '', _id: '' });
     setSavedMovies([]);
     setIsLoggedIn(false);
-  }, [setCurrentUser, setSavedMovies, setIsLoggedIn]);
+  }, []);
 
   useEffect(() => {
     async function checkToken() {

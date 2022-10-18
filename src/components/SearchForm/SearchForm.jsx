@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import DisplayedDataContext from '../../contexts/DisplayedDataContext';
@@ -8,14 +8,13 @@ import Button from '../Button/Button';
 import Input from '../Input/Input';
 
 import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
-import { localQuery } from '../../utils/scripts/utils';
 import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
 
 function SearchForm({ setMoviesFromBeatfilm }) {
   const { displayedData, setDisplayedData } = useContext(DisplayedDataContext);
-  const { values, handleChange, setValues } = useForm();
+  const { values, setValues, handleChange } = useForm();
   const [errorText, setErrorText] = useState('');
 
   const { isShortsMovies } = displayedData;
@@ -40,7 +39,10 @@ function SearchForm({ setMoviesFromBeatfilm }) {
   }
 
   useEffect(() => {
-    setValues((prevValues) => ({ ...prevValues, movie: localQuery }));
+    setValues((prevValues) => ({
+      ...prevValues,
+      movie: localStorage.getItem('query') || '',
+    }));
   }, [setValues]);
 
   return (

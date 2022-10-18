@@ -1,10 +1,6 @@
 import validator from 'validator';
 import { BASE_URL } from './constants';
 
-const localMovies = JSON.parse(localStorage.getItem('moviesFromBeatfilm')) || [];
-const localQuery = localStorage.getItem('query') || '';
-const localIsShortsMovies = JSON.parse(localStorage.getItem('isShortsMovies')) || false;
-
 function handleResponse(response) {
   if (response.ok) {
     return response.json();
@@ -127,9 +123,6 @@ function filterMovies(moviesList, searchQuery, limitation) {
 }
 
 export {
-  localMovies,
-  localQuery,
-  localIsShortsMovies,
   handleResponse,
   bringMoviesToSingleView,
   validateMovies,
