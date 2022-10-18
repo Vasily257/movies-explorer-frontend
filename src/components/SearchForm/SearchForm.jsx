@@ -24,7 +24,7 @@ function SearchForm({ setMoviesFromBeatfilm }) {
     if (values.movie) {
       const localMovies = JSON.parse(localStorage.getItem('moviesFromBeatfilm'));
       if (localMovies) {
-        setDisplayedData((prevData) => ({ ...prevData, displayedMovies: localMovies }));
+        setDisplayedData((prevData) => ({ ...prevData, allMovies: localMovies }));
       } else {
         setMoviesFromBeatfilm();
       }

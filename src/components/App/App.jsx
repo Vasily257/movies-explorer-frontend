@@ -33,7 +33,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', _id: '' });
   const [displayedData, setDisplayedData] = useState({
     searchQuery: localStorage.getItem('query') || '',
-    displayedMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')) || [],
+    allMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')) || [],
     isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')) || false,
     errorText: '',
   });
@@ -98,7 +98,7 @@ function App() {
 
     setDisplayedData({
       searchQuery: '',
-      displayedMovies: [],
+      allMovies: [],
       isShortsMovies: false,
       errorText: '',
     });

@@ -13,7 +13,7 @@ function SavedMovies({ savedMovies, onDeleteSavedMovie, onSignOut }) {
   const { setDisplayedData } = useContext(DisplayedDataContext);
 
   useEffect(() => {
-    setDisplayedData((prevData) => ({ ...prevData, displayedMovies: savedMovies }));
+    setDisplayedData((prevData) => ({ ...prevData, allMovies: savedMovies }));
   }, [savedMovies, setDisplayedData]);
 
   return (

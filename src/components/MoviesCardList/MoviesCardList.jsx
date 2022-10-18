@@ -24,13 +24,13 @@ function MoviesCardList({
   const [errorText, setErrorText] = useState('');
 
   const {
-    displayedMovies, searchQuery, isShortsMovies, queryErrorText,
+    allMovies, searchQuery, isShortsMovies, queryErrorText,
   } = displayedData;
 
   const gridContainer = useRef(null);
   const columns = useColumns(gridContainer.current);
 
-  const filtredMovies = filterMovies(displayedMovies, searchQuery, limitation);
+  const filtredMovies = filterMovies(allMovies, searchQuery, limitation);
 
   useEffect(() => {
     setMoviesCount(columns * getRows(columns));

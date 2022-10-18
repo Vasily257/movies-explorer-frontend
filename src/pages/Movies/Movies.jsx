@@ -33,13 +33,13 @@ function Movies({
       localStorage.setItem('moviesFromBeatfilm', JSON.stringify(validatedMoviesFromBeatfilm));
       setDisplayedData((prevData) => ({
         ...prevData,
-        displayedMovies: validatedMoviesFromBeatfilm,
+        allMovies: validatedMoviesFromBeatfilm,
         queryErrorText: '',
       }));
     } catch (error) {
       setDisplayedData((prevData) => ({
         ...prevData,
-        displayedMovies: [],
+        allMovies: [],
         queryErrorText: MOVIES_ERROR_TEXT.FETCH_FAILED,
       }));
     }
