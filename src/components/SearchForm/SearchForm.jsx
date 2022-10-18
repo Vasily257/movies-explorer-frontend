@@ -47,7 +47,7 @@ function SearchForm({ setMoviesFromBeatfilm, displayedData, setDisplayedData }) 
 
   useEffect(() => {
     setDisplayedData((prevData) => ({ ...prevData, allMovies: localMovies }));
-  }, [localMovies, setDisplayedData]);
+  }, []);
 
   return (
     <section className="search-form">

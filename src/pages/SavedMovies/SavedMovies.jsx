@@ -15,7 +15,10 @@ function SavedMovies({
   onSignOut,
 }) {
   useEffect(() => {
-    setDisplayedData((prevData) => ({ ...prevData, allMovies: savedMovies || [] }));
+    setDisplayedData((prevData) => ({
+      ...prevData,
+      allMovies: savedMovies.sort((prev, next) => prev.movieId - next.movieId) || [],
+    }));
   }, [savedMovies, setDisplayedData]);
 
   return (
@@ -25,6 +28,7 @@ function SavedMovies({
         <SearchForm displayedData={displayedData} setDisplayedData={setDisplayedData} />
         <MoviesCardList
           isSavedMovies
+          savedMovies={savedMovies}
           displayedData={displayedData}
           onDeleteSavedMovie={onDeleteSavedMovie}
         />
