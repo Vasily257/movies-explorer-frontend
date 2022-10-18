@@ -17,6 +17,7 @@ import './MoviesCardList.css';
 function MoviesCardList({
   savedMovies,
   displayedData,
+  setDisplayedData,
   isSavedMovies,
   onAddSavedMovie,
   onDeleteSavedMovie,
@@ -33,6 +34,24 @@ function MoviesCardList({
   const columns = useColumns(gridContainer.current);
 
   const filtredMovies = filterMovies(allMovies, searchQuery, limitation);
+
+  useEffect(() => {
+    const localMovies = JSON.parse(localStorage.getItem('moviesFromBeatfilm'));
+
+    if (!isSavedMovies) {
+      setDisplayedData((prevData) => ({
+        ...prevData,
+        allMovies: localMovies || [],
+      }));
+    }
+
+    if (isSavedMovies) {
+      setDisplayedData((prevData) => ({
+        ...prevData,
+        allMovies: savedMovies.sort((prev, next) => prev.movieId - next.movieId) || [],
+      }));
+    }
+  }, [allMovies, isSavedMovies, savedMovies, setDisplayedData, gridContainer]);
 
   useEffect(() => {
     setMoviesCount(columns * getRows(columns));
@@ -138,6 +157,7 @@ MoviesCardList.propTypes = {
       ),
     ]),
   ).isRequired,
+  setDisplayedData: PropTypes.func.isRequired,
   onAddSavedMovie: PropTypes.func,
   onDeleteSavedMovie: PropTypes.func,
 };

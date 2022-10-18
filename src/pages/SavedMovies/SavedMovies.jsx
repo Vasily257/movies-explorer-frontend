@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../../components/Header/Header';
@@ -14,13 +14,6 @@ function SavedMovies({
   onDeleteSavedMovie,
   onSignOut,
 }) {
-  useEffect(() => {
-    setDisplayedData((prevData) => ({
-      ...prevData,
-      allMovies: savedMovies.sort((prev, next) => prev.movieId - next.movieId) || [],
-    }));
-  }, [savedMovies, setDisplayedData]);
-
   return (
     <>
       <Header onSignOut={onSignOut} />
@@ -30,6 +23,7 @@ function SavedMovies({
           isSavedMovies
           savedMovies={savedMovies}
           displayedData={displayedData}
+          setDisplayedData={setDisplayedData}
           onDeleteSavedMovie={onDeleteSavedMovie}
         />
       </Content>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../../components/Header/Header';
@@ -18,15 +18,6 @@ function Movies({
   onDeleteSavedMovie,
   onSignOut,
 }) {
-  useEffect(() => {
-    const localMovies = JSON.parse(localStorage.getItem('moviesFromBeatfilm'));
-
-    setDisplayedData((prevData) => ({
-      ...prevData,
-      allMovies: localMovies || [],
-    }));
-  }, [setDisplayedData]);
-
   return (
     <>
       <Header onSignOut={onSignOut} />
@@ -42,6 +33,7 @@ function Movies({
           <MoviesCardList
             savedMovies={savedMovies}
             displayedData={displayedData}
+            setDisplayedData={setDisplayedData}
             onAddSavedMovie={onAddSavedMovie}
             onDeleteSavedMovie={onDeleteSavedMovie}
           />
