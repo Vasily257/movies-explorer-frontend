@@ -182,6 +182,10 @@
     margin-top: 80px;
   }
 
+  .profile-data__input-error {
+    min-height: 13px;
+  }
+
   .profile-data__api-success {
     min-height: 13px;
 
