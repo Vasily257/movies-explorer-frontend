@@ -16,6 +16,9 @@ import NotFound from '../../pages/NotFound/NotFound';
 import ProtectedRoute from '../HOC/ProtectedRoute';
 import UnprotectedRoute from '../HOC/UnprotectedRoute';
 
+import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
+import { bringMoviesToSingleView, validateMovies } from '../../utils/scripts/utils';
+import getMoviesFromBeatfilm from '../../utils/scripts/MoviesApi';
 import {
   addSavedMovie,
   deleteSavedMovie,
@@ -36,6 +39,7 @@ function App() {
     isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')) || false,
     errorText: '',
   });
+  const [isProladerShown, setIsProladerShown] = useState(false);
 
   const loginValue = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
   const currentUserValue = useMemo(
@@ -53,6 +57,31 @@ function App() {
     },
     [setCurrentUser, setSavedMovies, setIsLoggedIn],
   );
+
+  const setMoviesFromBeatfilm = useCallback(async () => {
+    setIsProladerShown(true);
+
+    try {
+      const moviesFromBeatfilm = await getMoviesFromBeatfilm();
+      const convertedMoviesFromBeatfilm = bringMoviesToSingleView(moviesFromBeatfilm);
+      const validatedMoviesFromBeatfilm = validateMovies(convertedMoviesFromBeatfilm);
+
+      localStorage.setItem('moviesFromBeatfilm', JSON.stringify(validatedMoviesFromBeatfilm));
+      setDisplayedData((prevData) => ({
+        ...prevData,
+        allMovies: validatedMoviesFromBeatfilm,
+        queryErrorText: '',
+      }));
+    } catch (error) {
+      setDisplayedData((prevData) => ({
+        ...prevData,
+        allMovies: [],
+        queryErrorText: MOVIES_ERROR_TEXT.FETCH_FAILED,
+      }));
+    }
+
+    setIsProladerShown(false);
+  }, [setDisplayedData]);
 
   const onAddSavedMovie = useCallback(
     async (movie) => {
@@ -120,7 +149,6 @@ function App() {
     <div className="app">
       <LoginContext.Provider value={loginValue}>
         <CurrentUserContext.Provider value={currentUserValue}>
-
           <Routes>
             <Route
               path="/"
@@ -138,6 +166,8 @@ function App() {
                     savedMovies={savedMovies}
                     displayedData={displayedData}
                     setDisplayedData={setDisplayedData}
+                    isProladerShown={isProladerShown}
+                    setMoviesFromBeatfilm={setMoviesFromBeatfilm}
                     onAddSavedMovie={onAddSavedMovie}
                     onDeleteSavedMovie={onDeleteSavedMovie}
                     onSignOut={onSignOut}
@@ -185,7 +215,6 @@ function App() {
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
-
         </CurrentUserContext.Provider>
       </LoginContext.Provider>
     </div>

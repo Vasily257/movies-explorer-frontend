@@ -45,10 +45,6 @@ function SearchForm({ setMoviesFromBeatfilm, displayedData, setDisplayedData }) 
     }));
   }, [setValues]);
 
-  useEffect(() => {
-    setDisplayedData((prevData) => ({ ...prevData, allMovies: localMovies }));
-  }, []);
-
   return (
     <section className="search-form">
       <h1 className="visually-hidden">Поиск по&nbsp;фильмам</h1>
