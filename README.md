@@ -1,16 +1,10 @@
-# movies-explorer-frontend
-
-Фронтенд для дипломного проекта `Movies Explorer`.
-Ссылка на макет: https://disk.yandex.ru/d/14_x0vVfolfnxw
-
-Адрес сервера: http://api.kalmykov.moviesexplorer.nomoredomains.sbs/
-IP-адрес сервера: 158.160.10.193:80
-
-## Пояснения для ревьюера
-
-Часть функционала из следующего этапа уже реализована, поэтому есть несколько комментариев:
-1. Роуты `/` , `/signin` и `/signup` доступны только для неавторизованных пользователей.
-2. Чтобы авторизоваться, нужно перейти на `/signin` и нажать кнопку «Войти».
-3. Роуты `/movies`, `/saved-movies` и `/profile` защищены авторизацией.
-4. Чтобы разголиниться, нужно перейти на `/profile` и нажать «Выйти из аккаунта».
-5. Страница `404` доступна для всех пользователей.
+# movies-explorer-frontend  
+  
+Фронтенд для дипломного проекта `Movies Explorer`.  
+Ссылка на макет: https://disk.yandex.ru/d/14_x0vVfolfnxw  
+  
+Пулл-реквест 4 этапа: https://github.com/Vasily257/movies-explorer-frontend/pull/2  
+  
+Адрес сайта: http://kalmykov.moviesexplorer.nomoredomains.sbs/  
+Адрес сервера: http://api.kalmykov.moviesexplorer.nomoredomains.sbs/  
+IP-адрес сервера: 158.160.2.24  
