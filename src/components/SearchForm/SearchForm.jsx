@@ -6,7 +6,7 @@ import useForm from '../../hooks/useForm';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 
-import { MOVIES_ERROR_TEXT, LOCAL_STORAGE } from '../../utils/scripts/constants';
+import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
 import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
@@ -16,6 +16,12 @@ function SearchForm({ setMoviesFromBeatfilm, displayedData, setDisplayedData }) 
   const [errorText, setErrorText] = useState('');
 
   const { isShortsMovies } = displayedData;
+
+  const LOCAL_STORAGE = {
+    SEARCH_QUERY: localStorage.getItem('query'),
+    BEATFILM_MOVIES: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
+    IS_SHORT_MOVIES: JSON.parse(localStorage.getItem('isShortsMovies')),
+  };
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -41,7 +47,7 @@ function SearchForm({ setMoviesFromBeatfilm, displayedData, setDisplayedData }) 
       ...prevValues,
       movie: LOCAL_STORAGE.SEARCH_QUERY || '',
     }));
-  }, [setValues]);
+  }, [LOCAL_STORAGE.SEARCH_QUERY, setValues]);
 
   return (
     <section className="search-form">

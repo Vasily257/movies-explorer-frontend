@@ -32,12 +32,6 @@ const BASE_URL = {
   MOVIES_EXPLORER: 'https://api.kalmykov.moviesexplorer.nomoredomains.sbs',
 };
 
-const LOCAL_STORAGE = {
-  SEARCH_QUERY: localStorage.getItem('query'),
-  BEATFILM_MOVIES: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
-  IS_SHORT_MOVIES: JSON.parse(localStorage.getItem('isShortsMovies')),
-};
-
 const INPUT_LIST = [
   {
     name: 'name',
@@ -74,7 +68,6 @@ export {
   MOVIES_ERROR_TEXT,
   COMMON_ERROR_TEXT,
   BASE_URL,
-  LOCAL_STORAGE,
   INPUT_LIST,
   NAME_REGEX,
 };

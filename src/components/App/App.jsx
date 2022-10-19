@@ -16,7 +16,7 @@ import NotFound from '../../pages/NotFound/NotFound';
 import ProtectedRoute from '../HOC/ProtectedRoute';
 import UnprotectedRoute from '../HOC/UnprotectedRoute';
 
-import { MOVIES_ERROR_TEXT, LOCAL_STORAGE } from '../../utils/scripts/constants';
+import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
 import { bringMoviesToSingleView, validateMovies } from '../../utils/scripts/utils';
 import getMoviesFromBeatfilm from '../../utils/scripts/MoviesApi';
 import {
@@ -31,6 +31,12 @@ import './App.css';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', _id: '' });
+
+  const LOCAL_STORAGE = {
+    SEARCH_QUERY: localStorage.getItem('query'),
+    BEATFILM_MOVIES: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
+    IS_SHORT_MOVIES: JSON.parse(localStorage.getItem('isShortsMovies')),
+  };
 
   const [savedMovies, setSavedMovies] = useState([]);
   const [displayedData, setDisplayedData] = useState({
