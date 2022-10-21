@@ -36,14 +36,13 @@ function MoviesCardList({
   const filtredMovies = filterMovies(allMovies, searchQuery, limitation);
 
   useEffect(() => {
-    const LOCAL_STORAGE = {
-      BEATFILM_MOVIES: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
+    const localStorageData = {
+      beatfilmMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
     };
-
     if (!isSavedMovies) {
       setDisplayedData((prevData) => ({
         ...prevData,
-        allMovies: LOCAL_STORAGE.BEATFILM_MOVIES || [],
+        allMovies: localStorageData.beatfilmMovies || [],
       }));
     }
 

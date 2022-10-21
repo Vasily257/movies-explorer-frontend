@@ -32,17 +32,17 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', _id: '' });
 
-  const LOCAL_STORAGE = {
-    SEARCH_QUERY: localStorage.getItem('query'),
-    BEATFILM_MOVIES: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
-    IS_SHORT_MOVIES: JSON.parse(localStorage.getItem('isShortsMovies')),
+  const localStorageData = {
+    searchQuery: localStorage.getItem('query'),
+    beatfilmMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
+    isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')),
   };
 
   const [savedMovies, setSavedMovies] = useState([]);
   const [displayedData, setDisplayedData] = useState({
-    searchQuery: LOCAL_STORAGE.SEARCH_QUERY || '',
-    allMovies: LOCAL_STORAGE.BEATFILM_MOVIES || [],
-    isShortsMovies: LOCAL_STORAGE.IS_SHORT_MOVIES || false,
+    searchQuery: localStorageData.searchQuery || '',
+    allMovies: localStorageData.beatfilmMovies || [],
+    isShortsMovies: localStorageData.isShortsMovies || false,
     errorText: '',
   });
   const [isProladerShown, setIsProladerShown] = useState(false);

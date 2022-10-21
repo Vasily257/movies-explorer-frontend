@@ -17,17 +17,20 @@ function SearchForm({ setMoviesFromBeatfilm, displayedData, setDisplayedData }) 
 
   const { isShortsMovies } = displayedData;
 
-  const LOCAL_STORAGE = {
-    SEARCH_QUERY: localStorage.getItem('query'),
-    BEATFILM_MOVIES: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
-    IS_SHORT_MOVIES: JSON.parse(localStorage.getItem('isShortsMovies')),
+  const localStorageData = {
+    searchQuery: localStorage.getItem('query'),
+    beatfilmMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
+    isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')),
   };
 
   function handleSubmit(event) {
     event.preventDefault();
     if (values.movie) {
-      if (LOCAL_STORAGE.BEATFILM_MOVIES) {
-        setDisplayedData((prevData) => ({ ...prevData, allMovies: LOCAL_STORAGE.BEATFILM_MOVIES }));
+      if (localStorageData.beatfilmMovies) {
+        setDisplayedData((prevData) => ({
+          ...prevData,
+          allMovies: localStorageData.beatfilmMovies,
+        }));
       } else {
         setMoviesFromBeatfilm();
       }
@@ -45,9 +48,9 @@ function SearchForm({ setMoviesFromBeatfilm, displayedData, setDisplayedData }) 
   useEffect(() => {
     setValues((prevValues) => ({
       ...prevValues,
-      movie: LOCAL_STORAGE.SEARCH_QUERY || '',
+      movie: localStorageData.searchQuery || '',
     }));
-  }, [LOCAL_STORAGE.SEARCH_QUERY, setValues]);
+  }, [localStorageData.searchQuery, setValues]);
 
   return (
     <section className="search-form">
