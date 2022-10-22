@@ -1,4 +1,7 @@
 import { useState, useCallback } from 'react';
+import validator from 'validator';
+
+import { EMAIL_VALIDATION_ERROR_TEXT } from '../utils/scripts/constants';
 
 export default function useForm() {
   const [values, setValues] = useState({});
@@ -7,8 +10,19 @@ export default function useForm() {
 
   const handleChange = (event) => {
     const { name, value, validationMessage } = event.target;
+
     setValues({ ...values, [name]: value });
-    setErrors({ ...errors, [name]: validationMessage });
+
+    if (name === 'email') {
+      if (validator.isEmail(value)) {
+        setErrors({ ...errors, [name]: '' });
+      } else {
+        setErrors({ ...errors, [name]: EMAIL_VALIDATION_ERROR_TEXT });
+      }
+    } else {
+      setErrors({ ...errors, [name]: validationMessage });
+    }
+
     setIsValid(event.target.closest('form').checkValidity());
   };
 

@@ -27,6 +27,8 @@ const COMMON_ERROR_TEXT = {
   INTERNAL_SERVER_ERROR: 'На сервере произошла ошибка.',
 };
 
+const EMAIL_VALIDATION_ERROR_TEXT = 'Используйте требуемый формат.';
+
 const BASE_URL = {
   BEATFILM_MOVIES: 'https://api.nomoreparties.co',
   MOVIES_EXPLORER: 'https://api.kalmykov.moviesexplorer.nomoredomains.sbs',
@@ -68,6 +70,7 @@ export {
   MOVIES_ERROR_TEXT,
   COMMON_ERROR_TEXT,
   BASE_URL,
+  EMAIL_VALIDATION_ERROR_TEXT,
   INPUT_LIST,
   NAME_REGEX,
 };
