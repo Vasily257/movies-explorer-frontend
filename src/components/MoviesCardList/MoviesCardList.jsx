@@ -33,26 +33,35 @@ function MoviesCardList({
   const gridContainer = useRef(null);
   const columns = useColumns(gridContainer.current);
 
-  const filtredMovies = filterMovies(allMovies, searchQuery, limitation);
+  const filtredMovies = filterMovies(allMovies, searchQuery, limitation, isSavedMovies);
 
   useEffect(() => {
     const localStorageData = {
+      searchQuery: localStorage.getItem('query'),
       beatfilmMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
+      isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')),
     };
+
     if (!isSavedMovies) {
       setDisplayedData((prevData) => ({
         ...prevData,
+        searchQuery: localStorageData.searchQuery || '',
         allMovies: localStorageData.beatfilmMovies || [],
+        isShortsMovies: localStorageData.isShortsMovies || false,
       }));
     }
+  }, [isSavedMovies, savedMovies, setDisplayedData, gridContainer, filtredMovies.length]);
 
+  useEffect(() => {
     if (isSavedMovies) {
       setDisplayedData((prevData) => ({
         ...prevData,
+        searchQuery: '',
         allMovies: savedMovies.sort((prev, next) => prev.movieId - next.movieId) || [],
+        isShortsMovies: false,
       }));
     }
-  }, [allMovies, isSavedMovies, savedMovies, setDisplayedData, gridContainer]);
+  }, [isSavedMovies, savedMovies, setDisplayedData]);
 
   useEffect(() => {
     setMoviesCount(columns * getRows(columns));

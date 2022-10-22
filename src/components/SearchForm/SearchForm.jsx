@@ -11,7 +11,13 @@ import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
 
-function SearchForm({ setMoviesFromBeatfilm, displayedData, setDisplayedData }) {
+function SearchForm({
+  isSavedMovies,
+  savedMovies,
+  setMoviesFromBeatfilm,
+  displayedData,
+  setDisplayedData,
+}) {
   const { values, setValues, handleChange } = useForm();
   const [errorText, setErrorText] = useState('');
 
@@ -26,31 +32,51 @@ function SearchForm({ setMoviesFromBeatfilm, displayedData, setDisplayedData }) 
   function handleSubmit(event) {
     event.preventDefault();
     if (values.movie) {
-      if (localStorageData.beatfilmMovies) {
+      if (!isSavedMovies) {
+        // eslint-disable-next-line no-debugger
+        debugger;
+        if (localStorageData.beatfilmMovies) {
+          setDisplayedData((prevData) => ({
+            ...prevData,
+            allMovies: localStorageData.beatfilmMovies,
+          }));
+        } else {
+          setMoviesFromBeatfilm();
+        }
+
+        setDisplayedData((prevData) => ({ ...prevData, searchQuery: values.movie }));
+        setErrorText('');
+
+        localStorage.setItem('query', values.movie);
+        localStorage.setItem('isShortsMovies', isShortsMovies);
+      }
+      if (isSavedMovies) {
         setDisplayedData((prevData) => ({
           ...prevData,
-          allMovies: localStorageData.beatfilmMovies,
+          searchQuery: values.movie,
+          allMovies: savedMovies,
         }));
-      } else {
-        setMoviesFromBeatfilm();
+
+        setErrorText('');
       }
 
       setDisplayedData((prevData) => ({ ...prevData, searchQuery: values.movie }));
       setErrorText('');
-
-      localStorage.setItem('query', values.movie);
-      localStorage.setItem('isShortsMovies', isShortsMovies);
     } else {
       setErrorText(MOVIES_ERROR_TEXT.EMPTY_QUERY);
     }
   }
 
   useEffect(() => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      movie: localStorageData.searchQuery || '',
-    }));
-  }, [localStorageData.searchQuery, setValues]);
+    if (!isSavedMovies) {
+      setValues((prevValues) => ({
+        ...prevValues,
+        movie: localStorageData.searchQuery || '',
+      }));
+    } else {
+      setValues((prevValues) => ({ ...prevValues, movie: '' }));
+    }
+  }, [isSavedMovies, localStorageData.searchQuery, setValues]);
 
   return (
     <section className="search-form">
@@ -109,6 +135,10 @@ function SearchForm({ setMoviesFromBeatfilm, displayedData, setDisplayedData }) 
 }
 
 SearchForm.propTypes = {
+  isSavedMovies: PropTypes.bool,
+  savedMovies: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ),
   displayedData: PropTypes.objectOf(
     PropTypes.oneOfType([
       PropTypes.bool,
@@ -123,6 +153,8 @@ SearchForm.propTypes = {
 };
 
 SearchForm.defaultProps = {
+  isSavedMovies: false,
+  savedMovies: [],
   setMoviesFromBeatfilm: () => {},
 };
 

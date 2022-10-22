@@ -8,16 +8,18 @@ import MoviesCardList from '../../components/MoviesCardList/MoviesCardList';
 import Footer from '../../components/Footer/Footer';
 
 function SavedMovies({
-  savedMovies,
-  displayedData,
-  setDisplayedData,
-  onDeleteSavedMovie,
+  savedMovies, displayedData, setDisplayedData, onDeleteSavedMovie,
 }) {
   return (
     <>
       <Header />
       <Content>
-        <SearchForm displayedData={displayedData} setDisplayedData={setDisplayedData} />
+        <SearchForm
+          isSavedMovies
+          savedMovies={savedMovies}
+          displayedData={displayedData}
+          setDisplayedData={setDisplayedData}
+        />
         <MoviesCardList
           isSavedMovies
           savedMovies={savedMovies}
