@@ -16,11 +16,10 @@ function Movies({
   setMoviesFromBeatfilm,
   onAddSavedMovie,
   onDeleteSavedMovie,
-  onSignOut,
 }) {
   return (
     <>
-      <Header onSignOut={onSignOut} />
+      <Header />
       <Content>
         <SearchForm
           displayedData={displayedData}
@@ -62,7 +61,6 @@ Movies.propTypes = {
   setMoviesFromBeatfilm: PropTypes.func.isRequired,
   onAddSavedMovie: PropTypes.func.isRequired,
   onDeleteSavedMovie: PropTypes.func.isRequired,
-  onSignOut: PropTypes.func.isRequired,
 };
 
 Movies.defaultProps = {

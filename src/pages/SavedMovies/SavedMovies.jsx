@@ -12,11 +12,10 @@ function SavedMovies({
   displayedData,
   setDisplayedData,
   onDeleteSavedMovie,
-  onSignOut,
 }) {
   return (
     <>
-      <Header onSignOut={onSignOut} />
+      <Header />
       <Content>
         <SearchForm displayedData={displayedData} setDisplayedData={setDisplayedData} />
         <MoviesCardList
@@ -47,7 +46,6 @@ SavedMovies.propTypes = {
   ).isRequired,
   setDisplayedData: PropTypes.func.isRequired,
   onDeleteSavedMovie: PropTypes.func.isRequired,
-  onSignOut: PropTypes.func.isRequired,
 };
 
 SavedMovies.defaultProps = {

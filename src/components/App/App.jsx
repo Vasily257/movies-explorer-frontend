@@ -156,14 +156,7 @@ function App() {
       <LoginContext.Provider value={loginValue}>
         <CurrentUserContext.Provider value={currentUserValue}>
           <Routes>
-            <Route
-              path="/"
-              element={(
-                <UnprotectedRoute>
-                  <Main />
-                </UnprotectedRoute>
-              )}
-            />
+            <Route path="/" element={<Main />} />
             <Route
               path="/movies"
               element={(
@@ -176,7 +169,6 @@ function App() {
                     setMoviesFromBeatfilm={setMoviesFromBeatfilm}
                     onAddSavedMovie={onAddSavedMovie}
                     onDeleteSavedMovie={onDeleteSavedMovie}
-                    onSignOut={onSignOut}
                   />
                 </ProtectedRoute>
               )}
@@ -190,7 +182,6 @@ function App() {
                     displayedData={displayedData}
                     setDisplayedData={setDisplayedData}
                     onDeleteSavedMovie={onDeleteSavedMovie}
-                    onSignOut={onSignOut}
                   />
                 </ProtectedRoute>
               )}

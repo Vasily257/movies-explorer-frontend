@@ -1,20 +1,25 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import LoginContext from '../../contexts/LoginContext';
 import useScreenView from '../../hooks/useScreenView';
 
 import Button from '../Button/Button';
 import CustomLink from '../CustomLink/CustomLink';
 
 import navigationButtonOpened from '../../images/navigation-button-opened.svg';
-import navigationButtonClosed from '../../images/navigation-button-closed.svg';
+import navigationButtonClosedWhite from '../../images/navigation-button-closed-white.svg';
+import navigationButtonClosedBlack from '../../images/navigation-button-closed-black.svg';
 
 import './Navigation.css';
 
-function Navigation() {
-  const { setIsLoggedIn } = useContext(LoginContext);
+function Navigation({ isDarkTheme }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isDesktop } = useScreenView();
+
+  const navigationButtonClosed = isDarkTheme
+    ? navigationButtonClosedWhite
+    : navigationButtonClosedBlack;
 
   useEffect(() => {
     if (isDesktop) {
@@ -46,8 +51,7 @@ function Navigation() {
               className="navigation__link"
               activeClassName="navigation__link_active"
               onClick={() => {
-                setIsLoggedIn(false);
-                setIsMenuOpen(false);
+                <Navigate to="/" />;
               }}
             >
               Главная
@@ -57,7 +61,7 @@ function Navigation() {
         <li className="navigation__item">
           <CustomLink
             path="/movies"
-            className="navigation__link"
+            className={`navigation__link ${isDarkTheme ? 'navigation__link_color_white ' : ''}`}
             activeClassName="navigation__link_active"
             onClick={() => {
               setIsMenuOpen(false);
@@ -69,7 +73,7 @@ function Navigation() {
         <li className="navigation__item">
           <CustomLink
             path="/saved-movies"
-            className="navigation__link"
+            className={`navigation__link ${isDarkTheme ? 'navigation__link_color_white ' : ''}`}
             activeClassName="navigation__link_active"
             onClick={() => {
               setIsMenuOpen(false);
@@ -91,5 +95,13 @@ function Navigation() {
     </nav>
   );
 }
+
+Navigation.propTypes = {
+  isDarkTheme: PropTypes.bool,
+};
+
+Navigation.defaultProps = {
+  isDarkTheme: false,
+};
 
 export default Navigation;

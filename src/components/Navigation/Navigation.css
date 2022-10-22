@@ -219,6 +219,14 @@
     display: none;
   }
 
+  .navigation__link_color_white {
+    color: #ffffff;
+  }
+
+  .navigation__link_color_white:visited {
+    color: #ffffff;
+  }
+
   .navigation__profile {
     display: block;
 
