@@ -19,6 +19,7 @@ function UserForm({
   apiErrorText,
   onSubmitForm,
   submitButtonText,
+  isRequestGoingOn,
   redirectText,
   redirectPath,
   redirectLinkText,
@@ -59,11 +60,16 @@ function UserForm({
             maxLength={maxLength}
             pattern={name === 'name' ? NAME_REGEX : null}
             required
+            disabled={isRequestGoingOn}
           />
         ))}
 
         <ErrorElement className="user-form__api-error" text={apiErrorText} />
-        <Button className="user-form__submit-button" isSubmitButton disabled={!isValid}>
+        <Button
+          className="user-form__submit-button"
+          isSubmitButton
+          disabled={!isValid || isRequestGoingOn}
+        >
           {submitButtonText}
         </Button>
       </form>
@@ -87,6 +93,7 @@ UserForm.propTypes = {
   apiErrorText: PropTypes.string.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   submitButtonText: PropTypes.string.isRequired,
+  isRequestGoingOn: PropTypes.bool.isRequired,
   redirectPath: PropTypes.string.isRequired,
   redirectLinkText: PropTypes.string.isRequired,
 };

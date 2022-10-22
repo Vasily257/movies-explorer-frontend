@@ -9,12 +9,14 @@ import UserForm from '../../components/UserForm/UserForm';
 import { INPUT_LIST, STATUS, USER_ERROR_TEXT } from '../../utils/scripts/constants';
 import { login, setToken } from '../../utils/scripts/MainApi';
 
-function Login({ setUserInfo }) {
+function Login({ setUserInfo, isRequestGoingOn, setIsRequestGoingOn }) {
   const [errorText, setErrorText] = useState('');
 
   const loginInputList = INPUT_LIST.filter(({ name }) => name === 'email' || name === 'password');
 
   const onLogin = async ({ email, password }) => {
+    setIsRequestGoingOn(true);
+
     try {
       const token = await login({ email, password });
       if (validator.isJWT(token.token)) {
@@ -35,6 +37,8 @@ function Login({ setUserInfo }) {
           break;
       }
     }
+
+    setIsRequestGoingOn(false);
   };
 
   return (
@@ -48,6 +52,7 @@ function Login({ setUserInfo }) {
           apiErrorText={errorText}
           onSubmitForm={onLogin}
           submitButtonText="Войти"
+          isRequestGoingOn={isRequestGoingOn}
           redirectText="Ещё не зарегистрированы?"
           redirectPath="/signup"
           redirectLinkText="Регистрация"
@@ -59,6 +64,8 @@ function Login({ setUserInfo }) {
 
 Login.propTypes = {
   setUserInfo: PropTypes.func.isRequired,
+  isRequestGoingOn: PropTypes.bool.isRequired,
+  setIsRequestGoingOn: PropTypes.func.isRequired,
 };
 
 export default Login;

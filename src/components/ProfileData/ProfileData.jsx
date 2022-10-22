@@ -19,6 +19,7 @@ function ProfileData({
   isEditingMode,
   setIsEditingMode,
   onSignOut,
+  isRequestGoingOn,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -71,7 +72,7 @@ function ProfileData({
               maxLength={maxLength}
               pattern={name === 'name' ? NAME_REGEX : null}
               required
-              disabled={!isEditingMode}
+              disabled={!isEditingMode || isRequestGoingOn}
             />
           </div>
         ))}
@@ -100,7 +101,7 @@ function ProfileData({
         ) : (
           <>
             <ErrorElement className="profile-data__api-error" text={apiErrorText} />
-            <Button className="profile-data__submit-button" isSubmitButton disabled={!isValid}>
+            <Button className="profile-data__submit-button" isSubmitButton disabled={!isValid || isRequestGoingOn}>
               Сохранить
             </Button>
           </>
@@ -117,6 +118,7 @@ ProfileData.propTypes = {
   isEditingMode: PropTypes.bool.isRequired,
   setIsEditingMode: PropTypes.func.isRequired,
   onSignOut: PropTypes.func.isRequired,
+  isRequestGoingOn: PropTypes.bool.isRequired,
 };
 
 export default ProfileData;

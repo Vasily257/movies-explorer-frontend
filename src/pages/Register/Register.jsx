@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 
 import LoginContext from '../../contexts/LoginContext';
 
@@ -9,7 +10,7 @@ import UserForm from '../../components/UserForm/UserForm';
 import { INPUT_LIST, STATUS, USER_ERROR_TEXT } from '../../utils/scripts/constants';
 import { register, login, setToken } from '../../utils/scripts/MainApi';
 
-function Register() {
+function Register({ isRequestGoingOn, setIsRequestGoingOn }) {
   const [errorText, setErrorText] = useState('');
   const { setIsLoggedIn } = useContext(LoginContext);
   const registerInputList = INPUT_LIST.map(
@@ -17,6 +18,8 @@ function Register() {
   );
 
   const onRegister = async ({ name, email, password }) => {
+    setIsRequestGoingOn(true);
+
     try {
       const userData = await register({ name, email, password });
       if (userData) {
@@ -38,6 +41,8 @@ function Register() {
           break;
       }
     }
+
+    setIsRequestGoingOn(false);
   };
 
   return (
@@ -51,6 +56,7 @@ function Register() {
           apiErrorText={errorText}
           onSubmitForm={onRegister}
           submitButtonText="Зарегистрироваться"
+          isRequestGoingOn={isRequestGoingOn}
           redirectText="Уже зарегистрированы?"
           redirectPath="/signin"
           redirectLinkText="Войти"
@@ -59,5 +65,10 @@ function Register() {
     </>
   );
 }
+
+Register.propTypes = {
+  isRequestGoingOn: PropTypes.bool.isRequired,
+  setIsRequestGoingOn: PropTypes.func.isRequired,
+};
 
 export default Register;

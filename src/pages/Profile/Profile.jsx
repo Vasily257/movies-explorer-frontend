@@ -10,7 +10,7 @@ import ProfileData from '../../components/ProfileData/ProfileData';
 import { STATUS, USER_ERROR_TEXT } from '../../utils/scripts/constants';
 import { updateProfile } from '../../utils/scripts/MainApi';
 
-function Profile({ onSignOut }) {
+function Profile({ onSignOut, isRequestGoingOn, setIsRequestGoingOn }) {
   const [errorText, setErrorText] = useState('');
   const { setCurrentUser } = useContext(CurrentUserContext);
 
@@ -18,6 +18,8 @@ function Profile({ onSignOut }) {
   const [isSuccessfulUpdate, setIsSuccessfulUpdate] = useState(false);
 
   const onUpdateProfile = async ({ name, email, currentEmail }) => {
+    setIsRequestGoingOn(true);
+
     try {
       const updatedUserData = await updateProfile({ name, email, currentEmail });
       if (updatedUserData) {
@@ -36,6 +38,8 @@ function Profile({ onSignOut }) {
           break;
       }
     }
+
+    setIsRequestGoingOn(false);
   };
 
   return (
@@ -49,6 +53,7 @@ function Profile({ onSignOut }) {
           isEditingMode={isEditingMode}
           setIsEditingMode={setIsEditingMode}
           onSignOut={onSignOut}
+          isRequestGoingOn={isRequestGoingOn}
         />
       </Content>
     </>
@@ -57,6 +62,8 @@ function Profile({ onSignOut }) {
 
 Profile.propTypes = {
   onSignOut: PropTypes.func.isRequired,
+  isRequestGoingOn: PropTypes.bool.isRequired,
+  setIsRequestGoingOn: PropTypes.func.isRequired,
 };
 
 export default Profile;

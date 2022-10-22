@@ -46,6 +46,7 @@ function App() {
     errorText: '',
   });
   const [isProladerShown, setIsProladerShown] = useState(false);
+  const [isRequestGoingOn, setIsRequestGoingOn] = useState(false);
 
   const loginValue = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
   const currentUserValue = useMemo(
@@ -190,7 +191,11 @@ function App() {
               path="/profile"
               element={(
                 <ProtectedRoute>
-                  <Profile onSignOut={onSignOut} />
+                  <Profile
+                    onSignOut={onSignOut}
+                    isRequestGoingOn={isRequestGoingOn}
+                    setIsRequestGoingOn={setIsRequestGoingOn}
+                  />
                 </ProtectedRoute>
               )}
             />
@@ -198,7 +203,11 @@ function App() {
               path="/signin"
               element={(
                 <RouteForAnonymous>
-                  <Login setUserInfo={setUserInfo} />
+                  <Login
+                    setUserInfo={setUserInfo}
+                    isRequestGoingOn={isRequestGoingOn}
+                    setIsRequestGoingOn={setIsRequestGoingOn}
+                  />
                 </RouteForAnonymous>
               )}
             />
@@ -206,7 +215,10 @@ function App() {
               path="/signup"
               element={(
                 <RouteForAnonymous>
-                  <Register />
+                  <Register
+                    isRequestGoingOn={isRequestGoingOn}
+                    setIsRequestGoingOn={setIsRequestGoingOn}
+                  />
                 </RouteForAnonymous>
               )}
             />
