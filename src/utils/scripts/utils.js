@@ -1,5 +1,5 @@
 import validator from 'validator';
-import { BASE_URL } from './constants';
+import { BASE_URL, STRING_VALIDATION_ERROR_TEXT, NUMBER_OF_ROWS } from './constants';
 
 function handleResponse(response) {
   if (response.ok) {
@@ -40,7 +40,7 @@ function bringMoviesToSingleView(movies) {
 
 function validateString(string) {
   if (typeof string === 'string' || string instanceof String) return string;
-  return 'значение не является строкой';
+  return STRING_VALIDATION_ERROR_TEXT;
 }
 
 function validateNumber(number) {
@@ -87,21 +87,21 @@ function getRows(columns) {
   let rows = 0;
 
   if (columns === 1) {
-    rows = 5;
+    rows = NUMBER_OF_ROWS.INITIAL_ROWS_FOR_ONE_COLUMN;
   } else {
-    rows = 4;
+    rows = NUMBER_OF_ROWS.INITIAL_ROWS_FOR_TWO_AND_MORE_COLUMNS;
   }
 
   return rows;
 }
 
 function getAddedMovies(columns) {
-  let addedMovies = 0;
+  let addedMovies = NUMBER_OF_ROWS.INITIAL_ADDED_ROWS;
 
   if (columns === 1) {
-    addedMovies = 2 * columns;
+    addedMovies = NUMBER_OF_ROWS.ADDED_ROWS_FOR_ONE_COLUMN * columns;
   } else {
-    addedMovies = columns;
+    addedMovies = NUMBER_OF_ROWS.ADDED_ROWS_FOR_TWO_AND_MORE_COLUMNS * columns;
   }
 
   return addedMovies;

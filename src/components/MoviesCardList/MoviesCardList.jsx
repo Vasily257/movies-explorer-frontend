@@ -9,7 +9,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import ErrorElement from '../ErrorElement/ErrorElement';
 import Button from '../Button/Button';
 
-import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
+import { MOVIES_ERROR_TEXT, TIME_LIMIT_FOR_SHORTS_MOVIES } from '../../utils/scripts/constants';
 import { getRows, getAddedMovies, filterMovies } from '../../utils/scripts/utils';
 
 import './MoviesCardList.css';
@@ -83,7 +83,7 @@ function MoviesCardList({
 
   useEffect(() => {
     if (isShortsMovies) {
-      setLimitation(40);
+      setLimitation(TIME_LIMIT_FOR_SHORTS_MOVIES);
     } else {
       setLimitation(Infinity);
     }

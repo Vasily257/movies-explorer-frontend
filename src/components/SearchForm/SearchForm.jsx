@@ -33,8 +33,6 @@ function SearchForm({
     event.preventDefault();
     if (values.movie) {
       if (!isSavedMovies) {
-        // eslint-disable-next-line no-debugger
-        debugger;
         if (localStorageData.beatfilmMovies) {
           setDisplayedData((prevData) => ({
             ...prevData,

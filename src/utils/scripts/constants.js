@@ -28,6 +28,7 @@ const COMMON_ERROR_TEXT = {
 };
 
 const EMAIL_VALIDATION_ERROR_TEXT = 'Используйте требуемый формат.';
+const STRING_VALIDATION_ERROR_TEXT = 'значение не является строкой';
 
 const BASE_URL = {
   BEATFILM_MOVIES: 'https://api.nomoreparties.co',
@@ -63,6 +64,22 @@ const INPUT_LIST = [
 
 const NAME_REGEX = '([A-Za-z /-]{2,30})|([А-ЯЁа-яё /-]{2,30})';
 
+const TIME_LIMIT_FOR_SHORTS_MOVIES = 40;
+
+const NUMBER_OF_ROWS = {
+  INITIAL_ROWS_FOR_ONE_COLUMN: 5,
+  INITIAL_ROWS_FOR_TWO_AND_MORE_COLUMNS: 4,
+  ADDED_ROWS_FOR_ONE_COLUMN: 2,
+  ADDED_ROWS_FOR_TWO_AND_MORE_COLUMNS: 1,
+  INITIAL_ADDED_ROWS: 0,
+};
+
+const MEDIA_QUERIES = {
+  IS_MOBILE: '(min-width: 300px)',
+  IS_TABLET: '(min-width: 600px)',
+  IS_DESKTOP: '(min-width: 900px)',
+};
+
 export {
   STATUS,
   USER_ERROR_TEXT,
@@ -71,6 +88,10 @@ export {
   COMMON_ERROR_TEXT,
   BASE_URL,
   EMAIL_VALIDATION_ERROR_TEXT,
+  STRING_VALIDATION_ERROR_TEXT,
   INPUT_LIST,
   NAME_REGEX,
+  TIME_LIMIT_FOR_SHORTS_MOVIES,
+  NUMBER_OF_ROWS,
+  MEDIA_QUERIES,
 };
