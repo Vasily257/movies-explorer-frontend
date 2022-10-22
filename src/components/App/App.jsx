@@ -14,7 +14,7 @@ import Login from '../../pages/Login/Login';
 import Register from '../../pages/Register/Register';
 import NotFound from '../../pages/NotFound/NotFound';
 import ProtectedRoute from '../HOC/ProtectedRoute';
-import UnprotectedRoute from '../HOC/UnprotectedRoute';
+import RouteForAnonymous from '../HOC/RouteForAnonymous';
 
 import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
 import { bringMoviesToSingleView, validateMovies } from '../../utils/scripts/utils';
@@ -149,7 +149,7 @@ function App() {
       }
     }
     checkToken();
-  }, [setCurrentUser, setSavedMovies, setIsLoggedIn, onSignOut, setUserInfo]);
+  }, [onSignOut, setUserInfo]);
 
   return (
     <div className="app">
@@ -197,17 +197,17 @@ function App() {
             <Route
               path="/signin"
               element={(
-                <UnprotectedRoute>
+                <RouteForAnonymous>
                   <Login setUserInfo={setUserInfo} />
-                </UnprotectedRoute>
+                </RouteForAnonymous>
               )}
             />
             <Route
               path="/signup"
               element={(
-                <UnprotectedRoute>
+                <RouteForAnonymous>
                   <Register />
-                </UnprotectedRoute>
+                </RouteForAnonymous>
               )}
             />
             <Route path="*" element={<NotFound />} />
