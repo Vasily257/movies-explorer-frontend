@@ -119,7 +119,9 @@ function SearchForm({
           id="shorts-input"
           onChange={() => {
             setDisplayedData((prevData) => ({ ...prevData, isShortsMovies: !isShortsMovies }));
-            localStorage.setItem('isShortsMovies', !isShortsMovies);
+            if (!isSavedMovies) {
+              localStorage.setItem('isShortsMovies', !isShortsMovies);
+            }
           }}
           wrapperClassName="search-form__shorts-wrapper"
           isLabelShown
