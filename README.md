@@ -18,6 +18,9 @@ A website link: https://kalmykov.moviesexplorer.nomoredomains.sbs/
 A server link: https://api.kalmykov.moviesexplorer.nomoredomains.sbs/  
 A backend part: https://github.com/Vasily257/movies-explorer-api  
    
+## Animation  
+The project uses simple animation like a smooth change of opacity or background color. Also the project has an animated preloader which displaying when user makes a request.  
+   
 ## Usage  
 The project uses the following main library:  
 - React.js v18  
