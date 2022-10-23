@@ -12,18 +12,18 @@ export default function useForm() {
     const { name, value, validationMessage } = event.target;
 
     setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: validationMessage });
+    setIsValid(event.target.closest('form').checkValidity());
 
     if (name === 'email') {
       if (validator.isEmail(value)) {
         setErrors({ ...errors, [name]: '' });
+        setIsValid(true);
       } else {
         setErrors({ ...errors, [name]: EMAIL_VALIDATION_ERROR_TEXT });
+        setIsValid(false);
       }
-    } else {
-      setErrors({ ...errors, [name]: validationMessage });
     }
-
-    setIsValid(event.target.closest('form').checkValidity());
   };
 
   const resetForm = useCallback(
