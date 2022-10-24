@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './CustomLink.css';
+
 import { Link, NavLink } from 'react-router-dom';
+
+import './CustomLink.css';
 
 function CustomLink({
   path, children, className, activeClassName, onClick, target, ariaLabel,

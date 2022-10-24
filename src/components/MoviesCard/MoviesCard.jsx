@@ -1,38 +1,92 @@
-import { React, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './MoviesCard.css';
+
 import Button from '../Button/Button';
+import CustomLink from '../CustomLink/CustomLink';
+
+import { getHoursAndMinutes } from '../../utils/scripts/utils';
+
+import './MoviesCard.css';
 
 function MoviesCard({
-  name, url, duration, isSavedMovies,
+  country,
+  director,
+  duration,
+  year,
+  description,
+  image,
+  trailerLink,
+  nameRU,
+  nameEN,
+  thumbnail,
+  movieId,
+  isSavedMovies,
+  savedMovies,
+  onAddSavedMovie,
+  onDeleteSavedMovie,
 }) {
-  const [isSaved, setIsSaved] = useState(false);
+  const [isSavedCard, setIsSavedCard] = useState(false);
+  const { hours, minutes } = getHoursAndMinutes(duration);
 
-  const hours = Math.floor(duration / 60);
-  const minutes = duration % 60;
+  function handleAddingClick() {
+    onAddSavedMovie({
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailerLink,
+      nameRU,
+      nameEN,
+      thumbnail,
+      movieId,
+    });
+  }
+
+  function handleDeletingClick() {
+    const deletedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === movieId);
+    if (deletedMovie) {
+      onDeleteSavedMovie(deletedMovie._id);
+    }
+  }
+
+  useEffect(() => {
+    if (savedMovies.some((savedMovie) => savedMovie.movieId === movieId)) {
+      setIsSavedCard(true);
+    } else {
+      setIsSavedCard(false);
+    }
+  }, [movieId, savedMovies]);
 
   return (
     <li className="movies-card">
-      <img
-        className="movies-card__image"
-        src={`https://api.nomoreparties.co${url}`}
-        alt="Постер фильма"
-      />
+      <CustomLink className="movies-card__link" path={trailerLink}>
+        <img className="movies-card__image" src={image} alt="Постер фильма" />
+      </CustomLink>
       <div className="movies-card__info">
-        <p className="movies-card__name">{name}</p>
+        <p className="movies-card__name">{nameRU}</p>
         {isSavedMovies ? (
           <Button
-            className="movies-card__button movies-card__button_type_delete"
-            onClick={() => {}}
+            className="movies-card__button movies-card__button_type_saved"
+            onClick={() => {
+              handleDeletingClick();
+            }}
           />
         ) : (
           <Button
-            className={`movies-card__button movies-card__button_type_save ${
-              isSaved ? 'movies-card__button_active' : ''
+            className={`movies-card__button  ${
+              !isSavedCard ? 'movies-card__button_type_not-added' : 'movies-card__button_type_added'
             }`}
-            onClick={() => {
-              setIsSaved(!isSaved);
-            }}
+            onClick={
+              !isSavedCard
+                ? () => {
+                  handleAddingClick();
+                }
+                : () => {
+                  handleDeletingClick();
+                }
+            }
           />
         )}
         <p className="movies-card__duration">
@@ -44,14 +98,30 @@ function MoviesCard({
 }
 
 MoviesCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  director: PropTypes.string.isRequired,
   duration: PropTypes.number.isRequired,
+  year: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  trailerLink: PropTypes.string.isRequired,
+  nameRU: PropTypes.string.isRequired,
+  nameEN: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  movieId: PropTypes.number.isRequired,
   isSavedMovies: PropTypes.bool,
+  savedMovies: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ),
+  onAddSavedMovie: PropTypes.func,
+  onDeleteSavedMovie: PropTypes.func,
 };
 
 MoviesCard.defaultProps = {
+  savedMovies: [],
   isSavedMovies: false,
+  onAddSavedMovie: () => {},
+  onDeleteSavedMovie: () => {},
 };
 
 export default MoviesCard;

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import './Button.css';
 
 function Button({
@@ -22,7 +23,7 @@ Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string.isRequired,
   isSubmitButton: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   ariaLabel: PropTypes.string,
   disabled: PropTypes.bool,
 };
@@ -30,6 +31,7 @@ Button.propTypes = {
 Button.defaultProps = {
   children: '',
   isSubmitButton: false,
+  onClick: () => {},
   ariaLabel: '',
   disabled: false,
 };

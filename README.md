@@ -1,16 +1,32 @@
-# movies-explorer-frontend
+# Movies Explorer Frontend
+This project is a frontend part of the Movies Explorer project (my diploma project).
 
-Фронтенд для дипломного проекта `Movies Explorer`.
-Ссылка на макет: https://disk.yandex.ru/d/14_x0vVfolfnxw
+## Functionality  
+The project has an API for:  
+- to get/create/register/login a user and to update his data  
+- to get/find/create/delete the cards  
 
-Адрес сервера: http://api.kalmykov.moviesexplorer.nomoredomains.sbs/
-IP-адрес сервера: 158.160.10.193:80
+## Technology stack  
+`JS`, `React.js`, `Git`  
+  
+## Links  
+A website link: https://kalmykov.moviesexplorer.nomoredomains.sbs/  
+A server link: https://api.kalmykov.moviesexplorer.nomoredomains.sbs/  
+A backend part: https://github.com/Vasily257/movies-explorer-api  
+   
+## Animation  
+The project uses simple animation like a smooth change of opacity or background color. Also the project has an animated preloader which displaying when user makes a request.  
+   
+## Usage  
+The project uses the following main library:  
+- React.js v18  
+- React Router v6 
 
-## Пояснения для ревьюера
+To clone a project, you need to open desired directory and use the command:  
+**HTTPS**: `git clone https://github.com/Vasily257/movies-explorer-frontend.git`  
+**SSH**: `git clone git@github.com:Vasily257/movies-explorer-frontend.git`  
 
-Часть функционала из следующего этапа уже реализована, поэтому есть несколько комментариев:
-1. Роуты `/` , `/signin` и `/signup` доступны только для неавторизованных пользователей.
-2. Чтобы авторизоваться, нужно перейти на `/signin` и нажать кнопку «Войти».
-3. Роуты `/movies`, `/saved-movies` и `/profile` защищены авторизацией.
-4. Чтобы разголиниться, нужно перейти на `/profile` и нажать «Выйти из аккаунта».
-5. Страница `404` доступна для всех пользователей.
+To start a project, you need to open the `src` folder in the terminal and use the command `npm run start`.
+  
+## Status
+The project is closed, there are no plans for completion.

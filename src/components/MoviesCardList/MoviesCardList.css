@@ -19,6 +19,13 @@
   list-style-type: none;
 }
 
+.movies-card-list__error {
+  max-width: 80%;
+  margin: 0 auto;
+
+  text-align: center;
+}
+
 .movies-card-list__more {
   width: 100%;
   margin: 80px auto 0;

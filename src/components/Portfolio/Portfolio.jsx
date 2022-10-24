@@ -1,7 +1,9 @@
 import React from 'react';
 import CustomLink from '../CustomLink/CustomLink';
-import './Portfolio.css';
+
 import portfolioLinkIcon from '../../images/portfolio-link-icon.svg';
+
+import './Portfolio.css';
 
 function Portfolio() {
   return (
