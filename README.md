@@ -1,7 +1,3 @@
-### Info for the reviewer:
-Pull-request (Stage 4): https://github.com/Vasily257/movies-explorer-frontend/pull/2  
-Layout in Figma: https://disk.yandex.ru/d/14_x0vVfolfnxw  
-
 # Movies Explorer Frontend
 This project is a frontend part of the Movies Explorer project (my diploma project).
 
@@ -33,4 +29,4 @@ To clone a project, you need to open desired directory and use the command:
 To start a project, you need to open the `src` folder in the terminal and use the command `npm run start`.
   
 ## Status
-The project is in work.
+The project is closed, there are no plans for completion.
