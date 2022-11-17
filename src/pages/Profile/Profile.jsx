@@ -5,7 +5,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';
-import ProfileData from '../../components/ProfileData/ProfileData';
+import ProfileEditForm from '../../components/ProfileEditForm/ProfileEditForm';
 
 import { STATUS, USER_ERROR_TEXT } from '../../utils/scripts/constants';
 import { updateProfile } from '../../utils/scripts/MainApi';
@@ -46,7 +46,7 @@ function Profile({ onSignOut, isRequestGoingOn, setIsRequestGoingOn }) {
     <>
       <Header />
       <Content>
-        <ProfileData
+        <ProfileEditForm
           apiErrorText={errorText}
           onSubmitForm={onUpdateProfile}
           isSuccessfulUpdate={isSuccessfulUpdate}

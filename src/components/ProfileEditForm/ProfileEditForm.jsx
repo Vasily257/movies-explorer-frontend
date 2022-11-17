@@ -10,9 +10,9 @@ import ErrorElement from '../ErrorElement/ErrorElement';
 
 import { INPUT_LIST, NAME_REGEX, SUCCESSFUL_UPDATE_TEXT } from '../../utils/scripts/constants';
 
-import './ProfileData.css';
+import './ProfileEditForm.css';
 
-function ProfileData({
+function ProfileEditForm({
   apiErrorText,
   onSubmitForm,
   isSuccessfulUpdate,
@@ -48,16 +48,16 @@ function ProfileData({
   });
 
   return (
-    <section className="profile-data">
-      <h2 className="profile-data__title">{`Привет, ${currentUser.name}!`}</h2>
-      <form className="profile-data__form" name="profile" onSubmit={handleSubmit} noValidate>
+    <section className="profile-edit-form">
+      <h2 className="profile-edit-form__title">{`Привет, ${currentUser.name}!`}</h2>
+      <form className="profile-edit-form__form" name="profile" onSubmit={handleSubmit} noValidate>
         {profileInputList.map(({
           name, type, id, labelText, minLength, maxLength,
         }) => (
-          <div className="profile-data__field" key={id}>
-            <span className="profile-data__label">{labelText}</span>
+          <div className="profile-edit-form__field" key={id}>
+            <span className="profile-edit-form__label">{labelText}</span>
             <Input
-              inputClassName="profile-data__input"
+              inputClassName="profile-edit-form__input"
               type={type}
               name={name}
               id={`input-${name}`}
@@ -65,8 +65,8 @@ function ProfileData({
                 handleChange(event);
               }}
               value={values[name]}
-              wrapperClassName="profile-data__input-wrapper"
-              inputErrorClassName="profile-data__input-error"
+              wrapperClassName="profile-edit-form__input-wrapper"
+              inputErrorClassName="profile-edit-form__input-error"
               inputErrorText={errors[name]}
               minLength={minLength}
               maxLength={maxLength}
@@ -78,11 +78,11 @@ function ProfileData({
         ))}
         {!isEditingMode ? (
           <>
-            <span className="profile-data__api-success">
+            <span className="profile-edit-form__api-success">
               {isSuccessfulUpdate ? SUCCESSFUL_UPDATE_TEXT : ''}
             </span>
             <Button
-              className="profile-data__edit-button"
+              className="profile-edit-form__edit-button"
               onClick={() => {
                 setIsEditingMode(true);
               }}
@@ -90,7 +90,7 @@ function ProfileData({
               Редактировать
             </Button>
             <Button
-              className="profile-data__exit-button"
+              className="profile-edit-form__exit-button"
               onClick={() => {
                 onSignOut();
               }}
@@ -100,8 +100,8 @@ function ProfileData({
           </>
         ) : (
           <>
-            <ErrorElement className="profile-data__api-error" text={apiErrorText} />
-            <Button className="profile-data__submit-button" isSubmitButton disabled={!isValid || isRequestGoingOn}>
+            <ErrorElement className="profile-edit-form__api-error" text={apiErrorText} />
+            <Button className="profile-edit-form__submit-button" isSubmitButton disabled={!isValid || isRequestGoingOn}>
               Сохранить
             </Button>
           </>
@@ -111,7 +111,7 @@ function ProfileData({
   );
 }
 
-ProfileData.propTypes = {
+ProfileEditForm.propTypes = {
   apiErrorText: PropTypes.string.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   isSuccessfulUpdate: PropTypes.bool.isRequired,
@@ -121,4 +121,4 @@ ProfileData.propTypes = {
   isRequestGoingOn: PropTypes.bool.isRequired,
 };
 
-export default ProfileData;
+export default ProfileEditForm;
