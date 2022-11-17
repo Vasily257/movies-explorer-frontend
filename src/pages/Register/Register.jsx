@@ -5,7 +5,7 @@ import LoginContext from '../../contexts/LoginContext';
 
 import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';
-import UserForm from '../../components/UserForm/UserForm';
+import UserAuthForm from '../../components/UserAuthForm/UserAuthForm';
 
 import { INPUT_LIST, STATUS, USER_ERROR_TEXT } from '../../utils/scripts/constants';
 import { register, login, setToken } from '../../utils/scripts/MainApi';
@@ -49,7 +49,7 @@ function Register({ isRequestGoingOn, setIsRequestGoingOn }) {
     <>
       <Header isEmptyHeader />
       <Content>
-        <UserForm
+        <UserAuthForm
           title="Добро пожаловать!"
           formName="signup"
           inputList={registerInputList}
