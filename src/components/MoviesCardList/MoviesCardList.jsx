@@ -11,6 +11,7 @@ import Button from '../Button/Button';
 
 import { MOVIES_ERROR_TEXT, TIME_LIMIT_FOR_SHORTS_MOVIES } from '../../utils/scripts/constants';
 import {
+  getlocalStorageItems,
   getRows,
   getAddedMovies,
   filterMovies,
@@ -41,18 +42,14 @@ function MoviesCardList({
   const filtredMovies = filterMovies(allMovies, searchQuery, limitation, isSavedMovies);
 
   useEffect(() => {
-    const localStorageData = {
-      searchQuery: localStorage.getItem('query'),
-      beatfilmMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
-      isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')),
-    };
+    const localStorageItems = getlocalStorageItems();
 
     if (!isSavedMovies) {
       setDisplayedData((prevData) => ({
         ...prevData,
-        searchQuery: localStorageData.searchQuery || '',
-        allMovies: localStorageData.beatfilmMovies || [],
-        isShortsMovies: localStorageData.isShortsMovies || false,
+        searchQuery: localStorageItems.searchQuery || '',
+        allMovies: localStorageItems.beatfilmMovies || [],
+        isShortsMovies: localStorageItems.isShortsMovies || false,
       }));
     }
   }, [isSavedMovies, savedMovies, setDisplayedData, gridContainer, filtredMovies.length]);

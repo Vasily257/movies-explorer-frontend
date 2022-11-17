@@ -9,6 +9,15 @@ function handleResponse(response) {
   return Promise.reject(new Error(response.status));
 }
 
+function getlocalStorageItems() {
+  const localStorageItems = {
+    searchQuery: localStorage.getItem('query'),
+    beatfilmMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
+    isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')),
+  };
+  return localStorageItems;
+}
+
 function bringMoviesToSingleView(movies) {
   return movies.map(
     ({
@@ -130,6 +139,7 @@ function sortMoviesInOrder(movies) {
 
 export {
   handleResponse,
+  getlocalStorageItems,
   bringMoviesToSingleView,
   validateMovies,
   getRows,
