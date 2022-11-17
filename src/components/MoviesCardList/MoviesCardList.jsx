@@ -10,7 +10,12 @@ import ErrorElement from '../ErrorElement/ErrorElement';
 import Button from '../Button/Button';
 
 import { MOVIES_ERROR_TEXT, TIME_LIMIT_FOR_SHORTS_MOVIES } from '../../utils/scripts/constants';
-import { getRows, getAddedMovies, filterMovies } from '../../utils/scripts/utils';
+import {
+  getRows,
+  getAddedMovies,
+  filterMovies,
+  sortMoviesInOrder,
+} from '../../utils/scripts/utils';
 
 import './MoviesCardList.css';
 
@@ -57,7 +62,7 @@ function MoviesCardList({
       setDisplayedData((prevData) => ({
         ...prevData,
         searchQuery: '',
-        allMovies: savedMovies.sort((prev, next) => prev.movieId - next.movieId) || [],
+        allMovies: sortMoviesInOrder(savedMovies) || [],
         isShortsMovies: false,
       }));
     }

@@ -124,6 +124,10 @@ function filterMovies(moviesList, searchQuery, limitation, isSavedMovies) {
   return filtredMovies;
 }
 
+function sortMoviesInOrder(movies) {
+  return movies.sort((prev, next) => prev.movieId - next.movieId);
+}
+
 export {
   handleResponse,
   bringMoviesToSingleView,
@@ -132,4 +136,5 @@ export {
   getAddedMovies,
   getHoursAndMinutes,
   filterMovies,
+  sortMoviesInOrder,
 };
