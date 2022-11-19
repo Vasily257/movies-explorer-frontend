@@ -10,7 +10,13 @@ import ErrorElement from '../ErrorElement/ErrorElement';
 import Button from '../Button/Button';
 
 import { MOVIES_ERROR_TEXT, TIME_LIMIT_FOR_SHORTS_MOVIES } from '../../utils/scripts/constants';
-import { getRows, getAddedMovies, filterMovies } from '../../utils/scripts/utils';
+import {
+  getlocalStorageItems,
+  getRows,
+  getAddedMovies,
+  filterMovies,
+  sortMoviesInOrder,
+} from '../../utils/scripts/utils';
 
 import './MoviesCardList.css';
 
@@ -36,18 +42,14 @@ function MoviesCardList({
   const filtredMovies = filterMovies(allMovies, searchQuery, limitation, isSavedMovies);
 
   useEffect(() => {
-    const localStorageData = {
-      searchQuery: localStorage.getItem('query'),
-      beatfilmMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
-      isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')),
-    };
+    const localStorageItems = getlocalStorageItems();
 
     if (!isSavedMovies) {
       setDisplayedData((prevData) => ({
         ...prevData,
-        searchQuery: localStorageData.searchQuery || '',
-        allMovies: localStorageData.beatfilmMovies || [],
-        isShortsMovies: localStorageData.isShortsMovies || false,
+        searchQuery: localStorageItems.searchQuery || '',
+        allMovies: localStorageItems.beatfilmMovies || [],
+        isShortsMovies: localStorageItems.isShortsMovies || false,
       }));
     }
   }, [isSavedMovies, savedMovies, setDisplayedData, gridContainer, filtredMovies.length]);
@@ -57,7 +59,7 @@ function MoviesCardList({
       setDisplayedData((prevData) => ({
         ...prevData,
         searchQuery: '',
-        allMovies: savedMovies.sort((prev, next) => prev.movieId - next.movieId) || [],
+        allMovies: sortMoviesInOrder(savedMovies) || [],
         isShortsMovies: false,
       }));
     }

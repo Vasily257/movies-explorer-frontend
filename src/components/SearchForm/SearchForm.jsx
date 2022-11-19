@@ -7,6 +7,7 @@ import Button from '../Button/Button';
 import Input from '../Input/Input';
 
 import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
+import { getlocalStorageItems } from '../../utils/scripts/utils';
 import searchFormIcon from '../../images/search-form-icon.svg';
 
 import './SearchForm.css';
@@ -22,21 +23,16 @@ function SearchForm({
   const [errorText, setErrorText] = useState('');
 
   const { isShortsMovies } = displayedData;
-
-  const localStorageData = {
-    searchQuery: localStorage.getItem('query'),
-    beatfilmMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
-    isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')),
-  };
+  const localStorageItems = getlocalStorageItems();
 
   function handleSubmit(event) {
     event.preventDefault();
     if (values.movie) {
       if (!isSavedMovies) {
-        if (localStorageData.beatfilmMovies) {
+        if (localStorageItems.beatfilmMovies) {
           setDisplayedData((prevData) => ({
             ...prevData,
-            allMovies: localStorageData.beatfilmMovies,
+            allMovies: localStorageItems.beatfilmMovies,
           }));
         } else {
           setMoviesFromBeatfilm();
@@ -69,12 +65,12 @@ function SearchForm({
     if (!isSavedMovies) {
       setValues((prevValues) => ({
         ...prevValues,
-        movie: localStorageData.searchQuery || '',
+        movie: localStorageItems.searchQuery || '',
       }));
     } else {
       setValues((prevValues) => ({ ...prevValues, movie: '' }));
     }
-  }, [isSavedMovies, localStorageData.searchQuery, setValues]);
+  }, [isSavedMovies, localStorageItems.searchQuery, setValues]);
 
   return (
     <section className="search-form">

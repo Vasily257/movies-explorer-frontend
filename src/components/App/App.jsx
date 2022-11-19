@@ -17,7 +17,12 @@ import ProtectedRoute from '../HOC/ProtectedRoute';
 import RouteForAnonymous from '../HOC/RouteForAnonymous';
 
 import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
-import { bringMoviesToSingleView, validateMovies } from '../../utils/scripts/utils';
+import {
+  getlocalStorageItems,
+  bringMoviesToSingleView,
+  validateMovies,
+  sortMoviesInOrder,
+} from '../../utils/scripts/utils';
 import getMoviesFromBeatfilm from '../../utils/scripts/MoviesApi';
 import {
   addSavedMovie,
@@ -32,17 +37,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '', _id: '' });
 
-  const localStorageData = {
-    searchQuery: localStorage.getItem('query'),
-    beatfilmMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
-    isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')),
-  };
+  const localStorageItems = getlocalStorageItems();
 
   const [savedMovies, setSavedMovies] = useState([]);
   const [displayedData, setDisplayedData] = useState({
-    searchQuery: localStorageData.searchQuery || '',
-    allMovies: localStorageData.beatfilmMovies || [],
-    isShortsMovies: localStorageData.isShortsMovies || false,
+    searchQuery: localStorageItems.searchQuery || '',
+    allMovies: localStorageItems.beatfilmMovies || [],
+    isShortsMovies: localStorageItems.isShortsMovies || false,
     errorText: '',
   });
   const [isProladerShown, setIsProladerShown] = useState(false);
@@ -110,9 +111,11 @@ function App() {
       try {
         const deletedSavedMovie = await deleteSavedMovie(id);
         if (deletedSavedMovie) {
-          setSavedMovies((prevSavedMovies) => prevSavedMovies
-            .filter((savedMovie) => savedMovie.movieId !== deletedSavedMovie.movieId)
-            .sort((prev, next) => prev.movieId - next.movieId));
+          setSavedMovies((prevSavedMovies) => sortMoviesInOrder(
+            prevSavedMovies.filter(
+              (savedMovie) => savedMovie.movieId !== deletedSavedMovie.movieId,
+            ),
+          ));
         }
       } catch (error) {
         // eslint-disable-next-line no-console

@@ -4,7 +4,7 @@ import validator from 'validator';
 
 import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';
-import UserForm from '../../components/UserForm/UserForm';
+import UserAuthForm from '../../components/UserAuthForm/UserAuthForm';
 
 import { INPUT_LIST, STATUS, USER_ERROR_TEXT } from '../../utils/scripts/constants';
 import { login, setToken } from '../../utils/scripts/MainApi';
@@ -45,7 +45,7 @@ function Login({ setUserInfo, isRequestGoingOn, setIsRequestGoingOn }) {
     <>
       <Header isEmptyHeader />
       <Content>
-        <UserForm
+        <UserAuthForm
           title="Рады видеть!"
           formName="signin"
           inputList={loginInputList}

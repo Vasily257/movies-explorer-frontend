@@ -9,6 +9,15 @@ function handleResponse(response) {
   return Promise.reject(new Error(response.status));
 }
 
+function getlocalStorageItems() {
+  const localStorageItems = {
+    searchQuery: localStorage.getItem('query'),
+    beatfilmMovies: JSON.parse(localStorage.getItem('moviesFromBeatfilm')),
+    isShortsMovies: JSON.parse(localStorage.getItem('isShortsMovies')),
+  };
+  return localStorageItems;
+}
+
 function bringMoviesToSingleView(movies) {
   return movies.map(
     ({
@@ -124,12 +133,18 @@ function filterMovies(moviesList, searchQuery, limitation, isSavedMovies) {
   return filtredMovies;
 }
 
+function sortMoviesInOrder(movies) {
+  return movies.sort((prev, next) => prev.movieId - next.movieId);
+}
+
 export {
   handleResponse,
+  getlocalStorageItems,
   bringMoviesToSingleView,
   validateMovies,
   getRows,
   getAddedMovies,
   getHoursAndMinutes,
   filterMovies,
+  sortMoviesInOrder,
 };

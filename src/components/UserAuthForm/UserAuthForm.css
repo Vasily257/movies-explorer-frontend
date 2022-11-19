@@ -1,4 +1,4 @@
-.user-form {
+.user-auth-form {
   position: relative;
 
   box-sizing: border-box;
@@ -9,7 +9,7 @@
   padding: 0 30px 30px;
 }
 
-.user-form__title {
+.user-auth-form__title {
   margin: 0;
   padding: 0;
 
@@ -22,7 +22,7 @@
   line-height: calc(29 / 24);
 }
 
-.user-form__form {
+.user-auth-form__form {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -32,7 +32,7 @@
   margin-top: 60px;
 }
 
-.user-form__label {
+.user-auth-form__label {
   display: block;
 
   margin-top: 20px;
@@ -44,7 +44,7 @@
   line-height: calc(12 / 10);
 }
 
-.user-form__input {
+.user-auth-form__input {
   height: 46px;
   margin-top: 10px;
   padding-left: 15px;
@@ -58,11 +58,11 @@
   line-height: calc(16 / 13);
 }
 
-.user-form__api-error {
+.user-auth-form__api-error {
   margin-top: auto;
 }
 
-.user-form__submit-button {
+.user-auth-form__submit-button {
   width: 100%;
   margin-top: 13px;
   padding: 15px 0;
@@ -78,16 +78,16 @@
   line-height: calc(15 / 12);
 }
 
-.user-form__submit-button:hover {
+.user-auth-form__submit-button:hover {
   background-color: rgba(52, 86, 243, 0.8);
 }
 
-.user-form__submit-button:disabled {
+.user-auth-form__submit-button:disabled {
   color: #c2c2c2;
   background-color: #f8f8f8;
 }
 
-.user-form__redirect-wrapper {
+.user-auth-form__redirect-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,37 +103,37 @@
   line-height: calc(15 / 12);
 }
 
-.user-form__redirect-text {
+.user-auth-form__redirect-text {
   color: var(--grey-color);
 }
 
-.user-form__redirect-link {
+.user-auth-form__redirect-link {
   margin-left: 7px;
 
   color: var(--blue-color);
 }
 
-.user-form__redirect-link:visited {
+.user-auth-form__redirect-link:visited {
   color: var(--blue-color);
 }
 
 @media screen and (min-width: 600px) {
-  .user-form {
+  .user-auth-form {
     max-height: 592px;
     margin-top: 40px;
     padding: 0;
   }
 
-  .user-form__title {
+  .user-auth-form__title {
     text-align: left;
   }
 
-  .user-form__form {
+  .user-auth-form__form {
     max-height: 490px;
     margin-top: 20px;
   }
 
-  .user-form__submit-button {
+  .user-auth-form__submit-button {
     margin-top: 15px;
     padding: 13px 0 15px;
 
@@ -141,7 +141,7 @@
     line-height: calc(17 / 14);
   }
 
-  .user-form__redirect-wrapper {
+  .user-auth-form__redirect-wrapper {
     margin-top: 16px;
 
     font-size: 14px;

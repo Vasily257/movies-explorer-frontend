@@ -1,4 +1,4 @@
-.profile-data {
+.profile-edit-form {
   position: relative;
 
   display: flex;
@@ -13,7 +13,7 @@
   padding: 69px 30px 41px;
 }
 
-.profile-data__title {
+.profile-edit-form__title {
   margin: 0;
   padding: 0;
 
@@ -26,7 +26,7 @@
   line-height: calc(29 / 24);
 }
 
-.profile-data__form {
+.profile-edit-form__form {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -36,7 +36,7 @@
   margin-top: 60px;
 }
 
-.profile-data__field {
+.profile-edit-form__field {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -48,28 +48,28 @@
   line-height: calc(13 / 11);
 }
 
-.profile-data__field:first-child {
+.profile-edit-form__field:first-child {
   margin-top: 80px;
 }
 
-.profile-data__field:nth-child(n + 2) {
+.profile-edit-form__field:nth-child(n + 2) {
   margin-top: 13px;
   padding-top: 26px;
 
   border-top: 1px solid #e8e8e8;
 }
 
-.profile-data__label {
+.profile-edit-form__label {
   padding-top: 8px;
 
   font-weight: 500;
 }
 
-.profile-data__input-wrapper {
+.profile-edit-form__input-wrapper {
   width: 80%;
 }
 
-.profile-data__input {
+.profile-edit-form__input {
   margin-left: auto;
   padding: 8px;
 
@@ -81,18 +81,18 @@
   font-weight: 400;
 }
 
-.profile-data__input:disabled {
+.profile-edit-form__input:disabled {
   background-color: #ffffff;
 }
 
-.profile-data__input-error {
+.profile-edit-form__input-error {
   min-height: 12px;
   margin-top: 8px;
 
   text-align: right;
 }
 
-.profile-data__api-success {
+.profile-edit-form__api-success {
   display: block;
 
   min-height: 12px;
@@ -107,7 +107,7 @@
   line-height: calc(12 / 10);
 }
 
-.profile-data__edit-button {
+.profile-edit-form__edit-button {
   margin-top: 32px;
 
   transition: opacity 0.5s;
@@ -121,13 +121,13 @@
   line-height: calc(15 / 12);
 }
 
-.profile-data__edit-button:hover {
+.profile-edit-form__edit-button:hover {
   transition: opacity 0.1s;
 
   opacity: 0.7;
 }
 
-.profile-data__exit-button {
+.profile-edit-form__exit-button {
   margin-top: 16px;
 
   transition: opacity 0.5s;
@@ -141,13 +141,13 @@
   line-height: calc(15 / 12);
 }
 
-.profile-data__exit-button:hover {
+.profile-edit-form__exit-button:hover {
   transition: opacity 0.1s;
 
   opacity: 0.7;
 }
 
-.profile-data__submit-button {
+.profile-edit-form__submit-button {
   width: 100%;
   margin-top: auto;
   padding: 15px 0;
@@ -163,47 +163,47 @@
   line-height: calc(15 / 12);
 }
 
-.profile-data__submit-button:hover {
+.profile-edit-form__submit-button:hover {
   background-color: rgba(52, 86, 243, 0.8);
 }
 
-.profile-data__submit-button:disabled {
+.profile-edit-form__submit-button:disabled {
   color: #c2c2c2;
   background-color: #f8f8f8;
 }
 
 @media screen and (min-width: 600px) {
-  .profile-data {
+  .profile-edit-form {
     max-height: 720px;
     padding: 72px 30px 41px;
   }
 
-  .profile-data__field:first-child {
+  .profile-edit-form__field:first-child {
     margin-top: 80px;
   }
 
-  .profile-data__input-error {
+  .profile-edit-form__input-error {
     min-height: 13px;
   }
 
-  .profile-data__api-success {
+  .profile-edit-form__api-success {
     min-height: 13px;
 
     font-size: 11px;
     line-height: calc(13 / 11);
   }
 
-  .profile-data__edit-button {
+  .profile-edit-form__edit-button {
     font-size: 13px;
     line-height: calc(16 / 13);
   }
 
-  .profile-data__exit-button {
+  .profile-edit-form__exit-button {
     font-size: 13px;
     line-height: calc(16 / 13);
   }
 
-  .profile-data__submit-button {
+  .profile-edit-form__submit-button {
     padding: 13px 0 15px;
 
     font-size: 14px;
@@ -212,21 +212,21 @@
 }
 
 @media screen and (min-width: 900px) {
-  .profile-data {
+  .profile-edit-form {
     max-height: 626px;
     padding: 74px 30px 70px;
   }
 
-  .profile-data__field:first-child {
+  .profile-edit-form__field:first-child {
     margin-top: 80px;
   }
 
-  .profile-data__edit-button {
+  .profile-edit-form__edit-button {
     font-size: 13px;
     line-height: calc(16 / 13);
   }
 
-  .profile-data__exit-button {
+  .profile-edit-form__exit-button {
     font-size: 13px;
     line-height: calc(16 / 13);
   }
