@@ -4,10 +4,12 @@ import { Navigate } from 'react-router-dom';
 
 import LoginContext from '../../contexts/LoginContext';
 
+import { BASE_URL } from '../../utils/scripts/constants';
+
 function RouteForAnonymous({ children }) {
   const { isLoggedIn } = useContext(LoginContext);
 
-  return !isLoggedIn ? children : <Navigate to="/movies" />;
+  return !isLoggedIn ? children : <Navigate to={`${BASE_URL.MOVIES_EXPLORER_FRONT}/movies`} />;
 }
 
 RouteForAnonymous.propTypes = {

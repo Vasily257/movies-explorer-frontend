@@ -32,7 +32,8 @@ const STRING_VALIDATION_ERROR_TEXT = 'значение не является с�
 
 const BASE_URL = {
   BEATFILM_MOVIES: 'https://api.nomoreparties.co',
-  MOVIES_EXPLORER: 'https://api.kalmykov.moviesexplorer.nomoredomains.sbs',
+  MOVIES_EXPLORER_API: 'http:v1364358.hosted-by-vdsina.ru/movies-explorer/api/',
+  MOVIES_EXPLORER_FRONT: '/movies-explorer',
 };
 
 const INPUT_LIST = [

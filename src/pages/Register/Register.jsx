@@ -7,7 +7,9 @@ import Header from '../../components/Header/Header';
 import Content from '../../components/Content/Content';
 import UserAuthForm from '../../components/UserAuthForm/UserAuthForm';
 
-import { INPUT_LIST, STATUS, USER_ERROR_TEXT } from '../../utils/scripts/constants';
+import {
+  INPUT_LIST, STATUS, USER_ERROR_TEXT, BASE_URL,
+} from '../../utils/scripts/constants';
 import { register, login, setToken } from '../../utils/scripts/MainApi';
 
 function Register({ isRequestGoingOn, setIsRequestGoingOn }) {
@@ -58,7 +60,7 @@ function Register({ isRequestGoingOn, setIsRequestGoingOn }) {
           submitButtonText="Зарегистрироваться"
           isRequestGoingOn={isRequestGoingOn}
           redirectText="Уже зарегистрированы?"
-          redirectPath="/signin"
+          redirectPath={`${BASE_URL.MOVIES_EXPLORER_FRONT}/signin`}
           redirectLinkText="Войти"
         />
       </Content>

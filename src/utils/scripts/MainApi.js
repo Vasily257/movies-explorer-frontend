@@ -13,7 +13,7 @@ function setToken(token) {
 }
 
 async function register({ name, email, password }) {
-  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/signup/`, {
+  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER_API}/signup/`, {
     method: 'POST',
     headers,
     body: JSON.stringify({
@@ -27,7 +27,7 @@ async function register({ name, email, password }) {
 }
 
 async function login({ email, password }) {
-  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/signin`, {
+  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER_API}/signin`, {
     method: 'POST',
     headers,
     body: JSON.stringify({
@@ -41,7 +41,7 @@ async function login({ email, password }) {
 
 async function getUserData(token) {
   setToken(token);
-  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/users/me`, {
+  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER_API}/users/me`, {
     method: 'GET',
     headers,
   });
@@ -50,7 +50,7 @@ async function getUserData(token) {
 }
 
 async function getSavedMovies() {
-  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/movies`, {
+  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER_API}/movies`, {
     method: 'GET',
     headers,
   });
@@ -59,7 +59,7 @@ async function getSavedMovies() {
 }
 
 async function updateProfile({ name, email, currentEmail }) {
-  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/users/me`, {
+  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER_API}/users/me`, {
     method: 'PATCH',
     headers,
     body: JSON.stringify({
@@ -85,7 +85,7 @@ async function addSavedMovie({
   thumbnail,
   movieId,
 }) {
-  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/movies`, {
+  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER_API}/movies`, {
     method: 'POST',
     headers,
     body: JSON.stringify({
@@ -107,7 +107,7 @@ async function addSavedMovie({
 }
 
 async function deleteSavedMovie(id) {
-  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER}/movies/${id}`, {
+  const response = await fetch(`${BASE_URL.MOVIES_EXPLORER_API}/movies/${id}`, {
     method: 'DELETE',
     headers,
   });
