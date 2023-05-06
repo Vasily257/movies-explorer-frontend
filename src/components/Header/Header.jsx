@@ -7,6 +7,8 @@ import LoginContext from '../../contexts/LoginContext';
 import Navigation from '../Navigation/Navigation';
 import CustomLink from '../CustomLink/CustomLink';
 
+import { BASE_URL } from '../../utils/scripts/constants';
+
 import headerLogo from '../../images/header-logo.svg';
 
 import './Header.css';
@@ -20,9 +22,9 @@ function Header({ isDarkTheme, isEmptyHeader }) {
     >
       <CustomLink
         className="header__link"
-        path="/"
+        path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/`}
         onClick={() => {
-          <Navigate to="/" />;
+          <Navigate to={`${BASE_URL.MOVIES_EXPLORER_FRONT}/`} />;
         }}
         ariaLabel="Перейти на главную страницу"
       >
@@ -31,10 +33,10 @@ function Header({ isDarkTheme, isEmptyHeader }) {
       {isLoggedIn && !isEmptyHeader && <Navigation isDarkTheme={isDarkTheme} />}
       {!isLoggedIn && !isEmptyHeader && (
         <>
-          <CustomLink path="/signup" className="header__signup">
+          <CustomLink path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/signup`} className="header__signup">
             Регистрация
           </CustomLink>
-          <CustomLink path="/signin" className="header__signin">
+          <CustomLink path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/signin`} className="header__signin">
             Войти
           </CustomLink>
         </>

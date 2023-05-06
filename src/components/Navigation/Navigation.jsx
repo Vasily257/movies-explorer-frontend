@@ -7,6 +7,8 @@ import useScreenView from '../../hooks/useScreenView';
 import Button from '../Button/Button';
 import CustomLink from '../CustomLink/CustomLink';
 
+import { BASE_URL } from '../../utils/scripts/constants';
+
 import navigationButtonOpened from '../../images/navigation-button-opened.svg';
 import navigationButtonClosedWhite from '../../images/navigation-button-closed-white.svg';
 import navigationButtonClosedBlack from '../../images/navigation-button-closed-black.svg';
@@ -47,11 +49,11 @@ function Navigation({ isDarkTheme }) {
         {isMenuOpen && (
           <li className="navigation__item">
             <CustomLink
-              path="/"
+              path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/`}
               className="navigation__link"
               activeClassName="navigation__link_active"
               onClick={() => {
-                <Navigate to="/" />;
+                <Navigate to={`${BASE_URL.MOVIES_EXPLORER_FRONT}/`} />;
               }}
             >
               Главная
@@ -60,7 +62,7 @@ function Navigation({ isDarkTheme }) {
         )}
         <li className="navigation__item">
           <CustomLink
-            path="/movies"
+            path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/movies`}
             className={`navigation__link ${isDarkTheme ? 'navigation__link_color_white ' : ''}`}
             activeClassName="navigation__link_active"
             onClick={() => {
@@ -72,7 +74,7 @@ function Navigation({ isDarkTheme }) {
         </li>
         <li className="navigation__item">
           <CustomLink
-            path="/saved-movies"
+            path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/saved-movies`}
             className={`navigation__link ${isDarkTheme ? 'navigation__link_color_white ' : ''}`}
             activeClassName="navigation__link_active"
             onClick={() => {

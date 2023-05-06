@@ -16,7 +16,7 @@ import NotFound from '../../pages/NotFound/NotFound';
 import ProtectedRoute from '../HOC/ProtectedRoute';
 import RouteForAnonymous from '../HOC/RouteForAnonymous';
 
-import { MOVIES_ERROR_TEXT } from '../../utils/scripts/constants';
+import { MOVIES_ERROR_TEXT, BASE_URL } from '../../utils/scripts/constants';
 import {
   getlocalStorageItems,
   bringMoviesToSingleView,
@@ -160,9 +160,9 @@ function App() {
       <LoginContext.Provider value={loginValue}>
         <CurrentUserContext.Provider value={currentUserValue}>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/`} element={<Main />} />
             <Route
-              path="/movies"
+              path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/movies`}
               element={(
                 <ProtectedRoute>
                   <Movies
@@ -178,7 +178,7 @@ function App() {
               )}
             />
             <Route
-              path="/saved-movies"
+              path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/saved-movies`}
               element={(
                 <ProtectedRoute>
                   <SavedMovies
@@ -191,7 +191,7 @@ function App() {
               )}
             />
             <Route
-              path="/profile"
+              path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/profile`}
               element={(
                 <ProtectedRoute>
                   <Profile
@@ -203,7 +203,7 @@ function App() {
               )}
             />
             <Route
-              path="/signin"
+              path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/signin`}
               element={(
                 <RouteForAnonymous>
                   <Login
@@ -215,7 +215,7 @@ function App() {
               )}
             />
             <Route
-              path="/signup"
+              path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/signup`}
               element={(
                 <RouteForAnonymous>
                   <Register
@@ -225,7 +225,7 @@ function App() {
                 </RouteForAnonymous>
               )}
             />
-            <Route path="*" element={<NotFound />} />
+            <Route path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/*`} element={<NotFound />} />
           </Routes>
         </CurrentUserContext.Provider>
       </LoginContext.Provider>
