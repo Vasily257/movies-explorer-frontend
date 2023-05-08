@@ -19,7 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "npx eslint \"src/**/*.{js,jsx}\" --fix",
-    "deploy": "react-scripts build && scp -r ./build/* vasily257@158.160.2.24:/home/vasily257/movies-explorer-frontend/build"
+    "deploy": "react-scripts build && scp -r ./build/* root@92.38.241.48:/home/movies-explorer"
   },
   "eslintConfig": {
     "extends": [
