@@ -86,7 +86,7 @@ function Navigation({ isDarkTheme }) {
         </li>
       </ul>
       <CustomLink
-        path="/profile"
+        path={`${BASE_URL.MOVIES_EXPLORER_FRONT}/profile`}
         className={`navigation__profile ${isMenuOpen ? 'navigation__profile_opened' : ''}`}
         onClick={() => {
           setIsMenuOpen(false);
