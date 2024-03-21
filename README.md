@@ -10,8 +10,6 @@ The project has an API for:
 `JS`, `React.js`, `Git`  
   
 ## Links  
-A website link: https://v1364358.hosted-by-vdsina.ru/movies-explorer/  
-A server link: https://v1364358.hosted-by-vdsina.ru/movies-explorer/api  
 A backend part: https://github.com/Vasily257/movies-explorer-api  
    
 ## Animation  
